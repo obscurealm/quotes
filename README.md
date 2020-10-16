@@ -23,13 +23,13 @@
 1. Clone the repo
 
 ```sh
-git clone git@github.com:yusufsheiqh/quotes.git
+$ git clone git@github.com:yusufsheiqh/quotes.git
 ```
 
 2. Install packages in `quotes` directory
 
 ```sh
-npm i
+$ npm i
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ npm i
 To run the application for local development:
 
 ```sh
-npm start
+$ npm start
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
@@ -49,5 +49,5 @@ Then visit [http://localhost:3000](http://localhost:3000).
 To run tests:
 
 ```sh
-npm test
+$ npm test
 ```
