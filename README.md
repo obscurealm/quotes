@@ -26,7 +26,7 @@
 git clone git@github.com:yusufsheiqh/quotes.git
 ```
 
-1. Install packages in `quotes` directory
+2. Install packages in `quotes` directory
 
 ```sh
 npm i
