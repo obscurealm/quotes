@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 
-module.exports = function(app) {
-  var quotes = require('../controllers/quotesController');
+module.exports = function (app) {
+  var quotes = require("../controllers/quotesController");
 
-  app.route('/quotes')
-    .get(quotes.list_all_quotes)
+  app.route("/quotes").get(quotes.list_all_quotes);
 };

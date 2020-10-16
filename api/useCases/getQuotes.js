@@ -1,6 +1,6 @@
 class GetQuotesUseCase {
   execute() {
-    return []
+    return [];
   }
 }
 
