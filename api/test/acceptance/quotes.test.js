@@ -7,4 +7,10 @@ describe('GET /quotes', () => {
       .get('/quotes')
       .expect(200, done);
   });
+
+  it('returns content type JSON', (done) => {
+    request(app)
+      .get('/quotes')
+      .expect('Content-Type', /json/, done)
+  });
 });
