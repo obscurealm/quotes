@@ -1,4 +1,4 @@
-import getQuotes from "../../../pages/api/quotes";
+import getQuotes from "../../pages/api/quotes";
 
 describe("GET /api/quotes", () => {
   it("returns status 200", async () => {

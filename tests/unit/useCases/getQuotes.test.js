@@ -1,4 +1,4 @@
-const GetQuotesUseCase = require("../../../useCases/getQuotes.js");
+const GetQuotesUseCase = require("../../../src/useCases/getQuotes.js");
 
 describe("getQuotes", () => {
   it("returns an array response", () => {
