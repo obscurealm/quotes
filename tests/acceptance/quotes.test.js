@@ -26,51 +26,37 @@ describe("GET /api/quotes", () => {
     });
   });
 
-  it("returns status 200", async () => {
-    const response = {
-      status: jest.fn(),
-      json: jest.fn(),
-    };
+  describe("when the request method is GET", () => {
+    it("returns status 200", async () => {
+      const response = {
+        status: jest.fn(),
+        json: jest.fn(),
+      };
 
-    const req = {
-      method: "GET",
-    };
+      const req = {
+        method: "GET",
+      };
 
-    await getQuotes(req, response);
+      await getQuotes(req, response);
 
-    expect(response.status).toBeCalledWith(200);
-  });
-
-  it("returns a list of quotes", async () => {
-    const expectedResponse = {
-      data: {
-        quotes: [
-          {
-            timestamp: "1593013680",
-            quote: [
-              { name: "Ting", message: "Butt it’s wrong? *strokes beard*" },
-              {
-                name: "Yusuf",
-                message:
-                  "I don’t know if you are stroking my beard or your imaginary beard…",
-              },
-            ],
-          },
-        ],
-      },
-    };
-
-    const response = {
-      status: jest.fn(),
-      json: jest.fn(),
-    };
-
-    const req = {
-      method: "GET",
-    };
-
-    await getQuotes(req, response);
-
-    expect(response.json).toBeCalledWith(expectedResponse);
+      expect(response.status).toBeCalledWith(200);
+      expect(response.json).toBeCalledWith({
+        data: {
+          quotes: [
+            {
+              timestamp: "1593013680",
+              quote: [
+                { name: "Ting", message: "Butt it’s wrong? *strokes beard*" },
+                {
+                  name: "Yusuf",
+                  message:
+                    "I don’t know if you are stroking my beard or your imaginary beard…",
+                },
+              ],
+            },
+          ],
+        },
+      });
+    });
   });
 });
