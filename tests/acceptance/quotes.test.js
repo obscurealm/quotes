@@ -4,7 +4,7 @@ describe("GET /api/quotes", () => {
   describe("when the request method is not GET", () => {
     it("returns status 405", async () => {
       const response = {
-        status: jest.fn().mockReturnValue({ end: jest.fn() }),
+        status: jest.fn(),
         json: jest.fn(),
       };
 
@@ -15,6 +15,14 @@ describe("GET /api/quotes", () => {
       await getQuotes(req, response);
 
       expect(response.status).toBeCalledWith(405);
+      expect(response.json).toBeCalledWith({
+        errors: [
+          {
+            status: "405",
+            title: "Method Not Allowed",
+          },
+        ],
+      });
     });
   });
 

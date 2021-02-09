@@ -19,6 +19,14 @@ export default (req, res) => {
       },
     });
   } else {
-    res.status(405).end();
+    res.status(405);
+    res.json({
+      errors: [
+        {
+          status: "405",
+          title: "Method Not Allowed",
+        },
+      ],
+    });
   }
 };
