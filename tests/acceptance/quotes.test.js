@@ -46,8 +46,6 @@ describe("GET /api/quotes", () => {
 
     await getQuotes(req, response);
 
-    console.log(response.send);
-
     expect(response.json).toBeCalledWith(expectedResponse);
   });
 });
