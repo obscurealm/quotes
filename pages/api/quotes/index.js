@@ -6,7 +6,7 @@ export default (req, res) => {
         {
           timestamp: "1593013680",
           quote: [
-            {name: "Ting", message: "Butt it’s wrong? *strokes beard*"},
+            { name: "Ting", message: "Butt it’s wrong? *strokes beard*" },
             {
               name: "Yusuf",
               message:
@@ -17,4 +17,4 @@ export default (req, res) => {
       ],
     },
   });
-}
+};
