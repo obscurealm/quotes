@@ -3,7 +3,7 @@ import getQuotes from "../../../pages/api/quotes/index.js";
 describe("GET /api/quotes", () => {
   it("returns status 200", async () => {
     const response = {
-      status: jest.fn().mockReturnValue({end: jest.fn()}),
+      status: jest.fn().mockReturnValue({ end: jest.fn() }),
       json: jest.fn(),
     };
 
@@ -36,8 +36,8 @@ describe("GET /api/quotes", () => {
     };
 
     const response = {
-      status: jest.fn().mockReturnValue({end: jest.fn()}),
-      json: jest.fn().mockReturnValue({end: jest.fn()}),
+      status: jest.fn().mockReturnValue({ end: jest.fn() }),
+      json: jest.fn().mockReturnValue({ end: jest.fn() }),
     };
 
     const req = {
