@@ -39,7 +39,7 @@ $ npm i
 To run the application for local development:
 
 ```sh
-$ npm start
+$ npm run dev
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
@@ -49,5 +49,5 @@ Then visit [http://localhost:3000](http://localhost:3000).
 To run tests:
 
 ```sh
-$ npm test
+$ npm run test
 ```
