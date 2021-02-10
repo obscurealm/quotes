@@ -16,6 +16,7 @@
 ### Prerequisites
 
 - [NodeJS](https://nodejs.org/en/)
+  - run `nvm install` if using [NVM](https://github.com/nvm-sh/nvm)
 - [NPM](https://www.npmjs.com/get-npm)
 
 ### Installation
