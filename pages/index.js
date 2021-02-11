@@ -9,7 +9,7 @@ const Home = ({ quotes }) => {
       </Head>
       <h1>Quotes</h1>
       {quotes.map((quote, index) => (
-        <div key={index}>
+        <div key={index} data-cy="quote">
           <h2>{quote.timestamp}</h2>
           {quote.dialogue.map((dialogue, index) => (
             <p key={index}>
