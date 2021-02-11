@@ -1,8 +1,12 @@
+import Head from "next/head";
 import { getListOfQuotes } from "./api/quotes";
 
 const Home = ({ quotes }) => {
   return (
     <>
+      <Head>
+        <title>Home</title>
+      </Head>
       <h1>Quotes</h1>
       {quotes.map((quote, index) => (
         <div key={index}>
