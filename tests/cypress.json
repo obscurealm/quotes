@@ -1,7 +1,7 @@
 {
   "baseUrl": "http://localhost:3000",
-  "integrationFolder": "tests/journey",
-  "fixturesFolder": "tests/journey/fixtures",
+  "integrationFolder": "journey",
+  "fixturesFolder": "journey/fixtures",
   "pluginsFile": false,
   "screenshotOnRunFailure": false,
   "supportFile": false,
