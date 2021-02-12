@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "next build",
-    "start": "next start",
     "dev": "next dev",
     "format": "prettier --write '{pages,src,tests}/**/*.{js,css,md,yml}'",
     "test": "jest && npm run test:journey",
