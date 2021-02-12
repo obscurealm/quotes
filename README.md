@@ -47,8 +47,14 @@ Then visit [http://localhost:3000](http://localhost:3000).
 
 ### Running the tests
 
-To run tests:
+To run all the tests:
 
 ```sh
 $ npm run test
+```
+
+To run acceptance, journey, or unit tests:
+
+```sh
+$ npm run test:[acceptance/journey/unit] # for example, npm run test:unit to run unit tests
 ```
