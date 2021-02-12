@@ -1,7 +1,5 @@
-class GetQuotesUseCase {
+export default class GetQuotesUseCase {
   execute() {
     return [];
   }
 }
-
-module.exports = GetQuotesUseCase;
