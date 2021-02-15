@@ -7,9 +7,18 @@ describe("quotes gateway", () => {
     expect(gateway.quotesDirectory).toEqual("../fixtures/quotes");
   });
 
-  it("can return list of markdown files", () => {
+  it("can return a list of markdown files", () => {
     const gateway = new QuotesGateway("tests/fixtures/quotes");
 
     expect(gateway.retrieveMarkdownFiles()).toEqual(["1.md", "2.md"]);
+  });
+
+  it("can return a list of quotes", () => {
+    const gateway = new QuotesGateway("tests/fixtures/quotes");
+
+    expect(gateway.retrieveQuotes()).toEqual([
+      "**Ting**: _Hello!_\n" + "\n" + "**Yusuf**: Goodbye!\n",
+      "**Ting**: _Goodbye!_\n" + "\n" + "**Yusuf**: Hello!\n",
+    ]);
   });
 });
