@@ -7,12 +7,6 @@ describe("quotes gateway", () => {
     expect(gateway.quotesDirectory).toEqual("../fixtures/quotes");
   });
 
-  it("can return a list of markdown files", () => {
-    const gateway = new QuotesGateway("tests/fixtures/quotes");
-
-    expect(gateway.retrieveMarkdownFiles()).toEqual(["1.md", "2.md"]);
-  });
-
   it("can return a list containing quotes' contents", () => {
     const gateway = new QuotesGateway("tests/fixtures/quotes");
 

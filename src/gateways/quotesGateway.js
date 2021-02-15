@@ -7,12 +7,8 @@ export default class QuotesGateway {
     this.quotesDirectory = files;
   }
 
-  retrieveMarkdownFiles() {
-    return fs.readdirSync(join(process.cwd(), this.quotesDirectory));
-  }
-
   retrieveQuotes(fields = []) {
-    const files = this.retrieveMarkdownFiles();
+    const files = fs.readdirSync(join(process.cwd(), this.quotesDirectory));
 
     return files.map((file) => {
       const timestamp = file.replace(/\.md$/, "");
