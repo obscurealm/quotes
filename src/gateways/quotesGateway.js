@@ -1,5 +1,6 @@
 import fs from "fs";
 import { join } from "path";
+import matter from "gray-matter";
 
 export default class QuotesGateway {
   constructor(files) {
@@ -10,7 +11,7 @@ export default class QuotesGateway {
     return fs.readdirSync(join(process.cwd(), this.quotesDirectory));
   }
 
-  retrieveQuotes() {
+  retrieveQuotes(fields = []) {
     const files = this.retrieveMarkdownFiles();
 
     return files.map((file) => {
@@ -19,8 +20,22 @@ export default class QuotesGateway {
         join(process.cwd(), this.quotesDirectory),
         `${timestamp}.md`
       );
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data, content } = matter(fileContents);
 
-      return fs.readFileSync(fullPath, "utf8");
+      const quote = {};
+
+      fields.forEach((field) => {
+        if (field === "content") {
+          quote[field] = content;
+        }
+
+        if (data[field]) {
+          quote[field] = data[field];
+        }
+      });
+
+      return quote;
     });
   }
 }

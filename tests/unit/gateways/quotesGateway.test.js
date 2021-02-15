@@ -13,12 +13,33 @@ describe("quotes gateway", () => {
     expect(gateway.retrieveMarkdownFiles()).toEqual(["1.md", "2.md"]);
   });
 
-  it("can return a list of quotes", () => {
+  it("can return a list containing quotes' contents", () => {
     const gateway = new QuotesGateway("tests/fixtures/quotes");
 
-    expect(gateway.retrieveQuotes()).toEqual([
-      "**Ting**: _Hello!_\n" + "\n" + "**Yusuf**: Goodbye!\n",
-      "**Ting**: _Goodbye!_\n" + "\n" + "**Yusuf**: Hello!\n",
-    ]);
+    expect(gateway.retrieveQuotes(["content"])).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          content: "\n**Ting**: _Hello!_\n\n**Yusuf**: Goodbye!\n",
+        }),
+        expect.objectContaining({
+          content: "\n**Ting**: _Goodbye!_\n\n**Yusuf**: Hello!\n",
+        }),
+      ])
+    );
+  });
+
+  it("can return a list containing quotes' front matter", () => {
+    const gateway = new QuotesGateway("tests/fixtures/quotes");
+
+    expect(gateway.retrieveQuotes(["front"])).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          front: "matter",
+        }),
+        expect.objectContaining({
+          front: "matter",
+        }),
+      ])
+    );
   });
 });
