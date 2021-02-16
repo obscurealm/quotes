@@ -1,14 +1,14 @@
-import QuotesGateway from "../../../src/gateways/quotesGateway.js";
+import MarkdownGateway from "../../../src/gateways/markdownGateway.js";
 
-describe("quotes gateway", () => {
+describe("markdown gateway", () => {
   it("can be constructed with a quotes directory", () => {
-    const gateway = new QuotesGateway("../fixtures/quotes");
+    const gateway = new MarkdownGateway("../fixtures/quotes");
 
     expect(gateway.quotesDirectory).toEqual("../fixtures/quotes");
   });
 
   it("can return a list containing quotes' contents", () => {
-    const gateway = new QuotesGateway("tests/fixtures/quotes");
+    const gateway = new MarkdownGateway("tests/fixtures/quotes");
 
     expect(gateway.retrieveQuotes(["content"])).toEqual(
       expect.arrayContaining([
@@ -23,7 +23,7 @@ describe("quotes gateway", () => {
   });
 
   it("can return a list containing quotes' front matter", () => {
-    const gateway = new QuotesGateway("tests/fixtures/quotes");
+    const gateway = new MarkdownGateway("tests/fixtures/quotes");
 
     expect(gateway.retrieveQuotes(["front"])).toEqual(
       expect.arrayContaining([

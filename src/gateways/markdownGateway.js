@@ -2,7 +2,7 @@ import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 
-export default class QuotesGateway {
+export default class MarkdownGateway {
   constructor(files) {
     this.quotesDirectory = files;
   }
