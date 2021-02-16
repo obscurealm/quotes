@@ -12,6 +12,6 @@ describe("convertMarkdownToHtml util", () => {
 
     const html = convertMarkdownToHtml.execute();
 
-    expect(html).toEqual("<strong>yusuf<\/strong>");
+    expect(html).toEqual("<strong>yusuf</strong>");
   });
 });

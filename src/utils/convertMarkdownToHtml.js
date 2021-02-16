@@ -1,4 +1,4 @@
-import marked from 'marked'
+import marked from "marked";
 
 export default class ConvertMarkdownToHtmlUtil {
   constructor(markdown) {
@@ -6,6 +6,6 @@ export default class ConvertMarkdownToHtmlUtil {
   }
 
   execute() {
-    return marked.parseInline(this.markdown, [])
+    return marked.parseInline(this.markdown, []);
   }
 }
