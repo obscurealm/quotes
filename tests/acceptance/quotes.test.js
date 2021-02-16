@@ -40,23 +40,11 @@ describe("GET /api/quotes", () => {
       await getQuotes(req, response);
 
       expect(response.status).toBeCalledWith(200);
-      expect(response.json).toBeCalledWith({
+      expect(response.json).toBeCalledWith(expect.objectContaining({
         data: {
-          quotes: [
-            {
-              timestamp: "1593013680",
-              dialogue: [
-                { author: "Ting", text: "Butt it’s wrong? *strokes beard*" },
-                {
-                  author: "Yusuf",
-                  text:
-                    "I don’t know if you are stroking my beard or your imaginary beard…",
-                },
-              ],
-            },
-          ],
-        },
-      });
+          quotes: expect.any(Object)
+        }
+      }));
     });
   });
 });
