@@ -3,7 +3,7 @@ import MarkdownGateway from "../../../src/gateways/markdownGateway";
 
 describe("getQuotes use case", () => {
   it("returns an array response", async () => {
-    const gateway = new MarkdownGateway("tests/fixtures/quotes")
+    const gateway = new MarkdownGateway("tests/fixtures/quotes");
     const getQuotes = new GetQuotesUseCase(gateway);
 
     expect(getQuotes.execute()).toEqual([
@@ -13,8 +13,7 @@ describe("getQuotes use case", () => {
           { author: "Ting", text: "_Hello!_" },
           {
             author: "Yusuf",
-            text:
-              "Goodbye!",
+            text: "Goodbye!",
           },
         ],
       },
@@ -24,8 +23,7 @@ describe("getQuotes use case", () => {
           { author: "Ting", text: "_Goodbye!_" },
           {
             author: "Yusuf",
-            text:
-              "Hello!",
+            text: "Hello!",
           },
         ],
       },

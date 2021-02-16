@@ -40,11 +40,13 @@ describe("GET /api/quotes", () => {
       await getQuotes(req, response);
 
       expect(response.status).toBeCalledWith(200);
-      expect(response.json).toBeCalledWith(expect.objectContaining({
-        data: {
-          quotes: expect.any(Object)
-        }
-      }));
+      expect(response.json).toBeCalledWith(
+        expect.objectContaining({
+          data: {
+            quotes: expect.any(Object),
+          },
+        })
+      );
     });
   });
 });
