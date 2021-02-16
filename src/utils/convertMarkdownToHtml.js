@@ -1,11 +1,9 @@
 import marked from "marked";
 
 export default class ConvertMarkdownToHtmlUtil {
-  constructor(markdown) {
-    this.markdown = markdown;
-  }
+  constructor() {}
 
-  execute() {
-    return marked.parseInline(this.markdown, []);
+  execute(markdown) {
+    return marked.parseInline(markdown, []);
   }
 }
