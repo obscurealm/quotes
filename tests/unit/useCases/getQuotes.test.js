@@ -1,18 +1,31 @@
 import GetQuotesUseCase from "../../../src/useCases/getQuotes.js";
+import MarkdownGateway from "../../../src/gateways/markdownGateway";
 
 describe("getQuotes use case", () => {
-  it("returns an array response", () => {
-    const getQuotes = new GetQuotesUseCase();
+  it("returns an array response", async () => {
+    const gateway = new MarkdownGateway("tests/fixtures/quotes")
+    const getQuotes = new GetQuotesUseCase(gateway);
 
     expect(getQuotes.execute()).toEqual([
       {
-        timestamp: "1593013680",
+        timestamp: 1593013680,
         dialogue: [
-          { author: "Ting", text: "Butt it’s wrong? *strokes beard*" },
+          { author: "Ting", text: "_Hello!_" },
           {
             author: "Yusuf",
             text:
-              "I don’t know if you are stroking my beard or your imaginary beard…",
+              "Goodbye!",
+          },
+        ],
+      },
+      {
+        timestamp: 1593013680,
+        dialogue: [
+          { author: "Ting", text: "_Goodbye!_" },
+          {
+            author: "Yusuf",
+            text:
+              "Hello!",
           },
         ],
       },

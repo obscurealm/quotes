@@ -1,19 +1,28 @@
 export default class GetQuotesUseCase {
-  constructor() {}
+  constructor(gateway) {
+    this.quotesGateway = gateway;
+  }
 
   execute() {
-    return [
-      {
-        timestamp: "1593013680",
-        dialogue: [
-          { author: "Ting", text: "Butt it’s wrong? *strokes beard*" },
-          {
-            author: "Yusuf",
-            text:
-              "I don’t know if you are stroking my beard or your imaginary beard…",
-          },
-        ],
-      },
-    ];
+    const quotes = this.quotesGateway.retrieveQuotes();
+
+    return quotes.map((quote) => {
+      const dialogues = quote.quote
+        .trim()
+        .split("\n\n")
+        .map((dialogue) => {
+          const [author, text] = dialogue.split(": ");
+
+          return {
+            author: author,
+            text: text,
+          };
+        });
+
+      return {
+        timestamp: quote.frontMatter.timestamp,
+        dialogue: dialogues,
+      };
+    });
   }
 }
