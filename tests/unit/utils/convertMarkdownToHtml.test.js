@@ -6,4 +6,12 @@ describe("convertMarkdownToHtml util", () => {
 
     expect(convertMarkdownToHtml.markdown).toEqual("**yusuf**");
   });
+
+  it("can return a HTML response", () => {
+    const convertMarkdownToHtml = new convertMarkdownToHtmlUtil("**yusuf**");
+
+    const html = convertMarkdownToHtml.execute();
+
+    expect(html).toEqual("<strong>yusuf<\/strong>");
+  });
 });
