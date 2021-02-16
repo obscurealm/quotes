@@ -13,10 +13,10 @@ describe("markdown gateway", () => {
     expect(gateway.retrieveQuotes(["content"])).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          quote: "\n**Ting**: _Hello!_\n\n**Yusuf**: Goodbye!\n",
+          quote: "\nTing: _Hello!_\n\nYusuf: Goodbye!\n",
         }),
         expect.objectContaining({
-          quote: "\n**Ting**: _Goodbye!_\n\n**Yusuf**: Hello!\n",
+          quote: "\nTing: _Goodbye!_\n\nYusuf: Hello!\n",
         }),
       ])
     );
@@ -28,10 +28,10 @@ describe("markdown gateway", () => {
     expect(gateway.retrieveQuotes(["front"])).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          frontMatter: { front: "matter" },
+          frontMatter: { timestamp: 1593013680 },
         }),
         expect.objectContaining({
-          frontMatter: { front: "matter" },
+          frontMatter: { timestamp: 1593013680 },
         }),
       ])
     );
