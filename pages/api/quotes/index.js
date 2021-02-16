@@ -23,7 +23,7 @@ export default (req, res) => {
 };
 
 export function getListOfQuotes() {
-  const gateway = new MarkdownGateway("src/quotes");
+  const gateway = new MarkdownGateway("quotes");
   const getQuotes = new getQuotesUseCase(gateway);
 
   return getQuotes.execute();
