@@ -17,21 +17,9 @@ export default class QuotesGateway {
         `${timestamp}.md`
       );
       const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data, content } = matter(fileContents);
+      const { data: frontMatter, content: quote } = matter(fileContents);
 
-      const quote = {};
-
-      fields.forEach((field) => {
-        if (field === "content") {
-          quote[field] = content;
-        }
-
-        if (data[field]) {
-          quote[field] = data[field];
-        }
-      });
-
-      return quote;
+      return { frontMatter, quote };
     });
   }
 }

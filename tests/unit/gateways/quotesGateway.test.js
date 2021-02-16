@@ -13,10 +13,10 @@ describe("quotes gateway", () => {
     expect(gateway.retrieveQuotes(["content"])).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          content: "\n**Ting**: _Hello!_\n\n**Yusuf**: Goodbye!\n",
+          quote: "\n**Ting**: _Hello!_\n\n**Yusuf**: Goodbye!\n",
         }),
         expect.objectContaining({
-          content: "\n**Ting**: _Goodbye!_\n\n**Yusuf**: Hello!\n",
+          quote: "\n**Ting**: _Goodbye!_\n\n**Yusuf**: Hello!\n",
         }),
       ])
     );
@@ -28,10 +28,10 @@ describe("quotes gateway", () => {
     expect(gateway.retrieveQuotes(["front"])).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          front: "matter",
+          frontMatter: { front: "matter" },
         }),
         expect.objectContaining({
-          front: "matter",
+          frontMatter: { front: "matter" },
         }),
       ])
     );
