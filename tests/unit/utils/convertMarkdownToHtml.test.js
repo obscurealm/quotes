@@ -1,4 +1,4 @@
-import convertMarkdownToHtmlUtil from "../../../src/utils/convertMarkdownToHtml";
+import convertMarkdownToHtmlUtil from "../../../utils/convertMarkdownToHtml";
 
 describe("convertMarkdownToHtml util", () => {
   it("can return an HTML response", () => {

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getListOfQuotes } from "./api/quotes";
-import convertMarkdownToHtmlUtil from "../src/utils/convertMarkdownToHtml";
+import convertMarkdownToHtmlUtil from "../utils/convertMarkdownToHtml";
 
 const Home = ({ quotes }) => {
   const convertMarkdownToHtml = new convertMarkdownToHtmlUtil();
