@@ -1,10 +1,8 @@
 import Head from "next/head";
 import { getListOfQuotes } from "./api/quotes";
-import convertMarkdownToHtmlUtil from "../utils/convertMarkdownToHtml";
+import convertMarkdownToHtml from "../utils/convertMarkdownToHtml";
 
 const Home = ({ quotes }) => {
-  const convertMarkdownToHtml = new convertMarkdownToHtmlUtil();
-
   return (
     <>
       <Head>
@@ -19,7 +17,7 @@ const Home = ({ quotes }) => {
               <strong>{dialogue.author}</strong>:{" "}
               <span
                 dangerouslySetInnerHTML={{
-                  __html: convertMarkdownToHtml.execute(dialogue.text),
+                  __html: convertMarkdownToHtml(dialogue.text),
                 }}
               />
             </p>
