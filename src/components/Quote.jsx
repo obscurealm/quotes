@@ -3,7 +3,7 @@ import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 
 const Quote = ({quote}) => {
   return (
-    <div key={quote.timestamp} data-cy="quote">
+    <div data-cy="quote">
       <h2>{quote.timestamp}</h2>
       {quote.dialogue.map((dialogue, index) => (
         <p key={index}>
