@@ -11,7 +11,7 @@ export default function formatUnixTimeToDateTime(timestamp) {
 
   moment.locale("en-GB")
 
-  const time = moment.unix(timestamp).format("h:mma")
+  const time = moment.unix(timestamp).utc(true).format("h:mma")
 
   return { date: formattedDate, time };
 }
