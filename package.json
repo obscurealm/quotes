@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "format": "prettier --write '{pages,quotes,src,tests}/**/*.{js,css,md,yml}'",
+    "format": "prettier --write '{pages,quotes,src,tests,utils}/**/*.{js,css,md,yml}'",
     "test": "jest && npm run test:journey",
     "test:acceptance": "jest acceptance",
     "test:journey": "start-server-and-test 'next dev --port 4000' 4000 'cypress run --project tests'",
