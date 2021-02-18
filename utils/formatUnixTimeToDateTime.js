@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default function formatUnixTimeToDateTime(timestamp) {
   const date = new Date(timestamp * 1000);
 
@@ -7,11 +9,9 @@ export default function formatUnixTimeToDateTime(timestamp) {
     year: "numeric",
   });
 
-  const time = date.toLocaleTimeString("en", {
-    hour12: true,
-    hour: "numeric",
-    minute: "2-digit",
-  });
+  moment.locale("en-GB")
+
+  const time = moment.unix(timestamp).format("h:mma")
 
   return { date: formattedDate, time };
 }
