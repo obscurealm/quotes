@@ -10,9 +10,7 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} />);
 
-    expect(
-      await screen.findByText("18 February 2021 at 12:00pm")
-    ).toBeTruthy();
+    expect(await screen.findByText("18 February 2021 at 12:00pm")).toBeTruthy();
     expect(await screen.findByText("Yusuf")).toBeTruthy();
     expect(await screen.findByText("speedieboi")).toBeTruthy();
   });
