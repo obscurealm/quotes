@@ -11,11 +11,12 @@ export default class GetQuotesUseCase {
         .trim()
         .split("\n\n")
         .map((dialogue) => {
-          const [author, text] = dialogue.split(": ");
+          const delimiter = ": "
+          const [author, ...text] = dialogue.split(delimiter);
 
           return {
             author: author,
-            text: text,
+            text: text.join(delimiter),
           };
         });
 

@@ -27,6 +27,16 @@ describe("getQuotes use case", () => {
           },
         ],
       },
+      {
+        timestamp: 1593013680,
+        dialogue: [
+          { author: "Ting", text: "Another one!" },
+          {
+            author: "Yusuf",
+            text: "What do you think of `data: data`?",
+          },
+        ],
+      },
     ]);
   });
 });
