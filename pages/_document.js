@@ -1,7 +1,7 @@
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class QuotesDocument extends Document {
+export default class QuotesDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -14,5 +14,3 @@ class QuotesDocument extends Document {
     );
   }
 }
-
-export default QuotesDocument;
