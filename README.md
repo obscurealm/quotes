@@ -45,6 +45,14 @@ $ npm run dev
 
 Then visit [http://localhost:3000](http://localhost:3000).
 
+### Formatting the application
+
+To run the formatter (using [Prettier](https://prettier.io/)):
+
+```sh
+$ npm run format
+```
+
 ### Running the tests
 
 To run all the tests:
