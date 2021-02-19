@@ -10,12 +10,17 @@ describe("Quotes component", () => {
       },
       {
         timestamp: "1614610800",
-        dialogue: [{ author: "Ting", text: "I don't know the meaning of the word evil." }],
-      }
+        dialogue: [
+          {
+            author: "Ting",
+            text: "I don't know the meaning of the word evil.",
+          },
+        ],
+      },
     ];
 
     render(<Quotes quotes={quotes} />);
 
     expect(screen.getByTestId("quotes").children).toHaveLength(2);
   });
-})
+});
