@@ -2,7 +2,7 @@ import Quote from "../../../src/components/Quote";
 import { render, screen } from "@testing-library/react";
 
 describe("Quote component", () => {
-  it("can display the quote", async () => {
+  it("can display the quote", () => {
     const quote = {
       timestamp: "1613649600",
       dialogue: [{ author: "Yusuf", text: "speedieboi" }],
@@ -10,8 +10,8 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} />);
 
-    expect(await screen.findByText("18 February 2021 at 12:00pm")).toBeTruthy();
-    expect(await screen.findByText("Yusuf")).toBeTruthy();
-    expect(await screen.findByText("speedieboi")).toBeTruthy();
+    expect(screen.getByText("18 February 2021 at 12:00pm")).toBeTruthy();
+    expect(screen.getByText("Yusuf")).toBeTruthy();
+    expect(screen.getByText("speedieboi")).toBeTruthy();
   });
 });
