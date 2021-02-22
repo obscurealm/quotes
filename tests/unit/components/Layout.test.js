@@ -2,11 +2,12 @@ import Layout from "../../../src/components/Layout";
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
-jest.mock("next/head", function () {
+jest.mock("next/head", () => {
   return {
     __esModule: true,
     default: (parameters) => {
       const children = parameters.children;
+
       return <>{children}</>;
     },
   };

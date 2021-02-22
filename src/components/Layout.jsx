@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from 'react';
 
-const Layout = ({ title = 'Home', children }) => {
+const Layout = ({ title = 'Quotes', children }) => {
   return (
     <>
       <Head>
