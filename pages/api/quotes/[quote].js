@@ -25,7 +25,7 @@ export default (req, res) => {
   }
 };
 
-export function getAQuote(slug) {
+export const getAQuote = (slug) => {
   const gateway = new MarkdownGateway("quotes");
   const getQuote = new GetQuoteUseCase(gateway);
 
