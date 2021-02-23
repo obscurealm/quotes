@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getListOfQuotes } from "./api/quotes";
-import Quote from "../src/components/Quote";
+import Quotes from "../src/components/Quotes";
 
 const Home = ({ quotes }) => {
   return (
@@ -9,9 +9,7 @@ const Home = ({ quotes }) => {
         <title>Home</title>
       </Head>
       <h1>Quotes</h1>
-      {quotes.map((quote, index) => (
-        <Quote key={index} quote={quote} />
-      ))}
+      <Quotes quotes={quotes} />
     </>
   );
 };
