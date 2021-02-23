@@ -1,10 +1,10 @@
 export default class GetQuotesUseCase {
   constructor(gateway) {
-    this.quotesGateway = gateway;
+    this.markdownGateway = gateway;
   }
 
   execute() {
-    const quotes = this.quotesGateway.retrieveQuotes();
+    const quotes = this.markdownGateway.retrieveQuotes();
 
     return quotes.map((quote) => {
       const dialogues = quote.quote

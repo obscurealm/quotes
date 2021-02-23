@@ -1,10 +1,10 @@
 export default class GetQuoteUseCase {
   constructor(gateway) {
-    this.quotesGateway = gateway;
+    this.markdownGateway = gateway;
   }
 
   execute(file) {
-    const quote = this.quotesGateway.retrieveQuote(file);
+    const quote = this.markdownGateway.retrieveQuote(file);
 
     const dialogues = quote.quote
       .trim()
