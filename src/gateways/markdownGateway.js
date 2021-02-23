@@ -22,4 +22,16 @@ export default class MarkdownGateway {
       return { frontMatter, quote };
     });
   }
+
+  retrieveQuote(file) {
+    const slug = file.replace(/\.md$/, "");
+    const fullPath = join(
+      join(process.cwd(), this.quotesDirectory),
+      `${slug}.md`
+    );
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { content: quote } = matter(fileContents);
+
+    return { quote };
+  }
 }

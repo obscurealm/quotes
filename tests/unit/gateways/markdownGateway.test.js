@@ -7,6 +7,16 @@ describe("markdown gateway", () => {
     expect(gateway.quotesDirectory).toEqual("../fixtures/quotes");
   });
 
+  it("can return a quotes' contents", () => {
+    const gateway = new MarkdownGateway("tests/fixtures/quotes");
+
+    expect(gateway.retrieveQuote("1.md")).toEqual(
+      expect.objectContaining({
+        quote: "\nTing: _Hello!_\n\nYusuf: Goodbye!\n",
+      })
+    );
+  });
+
   it("can return a list containing quotes' contents", () => {
     const gateway = new MarkdownGateway("tests/fixtures/quotes");
 
