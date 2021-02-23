@@ -17,6 +17,16 @@ describe("markdown gateway", () => {
     );
   });
 
+  it("can return a quotes' front matter", () => {
+    const gateway = new MarkdownGateway("tests/fixtures/quotes");
+
+    expect(gateway.retrieveQuote("2.md")).toEqual(
+      expect.objectContaining({
+        frontMatter: { timestamp: 1593013680 },
+      })
+    );
+  });
+
   it("can return a list containing quotes' contents", () => {
     const gateway = new MarkdownGateway("tests/fixtures/quotes");
 

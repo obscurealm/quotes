@@ -30,8 +30,8 @@ export default class MarkdownGateway {
       `${slug}.md`
     );
     const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { content: quote } = matter(fileContents);
+    const { data: frontMatter, content: quote } = matter(fileContents);
 
-    return { quote };
+    return { frontMatter, quote };
   }
 }
