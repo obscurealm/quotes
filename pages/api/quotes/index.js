@@ -1,4 +1,4 @@
-import getQuotesUseCase from "../../../src/useCases/getQuotes";
+import GetQuotesUseCase from "../../../src/useCases/getQuotes";
 import MarkdownGateway from "../../../src/gateways/markdownGateway";
 
 export default (req, res) => {
@@ -24,7 +24,7 @@ export default (req, res) => {
 
 export function getListOfQuotes() {
   const gateway = new MarkdownGateway("quotes");
-  const getQuotes = new getQuotesUseCase(gateway);
+  const getQuotes = new GetQuotesUseCase(gateway);
 
   return getQuotes.execute();
 }

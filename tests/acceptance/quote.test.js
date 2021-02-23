@@ -1,12 +1,11 @@
 import * as getQuote from "../../pages/api/quotes/[quote]";
-import React from "react";
 
 describe("GET /api/quotes/[quote]", () => {
   describe("when the request method is not GET", () => {
     it("returns status 405", async () => {
       const response = {
         status: jest.fn(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       const req = {
