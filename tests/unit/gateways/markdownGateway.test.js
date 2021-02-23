@@ -30,7 +30,7 @@ describe("markdown gateway", () => {
   it("can return a list containing quotes' contents", () => {
     const gateway = new MarkdownGateway("tests/fixtures/quotes");
 
-    expect(gateway.retrieveQuotes(["content"])).toEqual(
+    expect(gateway.retrieveQuotes()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           quote: "\nTing: _Hello!_\n\nYusuf: Goodbye!\n",
@@ -45,7 +45,7 @@ describe("markdown gateway", () => {
   it("can return a list containing quotes' front matter", () => {
     const gateway = new MarkdownGateway("tests/fixtures/quotes");
 
-    expect(gateway.retrieveQuotes(["front"])).toEqual(
+    expect(gateway.retrieveQuotes()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           frontMatter: { timestamp: 1593013680 },

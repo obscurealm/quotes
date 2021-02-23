@@ -7,7 +7,7 @@ export default class MarkdownGateway {
     this.quotesDirectory = files;
   }
 
-  retrieveQuotes(fields = []) {
+  retrieveQuotes() {
     const files = fs.readdirSync(join(process.cwd(), this.quotesDirectory));
 
     return files.map((file) => {
