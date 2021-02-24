@@ -1,5 +1,5 @@
 import fs from "fs";
-import { join } from "path";
+import { join, resolve } from "path";
 import matter from "gray-matter";
 
 export default class MarkdownGateway {
@@ -10,7 +10,7 @@ export default class MarkdownGateway {
   retrieveQuote(file) {
     const slug = file.replace(/\.md$/, "");
     const fullPath = join(
-      join(process.cwd(), this.quotesDirectory),
+      resolve('./', this.quotesDirectory),
       `${slug}.md`
     );
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -20,7 +20,7 @@ export default class MarkdownGateway {
   }
 
   retrieveQuotes() {
-    const files = fs.readdirSync(join(process.cwd(), this.quotesDirectory));
+    const files = fs.readdirSync(resolve('./', this.quotesDirectory));
 
     return files.map((file) => {
       return this.retrieveQuote(file);
