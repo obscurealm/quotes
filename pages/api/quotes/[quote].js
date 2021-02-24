@@ -30,4 +30,4 @@ export const getAQuote = (slug) => {
   const getQuote = new GetQuoteUseCase(gateway);
 
   return getQuote.execute(`${slug}.md`);
-}
+};

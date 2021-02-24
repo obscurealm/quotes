@@ -5,4 +5,4 @@ export default (timestamp) => {
   const time = moment.unix(timestamp).utc(true).format("h:mma");
 
   return { date, time };
-}
+};

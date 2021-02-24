@@ -27,4 +27,4 @@ export const getListOfQuotes = () => {
   const getQuotes = new GetQuotesUseCase(gateway);
 
   return getQuotes.execute();
-}
+};

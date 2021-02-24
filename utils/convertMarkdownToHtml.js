@@ -5,4 +5,4 @@ export default (markdown) => {
   return sanitizeHtml(marked.parseInline(markdown, []), {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
   });
-}
+};
