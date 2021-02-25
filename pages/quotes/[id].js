@@ -21,7 +21,7 @@ export const getStaticProps = ({ params }) => {
       quote,
     },
   };
-}
+};
 
 export const getStaticPaths = () => {
   const quotes = getListOfQuotes();
@@ -36,6 +36,6 @@ export const getStaticPaths = () => {
     }),
     fallback: false,
   };
-}
+};
 
 export default QuotePage;

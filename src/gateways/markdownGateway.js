@@ -9,10 +9,7 @@ export default class MarkdownGateway {
 
   retrieveQuote(file) {
     const slug = file.replace(/\.md$/, "");
-    const fullPath = join(
-      resolve('./', this.quotesDirectory),
-      `${slug}.md`
-    );
+    const fullPath = join(resolve("./", this.quotesDirectory), `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data: frontMatter, content: quote } = matter(fileContents);
 
@@ -20,7 +17,7 @@ export default class MarkdownGateway {
   }
 
   retrieveQuotes() {
-    const files = fs.readdirSync(resolve('./', this.quotesDirectory));
+    const files = fs.readdirSync(resolve("./", this.quotesDirectory));
 
     return files.map((file) => {
       return this.retrieveQuote(file);
