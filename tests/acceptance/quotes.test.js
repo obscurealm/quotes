@@ -1,13 +1,13 @@
 import getQuotes from "../../pages/api/quotes";
 
 describe("GET /api/quotes", () => {
+  const response = {
+    status: jest.fn(),
+    json: jest.fn(),
+  };
+
   describe("when the request method is not GET", () => {
     it("returns status 405", async () => {
-      const response = {
-        status: jest.fn(),
-        json: jest.fn(),
-      };
-
       const req = {
         method: "POST",
       };
@@ -28,11 +28,6 @@ describe("GET /api/quotes", () => {
 
   describe("when the request method is GET", () => {
     it("returns status 200", async () => {
-      const response = {
-        status: jest.fn(),
-        json: jest.fn(),
-      };
-
       const req = {
         method: "GET",
       };

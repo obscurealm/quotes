@@ -1,13 +1,13 @@
 import * as getQuote from "../../pages/api/quotes/[quote]";
 
 describe("GET /api/quotes/[quote]", () => {
+  const response = {
+    status: jest.fn(),
+    json: jest.fn(),
+  };
+
   describe("when the request method is not GET", () => {
     it("returns status 405", async () => {
-      const response = {
-        status: jest.fn(),
-        json: jest.fn(),
-      };
-
       const req = {
         method: "POST",
       };
@@ -27,24 +27,19 @@ describe("GET /api/quotes/[quote]", () => {
   });
 
   describe("when the request method is GET", () => {
+    const getAQuoteSpy = jest.spyOn(getQuote, "getAQuote");
+
+    const quote = {
+      timestamp: 123,
+      dialogue: [{ author: "Yusuf", text: "big boi" }],
+    };
+
+    getAQuoteSpy.mockReturnValue(quote);
+
     it("returns status 200", async () => {
-      const getAQuoteSpy = jest.spyOn(getQuote, "getAQuote");
-
-      const quote = {
-        timestamp: 123,
-        dialogue: [{ author: "Yusuf", text: "big boi" }],
-      };
-
-      getAQuoteSpy.mockReturnValue(quote);
-
       const req = {
         method: "GET",
         query: { quote: "" },
-      };
-
-      const response = {
-        status: jest.fn(),
-        json: jest.fn(),
       };
 
       await getQuote.default(req, response);
