@@ -29,6 +29,9 @@ jobs:
           command: npm run test:journey
 
   deployment:
+    environment:
+      name: Production
+      url: https://quotes.yusufsheikh.vercel.app
     needs: [acceptance-and-unit-tests, journey-tests]
     runs-on: ubuntu-latest
     steps:
