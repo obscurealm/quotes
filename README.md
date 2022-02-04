@@ -15,6 +15,7 @@
 
 ### Prerequisites
 
+- [Docker](https://www.docker.com/get-started) (optional)
 - [NodeJS](https://nodejs.org/en/)
   - run `nvm install` if using [NVM](https://github.com/nvm-sh/nvm)
 - [NPM](https://www.npmjs.com/get-npm)
@@ -66,3 +67,13 @@ To run acceptance, journey, or unit tests:
 ```sh
 $ npm run test:[acceptance/journey/unit] # for example, npm run test:unit to run unit tests
 ```
+
+## Docker
+
+### Running the application
+
+```sh
+$ npm run dev:docker
+```
+
+Then visit [http://localhost:3000](http://localhost:3000).
