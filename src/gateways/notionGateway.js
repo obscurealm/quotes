@@ -7,9 +7,19 @@ export default class notionGateway {
   }
 
   async retrieveQuotes() {
-    const blocks = (
-      await this.client.blocks.children.list({ block_id: this.pageId })
-    ).results;
+    let response = await this.client.blocks.children.list({
+      block_id: this.pageId,
+    });
+    let blocks = response.results;
+
+    while (response.has_more) {
+      response = await this.client.blocks.children.list({
+        block_id: this.pageId,
+        start_cursor: response.next_cursor,
+      });
+
+      blocks = blocks.concat(response.results);
+    }
 
     const datetimeBlocks = blocks.filter((block) => block.type === "heading_2");
 

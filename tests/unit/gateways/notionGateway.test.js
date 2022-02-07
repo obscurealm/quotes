@@ -1,76 +1,13 @@
 import { Client } from "@notionhq/client";
 import NotionGateway from "../../../src/gateways/notionGateway.js";
-import { describe, expect, it } from "@jest/globals";
+import {
+  firstPageResults,
+  secondPageResults,
+} from "../../fixtures/notion/quotes";
 
 jest.mock("@notionhq/client");
 
-const list = jest.fn().mockResolvedValue({
-  object: "list",
-  results: [
-    {
-      id: "1",
-      type: "heading_2",
-      heading_2: {
-        text: [
-          {
-            text: {
-              content: "21 Oct 2021 at 16:06",
-            },
-          },
-        ],
-      },
-    },
-    {
-      id: "2",
-      type: "paragraph",
-      paragraph: {
-        text: [
-          {
-            plain_text: "Y: Good evening Tingker Bell! :tingker-bell:",
-          },
-        ],
-      },
-    },
-    {
-      id: "3",
-      type: "paragraph",
-      paragraph: {
-        text: [
-          {
-            plain_text:
-              "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
-          },
-        ],
-      },
-    },
-    {
-      id: "4",
-      type: "heading_2",
-      heading_2: {
-        text: [
-          {
-            text: {
-              content: "7 Feb 2022 at 15:50",
-            },
-          },
-        ],
-      },
-    },
-    {
-      id: "5",
-      type: "paragraph",
-      paragraph: {
-        text: [
-          {
-            plain_text: "Y: uwu",
-          },
-        ],
-      },
-    },
-  ],
-  next_cursor: null,
-  has_more: false,
-});
+const list = jest.fn();
 
 Client.mockImplementation(() => {
   return {
@@ -96,6 +33,21 @@ describe("notion gateway", () => {
   });
 
   describe("when retrieving a list of quotes", () => {
+    beforeEach(() =>
+      list
+        .mockResolvedValueOnce({
+          object: "list",
+          results: firstPageResults,
+          next_cursor: "5",
+          has_more: true,
+        })
+        .mockResolvedValueOnce({
+          object: "list",
+          results: secondPageResults,
+          has_more: false,
+        })
+    );
+
     it("calls Notion API with a page ID", async () => {
       const gateway = new NotionGateway("somerandomtoken", "pageId");
 
