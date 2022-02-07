@@ -7,6 +7,15 @@ export default class notionGateway {
   }
 
   async retrieveQuotes() {
-    await this.client.blocks.children.list({ block_id: this.pageId });
+    const results = (
+      await this.client.blocks.children.list({ block_id: this.pageId })
+    ).results;
+
+    return [
+      {
+        datetime: results[0].heading_2.text[0].text.content,
+        dialogue: [results[1].paragraph.text[0].plain_text],
+      },
+    ];
   }
 }
