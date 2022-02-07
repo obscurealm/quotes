@@ -11,10 +11,14 @@ export default class notionGateway {
       await this.client.blocks.children.list({ block_id: this.pageId })
     ).results;
 
+    const dialogue = results
+      .filter((result) => result.type === "paragraph")
+      .map((block) => block.paragraph.text[0].plain_text);
+
     return [
       {
         datetime: results[0].heading_2.text[0].text.content,
-        dialogue: [results[1].paragraph.text[0].plain_text],
+        dialogue: dialogue,
       },
     ];
   }
