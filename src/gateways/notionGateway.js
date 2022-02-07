@@ -7,19 +7,36 @@ export default class notionGateway {
   }
 
   async retrieveQuotes() {
-    const results = (
+    const blocks = (
       await this.client.blocks.children.list({ block_id: this.pageId })
     ).results;
 
-    const dialogue = results
-      .filter((result) => result.type === "paragraph")
-      .map((block) => block.paragraph.text[0].plain_text);
+    const datetimeBlocks = blocks.filter((block) => block.type === "heading_2");
 
-    return [
-      {
-        datetime: results[0].heading_2.text[0].text.content,
-        dialogue: dialogue,
-      },
-    ];
+    const quotes = datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
+      const blockIndex = blocks.findIndex(
+        (block) => block.id === datetimeBlock.id
+      );
+
+      const nextBlockIndex = blocks.findIndex(
+        (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id
+      );
+
+      const dialogueBlocks =
+        nextBlockIndex === -1
+          ? blocks.slice(blockIndex + 1)
+          : blocks.slice(blockIndex + 1, nextBlockIndex);
+
+      const dialogue = dialogueBlocks
+        .filter((block) => block.type === "paragraph")
+        .map((block) => block.paragraph.text[0].plain_text);
+
+      return {
+        datetime: datetimeBlock.heading_2.text[0].text.content,
+        dialogue,
+      };
+    });
+
+    return quotes;
   }
 }

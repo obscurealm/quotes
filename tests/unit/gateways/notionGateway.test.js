@@ -8,6 +8,7 @@ const list = jest.fn().mockResolvedValue({
   object: "list",
   results: [
     {
+      id: "1",
       type: "heading_2",
       heading_2: {
         text: [
@@ -20,6 +21,7 @@ const list = jest.fn().mockResolvedValue({
       },
     },
     {
+      id: "2",
       type: "paragraph",
       paragraph: {
         text: [
@@ -30,12 +32,37 @@ const list = jest.fn().mockResolvedValue({
       },
     },
     {
+      id: "3",
       type: "paragraph",
       paragraph: {
         text: [
           {
             plain_text:
               "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
+          },
+        ],
+      },
+    },
+    {
+      id: "4",
+      type: "heading_2",
+      heading_2: {
+        text: [
+          {
+            text: {
+              content: "7 Feb 2022 at 15:50",
+            },
+          },
+        ],
+      },
+    },
+    {
+      id: "5",
+      type: "paragraph",
+      paragraph: {
+        text: [
+          {
+            plain_text: "Y: uwu",
           },
         ],
       },
@@ -92,6 +119,10 @@ describe("notion gateway", () => {
               "Y: Good evening Tingker Bell! :tingker-bell:",
               "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
             ],
+          }),
+          expect.objectContaining({
+            datetime: "7 Feb 2022 at 15:50",
+            dialogue: ["Y: uwu"],
           }),
         ])
       );
