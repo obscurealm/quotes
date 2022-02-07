@@ -9,8 +9,14 @@ jest.mock("@notionhq/client", () => {
 
 describe("notion gateway", () => {
   it("can be constructed with a token", () => {
-    new NotionGateway("somerandomtoken");
+    new NotionGateway("somerandomtoken", null);
 
     expect(Client).toBeCalledWith({ auth: "somerandomtoken" })
+  });
+
+  it("can be constructed with a page ID", () => {
+    const gateway = new NotionGateway(null, "pageId");
+
+    expect(gateway.pageId).toEqual("pageId")
   });
 });
