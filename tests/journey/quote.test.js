@@ -1,6 +1,6 @@
 describe("User visits the quote page", () => {
   it("can display a single quote", () => {
-    cy.visit("/quotes/1593013680");
+    cy.visit("/quotes/1593013680").wait(5000);
     cy.title().should((title) => {
       expect(title).to.equal("Quote");
     });
