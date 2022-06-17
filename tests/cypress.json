@@ -3,7 +3,7 @@
   "integrationFolder": "journey",
   "fixturesFolder": "journey/fixtures",
   "pluginsFile": false,
-  "screenshotOnRunFailure": false,
+  "screenshotOnRunFailure": true,
   "supportFile": false,
-  "video": false
+  "video": true
 }
