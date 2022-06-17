@@ -1,7 +1,12 @@
 import { Client } from "@notionhq/client";
 import convertDateTimeToUnixTime from "../../utils/convertDateTimeToUnixTime";
 
-export default class notionGateway {
+const BLOCK_TYPE = {
+  HeadingTwo: "heading_2",
+  Paragraph: "paragraph",
+};
+
+export default class NotionGateway {
   constructor(token, pageId) {
     this.client = new Client({ auth: token });
     this.pageId = pageId;
@@ -22,9 +27,11 @@ export default class notionGateway {
       blocks = blocks.concat(response.results);
     }
 
-    const datetimeBlocks = blocks.filter((block) => block.type === "heading_2");
+    const datetimeBlocks = blocks.filter(
+      (block) => block.type === BLOCK_TYPE.HeadingTwo
+    );
 
-    const quotes = datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
+    return datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
       const blockIndex = blocks.findIndex(
         (block) => block.id === datetimeBlock.id
       );
@@ -38,7 +45,7 @@ export default class notionGateway {
         : blocks.slice(blockIndex + 1, nextBlockIndex);
 
       const dialogue = dialogueBlocks
-        .filter((block) => block.type === "paragraph")
+        .filter((block) => block.type === BLOCK_TYPE.Paragraph)
         .map((block) => block.paragraph.text[0].plain_text);
 
       return {
@@ -48,8 +55,6 @@ export default class notionGateway {
         dialogue,
       };
     });
-
-    return quotes;
   }
 
   isSingleQuoteMessage(nextBlockIndex) {
