@@ -13,8 +13,8 @@ const Home = ({ quotes }) => {
   );
 };
 
-export const getStaticProps = () => {
-  const quotes = getListOfQuotes();
+export const getStaticProps = async () => {
+  const quotes = await getListOfQuotes();
 
   return {
     props: {
