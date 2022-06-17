@@ -57,6 +57,12 @@ export default class NotionGateway {
     });
   }
 
+  async retrieveQuote(timestamp) {
+    const quotes = await this.retrieveQuotes();
+
+    return quotes.find((quote) => quote.timestamp === timestamp);
+  }
+
   isSingleQuoteMessage(nextBlockIndex) {
     return nextBlockIndex === -1;
   }

@@ -1,6 +1,7 @@
 import { Client } from "@notionhq/client";
 import NotionGateway from "../../../src/gateways/notionGateway.js";
 import {
+  results,
   firstPageResults,
   secondPageResults,
 } from "../../fixtures/notion/quotes";
@@ -26,31 +27,31 @@ it("constructs with a token", () => {
 });
 
 describe("when retrieving an empty list of quotes", () => {
-  let quotes;
-
-  beforeAll(async () => {
+  it("returns an empty list", async () => {
     list.mockResolvedValueOnce({
       object: "list",
       results: [],
       next_cursor: null,
       has_more: false,
     });
-
     const gateway = new NotionGateway("somerandomtoken", "pageId");
 
-    quotes = await gateway.retrieveQuotes();
-  });
+    const quotes = await gateway.retrieveQuotes();
 
-  it("returns an empty list", async () => {
     expect(quotes).toEqual([]);
   });
 });
 
-describe("when retrieving a list of quotes", () => {
-  let quotes;
+describe("when retrieving a non-empty list of quotes", () => {
+  let gateway;
 
   beforeAll(async () => {
     list
+      .mockResolvedValue({
+        object: "list",
+        results: results,
+        has_more: false,
+      })
       .mockResolvedValueOnce({
         object: "list",
         results: firstPageResults,
@@ -63,36 +64,58 @@ describe("when retrieving a list of quotes", () => {
         has_more: false,
       });
 
-    const gateway = new NotionGateway("somerandomtoken", "pageId");
-
-    quotes = await gateway.retrieveQuotes();
+    gateway = new NotionGateway("somerandomtoken", "pageId");
   });
 
-  it("calls Notion API with a page ID", async () => {
-    expect(list).toBeCalledWith(
-      expect.objectContaining({ block_id: "pageId" })
-    );
+  describe("with multiple quotes", () => {
+    let quotes;
+
+    beforeAll(async () => {
+      quotes = await gateway.retrieveQuotes();
+    });
+
+    it("calls Notion API with a page ID", async () => {
+      expect(list).toBeCalledWith(
+        expect.objectContaining({ block_id: "pageId" })
+      );
+    });
+
+    it("returns a formatted list", async () => {
+      expect(quotes).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            timestamp: 1634828760,
+            dialogue: [
+              "Y: Good evening Tingker Bell! :tingker-bell:",
+              "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
+            ],
+          }),
+          expect.objectContaining({
+            timestamp: 1644249000,
+            dialogue: ["Y: uwu"],
+          }),
+          expect.objectContaining({
+            timestamp: 1644759000,
+            dialogue: ["T: -_-"],
+          }),
+        ])
+      );
+    });
   });
 
-  it("returns a formatted list", async () => {
-    expect(quotes).toEqual(
-      expect.arrayContaining([
+  describe("with a single quote", () => {
+    it("returns a single quote", async () => {
+      const quote = await gateway.retrieveQuote(1655476800);
+
+      expect(quote).toEqual(
         expect.objectContaining({
-          timestamp: 1634828760,
+          timestamp: 1655476800,
           dialogue: [
-            "Y: Good evening Tingker Bell! :tingker-bell:",
-            "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
+            "Y: Good afternoon Tingker Bell! :tingker-bell:",
+            "T: Good afternoon Emperor King Yusuf! :emperor-king-yusuf:",
           ],
-        }),
-        expect.objectContaining({
-          timestamp: 1644249000,
-          dialogue: ["Y: uwu"],
-        }),
-        expect.objectContaining({
-          timestamp: 1644759000,
-          dialogue: ["T: -_-"],
-        }),
-      ])
-    );
+        })
+      );
+    });
   });
 });
