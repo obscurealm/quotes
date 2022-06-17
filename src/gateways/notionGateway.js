@@ -32,10 +32,9 @@ export default class notionGateway {
         (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id
       );
 
-      const dialogueBlocks =
-        nextBlockIndex === -1
-          ? blocks.slice(blockIndex + 1)
-          : blocks.slice(blockIndex + 1, nextBlockIndex);
+      const dialogueBlocks = this.isSingleQuoteMessage(nextBlockIndex)
+        ? blocks.slice(blockIndex + 1)
+        : blocks.slice(blockIndex + 1, nextBlockIndex);
 
       const dialogue = dialogueBlocks
         .filter((block) => block.type === "paragraph")
@@ -48,5 +47,9 @@ export default class notionGateway {
     });
 
     return quotes;
+  }
+
+  isSingleQuoteMessage(nextBlockIndex) {
+    return nextBlockIndex === -1;
   }
 }
