@@ -69,7 +69,7 @@ export const secondPageResults = [
       text: [
         {
           text: {
-            content: "5 Feb 2022 at 13:30",
+            content: "13 Feb 2022 at 13:30",
           },
         },
       ],

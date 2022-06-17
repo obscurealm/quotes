@@ -73,6 +73,10 @@ describe("when retrieving a list of quotes", () => {
           datetime: "7 Feb 2022 at 15:50",
           dialogue: ["Y: uwu"],
         }),
+        expect.objectContaining({
+          datetime: "13 Feb 2022 at 13:30",
+          dialogue: ["T: -_-"],
+        }),
       ])
     );
   });
