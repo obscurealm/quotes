@@ -25,12 +25,6 @@ it("constructs with a token", () => {
   expect(Client).toBeCalledWith({ auth: "somerandomtoken" });
 });
 
-it("constructs with a page ID", () => {
-  const gateway = new NotionGateway(null, "pageId");
-
-  expect(gateway.pageId).toEqual("pageId");
-});
-
 describe("when retrieving an empty list of quotes", () => {
   let quotes;
 
