@@ -31,6 +31,27 @@ it("constructs with a page ID", () => {
   expect(gateway.pageId).toEqual("pageId");
 });
 
+describe("when retrieving an empty list of quotes", () => {
+  let quotes;
+
+  beforeAll(async () => {
+    list.mockResolvedValueOnce({
+      object: "list",
+      results: [],
+      next_cursor: null,
+      has_more: false,
+    });
+
+    const gateway = new NotionGateway("somerandomtoken", "pageId");
+
+    quotes = await gateway.retrieveQuotes();
+  });
+
+  it("returns an empty list", async () => {
+    expect(quotes).toEqual([]);
+  });
+});
+
 describe("when retrieving a list of quotes", () => {
   let quotes;
 
