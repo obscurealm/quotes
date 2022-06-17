@@ -1,26 +1,23 @@
 export default class GetQuoteUseCase {
   constructor(gateway) {
-    this.markdownGateway = gateway;
+    this.gateway = gateway;
   }
 
-  execute(file) {
-    const quote = this.markdownGateway.retrieveQuote(file);
+  async execute(timestamp) {
+    const quote = await this.gateway.retrieveQuote(timestamp);
 
-    const dialogues = quote.quote
-      .trim()
-      .split("\n\n")
-      .map((dialogue) => {
-        const delimiter = ": ";
-        const [author, ...text] = dialogue.split(delimiter);
+    const dialogues = quote.dialogue.map((dialogue) => {
+      const delimiter = ": ";
+      const [author, ...text] = dialogue.split(delimiter);
 
-        return {
-          author: author,
-          text: text.join(delimiter),
-        };
-      });
+      return {
+        author: author,
+        text: text.join(delimiter),
+      };
+    });
 
     return {
-      timestamp: quote.frontMatter.timestamp,
+      timestamp: quote.timestamp,
       dialogue: dialogues,
     };
   }
