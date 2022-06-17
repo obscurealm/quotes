@@ -27,17 +27,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v2
         with:
           command: npm run test:journey
       - name: Screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         if: failure()
         with:
           name: cypress-screenshots
           path: tests/cypress/screenshots
       - name: Videos
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         if: failure()
         with:
           name: cypress-videos
