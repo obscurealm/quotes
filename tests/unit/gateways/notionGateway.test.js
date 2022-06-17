@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import NotionGateway from "../../../src/gateways/notionGateway.js";
+import NotionGateway from "../../../src/gateways/notionGateway";
 import {
   results,
   firstPageResults,

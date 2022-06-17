@@ -1,5 +1,5 @@
 import GetQuotesUseCase from "../../../src/useCases/getQuotes";
-import NotionGateway from "../../../src/gateways/NotionGateway";
+import NotionGateway from "../../../src/gateways/notionGateway";
 
 export default async (req, res) => {
   if (req.method === "GET") {
