@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import convertDateTimeToUnixTime from "../../utils/convertDateTimeToUnixTime";
 
 export default class notionGateway {
   constructor(token, pageId) {
@@ -41,7 +42,9 @@ export default class notionGateway {
         .map((block) => block.paragraph.text[0].plain_text);
 
       return {
-        datetime: datetimeBlock.heading_2.text[0].text.content,
+        timestamp: convertDateTimeToUnixTime(
+          datetimeBlock.heading_2.text[0].text.content
+        ),
         dialogue,
       };
     });

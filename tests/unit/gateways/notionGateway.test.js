@@ -63,18 +63,18 @@ describe("when retrieving a list of quotes", () => {
     expect(quotes).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          datetime: "21 Oct 2021 at 16:06",
+          timestamp: 1634828760,
           dialogue: [
             "Y: Good evening Tingker Bell! :tingker-bell:",
             "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
           ],
         }),
         expect.objectContaining({
-          datetime: "7 Feb 2022 at 15:50",
+          timestamp: 1644249000,
           dialogue: ["Y: uwu"],
         }),
         expect.objectContaining({
-          datetime: "13 Feb 2022 at 13:30",
+          timestamp: 1644759000,
           dialogue: ["T: -_-"],
         }),
       ])
