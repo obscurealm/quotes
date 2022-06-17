@@ -1,7 +1,6 @@
-import MarkdownGateway from "../../../src/gateways/markdownGateway";
+import NotionGateway from "../../../src/gateways/notionGateway";
 import GetQuoteUseCase from "../../../src/useCases/getQuote";
 import * as getQuote from "./[quote]";
-import path from "path";
 
 export default (req, res) => {
   if (req.method === "GET") {
@@ -26,9 +25,12 @@ export default (req, res) => {
   }
 };
 
-export const getAQuote = (slug) => {
-  const gateway = new MarkdownGateway(path.resolve("quotes"));
+export const getAQuote = async (slug) => {
+  const gateway = new NotionGateway(
+    process.env.NOTION_API_TOKEN,
+    process.env.NOTION_PAGE_ID
+  );
   const getQuote = new GetQuoteUseCase(gateway);
 
-  return getQuote.execute(`${slug}.md`);
+  return await getQuote.execute(parseInt(slug));
 };

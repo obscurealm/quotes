@@ -1,4 +1,22 @@
+import { Client } from "@notionhq/client";
 import * as getQuote from "../../pages/api/quotes/[quote]";
+
+jest.mock("@notionhq/client");
+
+Client.mockImplementation(() => {
+  return {
+    blocks: {
+      children: {
+        list: jest.fn().mockResolvedValue({
+          object: "list",
+          results: [],
+          next_cursor: null,
+          has_more: false,
+        }),
+      },
+    },
+  };
+});
 
 describe("GET /api/quotes/[quote]", () => {
   const response = {
