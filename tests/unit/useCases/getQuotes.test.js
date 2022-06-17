@@ -1,12 +1,14 @@
 import GetQuotesUseCase from "../../../src/useCases/getQuotes.js";
-import MarkdownGateway from "../../../src/gateways/markdownGateway";
+import quotes from "../../../tests/fixtures/quotes.js";
 
 describe("getQuotes use case", () => {
   it("returns an array response", async () => {
-    const gateway = new MarkdownGateway("tests/fixtures/quotes");
+    const gateway = {
+      retrieveQuotes: jest.fn().mockResolvedValue(quotes),
+    };
     const getQuotes = new GetQuotesUseCase(gateway);
 
-    expect(getQuotes.execute()).toEqual([
+    expect(await getQuotes.execute()).toEqual([
       {
         timestamp: 1593013680,
         dialogue: [
