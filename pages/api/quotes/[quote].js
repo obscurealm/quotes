@@ -2,7 +2,7 @@ import NotionGateway from "../../../src/gateways/notionGateway";
 import GetQuoteUseCase from "../../../src/useCases/getQuote";
 import * as getQuote from "./[quote]";
 
-export default (req, res) => {
+export default async (req, res) => {
   if (req.method === "GET") {
     const {
       query: { quote },
@@ -10,7 +10,7 @@ export default (req, res) => {
 
     res.status(200);
     res.json({
-      data: getQuote.getAQuote(quote),
+      data: await getQuote.getAQuote(parseInt(quote)),
     });
   } else {
     res.status(405);
