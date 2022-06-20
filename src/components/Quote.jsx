@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link'
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
 
@@ -7,7 +8,9 @@ const Quote = ({quote}) => {
 
   return (
     <div data-cy="quote">
-      <h2>{date} at {time}</h2>
+      <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
+        <a><h2>{date} at {time}</h2></a>
+      </Link>
       {quote.dialogue.map((dialogue, index) => (
         <p key={index}>
           <strong>{dialogue.author}</strong>:{" "}

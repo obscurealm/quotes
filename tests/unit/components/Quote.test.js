@@ -10,8 +10,19 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} />);
 
-    expect(screen.getByText("18 February 2021 at 12:00pm")).toBeTruthy();
+    expect(screen.getByText("18 February 2021 at 12:00pm")).toBeVisible();
     expect(screen.getByText("Yusuf")).toBeTruthy();
     expect(screen.getByText("speedieboi")).toBeTruthy();
   });
+
+  it("can click the quote", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [{ author: "Yusuf", text: "speedieboi" }],
+    };
+
+    render(<Quote quote={quote} hasLink={true} />);
+
+    expect(screen.getByText("18 February 2021 at 12:00pm").closest('a')).toHaveAttribute("href", "/quotes/1613649600");
+  })
 });
