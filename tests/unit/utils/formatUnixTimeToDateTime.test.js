@@ -10,6 +10,6 @@ describe("formatUnixTimeToDateTime util", () => {
   it("can return a formatted time", () => {
     const { time } = formatUnixTimeToDateTime("1593013680");
 
-    expect(time).toBe("4:48pm");
+    expect(time).toBe("3:48pm");
   });
 });
