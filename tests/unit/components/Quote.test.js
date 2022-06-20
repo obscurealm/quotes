@@ -23,8 +23,10 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} hasLink={true} />);
 
-    expect(screen.getByText("18 February 2021 at 12:00pm").closest('a')).toHaveAttribute("href", "/quotes/1613649600");
-  })
+    expect(
+      screen.getByText("18 February 2021 at 12:00pm").closest("a")
+    ).toHaveAttribute("href", "/quotes/1613649600");
+  });
 
   it("displays the quote without a link", () => {
     const quote = {
@@ -34,6 +36,8 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} hasLink={false} />);
 
-    expect(screen.getByText("18 February 2021 at 12:00pm").closest('a')).toBeNull();
-  })
+    expect(
+      screen.getByText("18 February 2021 at 12:00pm").closest("a")
+    ).toBeNull();
+  });
 });

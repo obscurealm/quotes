@@ -1,7 +1,7 @@
 import Head from "next/head";
-import React from 'react';
+import React from "react";
 
-const Layout = ({ title = 'Quotes', children }) => {
+const Layout = ({ title = "Quotes", children }) => {
   return (
     <>
       <Head>
@@ -9,7 +9,7 @@ const Layout = ({ title = 'Quotes', children }) => {
       </Head>
       {children}
     </>
-  )
-}
+  );
+};
 
 export default Layout;

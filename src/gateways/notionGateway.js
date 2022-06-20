@@ -51,7 +51,10 @@ export default class NotionGateway {
 
       return {
         timestamp: convertDateTimeToUnixTime(
-          convertDateTimeToUtc(datetimeBlock.heading_2.text[0].text.content, process.env.NOTION_PAGE_TZ)
+          convertDateTimeToUtc(
+            datetimeBlock.heading_2.text[0].text.content,
+            process.env.NOTION_PAGE_TZ
+          )
         ),
         dialogue,
       };
