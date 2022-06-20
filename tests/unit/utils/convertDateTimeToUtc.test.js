@@ -34,4 +34,13 @@ describe("convertDateTimeToUtc util", () => {
 
     expect(utcTime).toBe("2020-06-24T15:48:00Z");
   });
+
+  it("converts date time to UTC with default format", () => {
+    const utcTime = convertDateTimeToUtc(
+      "24 Jun 2020 at 12:48",
+      "Europe/London"
+    );
+
+    expect(utcTime).toBe("2020-06-24T11:48:00Z");
+  });
 });
