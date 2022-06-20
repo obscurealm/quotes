@@ -16,9 +16,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^11.2.5",
     "cypress": "^9.4.1",
-    "jest": "^26.5.2",
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1",
     "prettier": "^2.1.2",
     "start-server-and-test": "^1.12.0"
   },
