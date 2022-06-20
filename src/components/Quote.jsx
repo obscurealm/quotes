@@ -3,14 +3,17 @@ import Link from 'next/link'
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
 
-const Quote = ({quote}) => {
+const Quote = ({quote, hasLink}) => {
   const { date, time } = formatUnixTimeToDateTime(quote.timestamp);
 
   return (
     <div data-cy="quote">
-      <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
+      {hasLink ? (
+        <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
         <a><h2>{date} at {time}</h2></a>
       </Link>
+      ) : (<h2>{date} at {time}</h2>)}
+      
       {quote.dialogue.map((dialogue, index) => (
         <p key={index}>
           <strong>{dialogue.author}</strong>:{" "}
