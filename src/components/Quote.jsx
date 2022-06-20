@@ -3,7 +3,7 @@ import Link from "next/link";
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
 
-const Quote = ({ quote, hasLink }) => {
+const Quote = ({ quote, hasLink = false }) => {
   const { date, time } = formatUnixTimeToDateTime(quote.timestamp);
 
   return (

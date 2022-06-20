@@ -5,7 +5,7 @@ const Quotes = ({ quotes }) => {
   return (
     <div data-testid="quotes">
       {quotes.map((quote, index) => (
-        <Quote key={index} quote={quote} />
+        <Quote key={index} quote={quote} hasLink={true} />
       ))}
     </div>
   );
