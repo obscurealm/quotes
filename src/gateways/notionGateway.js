@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import convertDateTimeToUnixTime from "../../utils/convertDateTimeToUnixTime";
+import convertDateTimeToUtc from "../../utils/convertDateTimeToUtc";
 
 const BLOCK_TYPE = {
   HeadingTwo: "heading_2",
@@ -50,7 +51,7 @@ export default class NotionGateway {
 
       return {
         timestamp: convertDateTimeToUnixTime(
-          datetimeBlock.heading_2.text[0].text.content
+          convertDateTimeToUtc(datetimeBlock.heading_2.text[0].text.content, "Europe/London")
         ),
         dialogue,
       };
