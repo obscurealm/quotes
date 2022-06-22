@@ -3,7 +3,7 @@ import sanitizeHtml from "sanitize-html";
 
 const convertMarkdownToHtml = (markdown) => {
   return sanitizeHtml(marked.parseInline(markdown, []), {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img", "del"]),
   });
 };
 
