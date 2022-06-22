@@ -13,7 +13,7 @@ const Home = ({ quotes }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const quotes = await getListOfQuotes();
 
   return {

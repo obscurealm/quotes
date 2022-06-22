@@ -13,28 +13,13 @@ const QuotePage = ({ quote }) => {
   );
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
   const quote = await getAQuote(params.id);
 
   return {
     props: {
       quote,
     },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const quotes = await getListOfQuotes();
-
-  return {
-    paths: quotes.map((quote) => {
-      return {
-        params: {
-          id: quote.timestamp.toString(),
-        },
-      };
-    }),
-    fallback: false,
   };
 };
 
