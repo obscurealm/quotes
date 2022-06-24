@@ -10,7 +10,7 @@ describe("convertMarkdownToHtml util", () => {
   it("returns an HTML response with strikethrough text", () => {
     const html = convertMarkdownToHtml("~~strike~~");
 
-    expect(html).toEqual('<del>strike</del>');
+    expect(html).toEqual("<del>strike</del>");
   });
 
   it("returns a sanitised HTML response", () => {
