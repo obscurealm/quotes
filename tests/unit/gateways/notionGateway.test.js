@@ -2,6 +2,7 @@ import { Client } from "@notionhq/client";
 import NotionGateway from "../../../src/gateways/notionGateway";
 import {
   results,
+  annotatedResults,
   firstPageResults,
   secondPageResults,
 } from "../../fixtures/notion/quotes";
@@ -113,6 +114,29 @@ describe("when retrieving a non-empty list of quotes", () => {
           dialogue: [
             "Y: Good afternoon Tingker Bell! :tingker-bell:",
             "T: Good afternoon Emperor King Yusuf! :emperor-king-yusuf:",
+          ],
+        })
+      );
+    });
+  });
+
+  describe("with an annotated quote", () => {
+    it("returns a formatted quote", async () => {
+      list.mockResolvedValueOnce({
+        object: "list",
+        results: annotatedResults,
+        next_cursor: null,
+        has_more: false,
+      });
+
+      const quote = await gateway.retrieveQuote(1656064800);
+
+      expect(quote).toEqual(
+        expect.objectContaining({
+          timestamp: 1656064800,
+          dialogue: [
+            "Y: **bold**_italic_~~strikethrough~~",
+            "T: <u>underline</u>`code`",
           ],
         })
       );

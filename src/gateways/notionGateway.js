@@ -47,7 +47,19 @@ export default class NotionGateway {
 
       const dialogue = dialogueBlocks
         .filter((block) => block.type === BLOCK_TYPE.Paragraph)
-        .map((block) => block.paragraph.text[0].plain_text);
+        .map((block) =>
+          block.paragraph.text
+            .map((content) => {
+              if (content.hasOwnProperty("annotations"))
+                content.plain_text = this.formatAnnotatedText(
+                  content.annotations,
+                  content.plain_text
+                );
+
+              return content.plain_text;
+            })
+            .join("")
+        );
 
       return {
         timestamp: convertDateTimeToUnixTime(
@@ -69,5 +81,25 @@ export default class NotionGateway {
 
   isSingleQuoteMessage(nextBlockIndex) {
     return nextBlockIndex === -1;
+  }
+
+  formatAnnotatedText(annotations, text) {
+    if (annotations.bold) {
+      text = "**" + text + "**";
+    }
+    if (annotations.italic) {
+      text = "_" + text + "_";
+    }
+    if (annotations.strikethrough) {
+      text = "~~" + text + "~~";
+    }
+    if (annotations.underline) {
+      text = "<u>" + text + "</u>";
+    }
+    if (annotations.code) {
+      text = "`" + text + "`";
+    }
+
+    return text;
   }
 }

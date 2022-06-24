@@ -150,3 +150,71 @@ export const secondPageResults = [
     },
   },
 ];
+
+export const annotatedResults = [
+  {
+    id: "1",
+    type: "heading_2",
+    heading_2: {
+      text: [
+        {
+          text: {
+            content: "24 Jun 2022 at 11:00",
+          },
+        },
+      ],
+    },
+  },
+  {
+    id: "2",
+    type: "paragraph",
+    paragraph: {
+      text: [
+        {
+          plain_text: "Y: ",
+        },
+        {
+          annotations: {
+            bold: true,
+          },
+          plain_text: "bold",
+        },
+        {
+          annotations: {
+            italic: true,
+          },
+          plain_text: "italic",
+        },
+        {
+          annotations: {
+            strikethrough: true,
+          },
+          plain_text: "strikethrough",
+        },
+      ],
+    },
+  },
+  {
+    id: "3",
+    type: "paragraph",
+    paragraph: {
+      text: [
+        {
+          plain_text: "T: ",
+        },
+        {
+          annotations: {
+            underline: true,
+          },
+          plain_text: "underline",
+        },
+        {
+          annotations: {
+            code: true,
+          },
+          plain_text: "code",
+        },
+      ],
+    },
+  },
+];
