@@ -9,4 +9,18 @@ describe("User visits the home page", () => {
       expect($div).have.length.of.at.least(1);
     });
   });
+
+  it("views a quote", () => {
+    cy.visit("/");
+    cy.get("[data-cy=quote]").should(($div) => {
+      expect($div).have.length.of.at.least(1);
+    });
+    cy.get("a")
+      .should("have.attr", "href")
+      .and("include", "quotes")
+      .then((href) => cy.visit(href));
+    cy.get("[data-cy=quote]").should(($div) => {
+      expect($div).to.have.lengthOf(1);
+    });
+  });
 });
