@@ -1,5 +1,5 @@
-describe("User visits the home page", () => {
-  it("can display a list of quotes", () => {
+describe("view a quote", () => {
+  it("clicks through to a quote", () => {
     cy.visit("/");
     cy.title().should((title) => {
       expect(title).to.equal("Home");
@@ -8,17 +8,13 @@ describe("User visits the home page", () => {
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length.of.at.least(1);
     });
-  });
-
-  it("views a quote", () => {
-    cy.visit("/");
-    cy.get("[data-cy=quote]").should(($div) => {
-      expect($div).have.length.of.at.least(1);
-    });
     cy.get("a")
       .should("have.attr", "href")
       .and("include", "quotes")
       .then((href) => cy.visit(href));
+    cy.title().should((title) => {
+      expect(title).to.equal("Quote");
+    });
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).to.have.lengthOf(1);
     });
