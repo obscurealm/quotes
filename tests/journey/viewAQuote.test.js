@@ -19,4 +19,18 @@ describe("view a quote", () => {
       expect($div).to.have.lengthOf(1);
     });
   });
+
+  it("clicks back to list of quotes", () => {
+    cy.visit("/");
+    cy.get("a")
+      .should("have.attr", "href")
+      .and("include", "quotes")
+      .then((href) => cy.visit(href));
+    cy.get("a")
+      .should("have.attr", "href")
+      .then((href) => cy.visit(href));
+    cy.title().should((title) => {
+      expect(title).to.equal("Home");
+    });
+  });
 });
