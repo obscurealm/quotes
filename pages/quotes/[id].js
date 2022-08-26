@@ -1,5 +1,4 @@
 import { getAQuote } from "../api/quotes/[quote]";
-import { getListOfQuotes } from "../api/quotes";
 import Layout from "../../src/components/Layout";
 import Quote from "../../src/components/Quote";
 
