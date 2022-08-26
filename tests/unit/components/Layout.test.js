@@ -13,8 +13,16 @@ jest.mock("next/head", () => {
   };
 });
 
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      asPath: "/quotes/foo/bar",
+    };
+  },
+}));
+
 describe("Layout component", () => {
-  it("can display the title", () => {
+  it("displays the title", () => {
     const title = "Yusuf";
 
     render(<Layout title={title} />, {
@@ -24,9 +32,21 @@ describe("Layout component", () => {
     expect(document.title).toEqual("Yusuf");
   });
 
-  it("can display the children", () => {
+  it("displays the children", () => {
     render(<Layout>children</Layout>);
 
     expect(screen.getByText("children")).toBeTruthy();
+  });
+
+  it("displays the breadcrumbs when enabled", () => {
+    render(<Layout showBreadcrumbs />);
+
+    expect(screen.getByTestId("breadcrumbs")).toHaveTextContent("Home > foo");
+  });
+
+  it("displays no breadcrumbs when disabled", () => {
+    render(<Layout />);
+
+    expect(screen.queryByText("foo")).not.toBeInTheDocument();
   });
 });

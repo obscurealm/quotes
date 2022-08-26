@@ -16,7 +16,10 @@ const Breadcrumbs = () => {
   });
 
   return (
-    <ul style={{ listStyleType: "none", paddingInlineStart: "0px" }}>
+    <ul
+      data-testid="breadcrumbs"
+      style={{ listStyleType: "none", paddingInlineStart: "0px" }}
+    >
       {pathArray
         .slice(0, -1)
         .map((breadcrumb, index) => {
