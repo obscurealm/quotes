@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  acceptance-and-unit-tests:
+  unit-tests:
     env:
       NOTION_PAGE_TZ: Europe/London
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Test
-        run: npm run test:acceptance && npm run test:unit
+        run: npm run test:unit
 
   journey-tests:
     env:
