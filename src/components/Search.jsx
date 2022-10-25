@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Search = ({ quotes, setQuotes }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
@@ -16,7 +16,11 @@ const Search = ({ quotes, setQuotes }) => {
 
   return (
     <>
-      <input data-testid="search" value={searchTerm} onChange={handleChange} />
+      <input
+        data-testid="search"
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
       <button onClick={() => setQuotes(filterQuotes(searchTerm))}>
         Search
       </button>
