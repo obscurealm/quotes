@@ -1,6 +1,7 @@
-import { getAQuote } from "../api/quotes/[quote]";
 import Layout from "../../src/components/Layout";
 import Quote from "../../src/components/Quote";
+import NotionGateway from "../../src/gateways/notionGateway";
+import GetQuoteUseCase from "../../src/useCases/getQuote";
 
 const QuotePage = ({ quote }) => {
   return (
@@ -10,6 +11,16 @@ const QuotePage = ({ quote }) => {
       </Layout>
     </>
   );
+};
+
+const getAQuote = async (slug) => {
+  const gateway = new NotionGateway(
+    process.env.NOTION_API_TOKEN,
+    process.env.NOTION_PAGE_ID
+  );
+  const getQuote = new GetQuoteUseCase(gateway);
+
+  return await getQuote.execute(parseInt(slug));
 };
 
 export const getServerSideProps = async ({ params }) => {
