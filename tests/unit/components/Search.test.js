@@ -8,4 +8,10 @@ describe("Search component", () => {
 
     expect(screen.getByText("Search")).toBeTruthy();
   });
+
+  it("displays the search box", () => {
+    render(<Search />);
+
+    expect(screen.getByTestId("search")).toBeTruthy();
+  });
 });
