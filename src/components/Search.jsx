@@ -21,7 +21,10 @@ const Search = ({ quotes, setQuotes }) => {
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <button data-testid="searchButton" onClick={() => setQuotes(filterQuotes(searchTerm))}>
+      <button
+        data-testid="searchButton"
+        onClick={() => setQuotes(filterQuotes(searchTerm))}
+      >
         Search
       </button>
     </>
