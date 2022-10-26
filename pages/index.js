@@ -1,14 +1,19 @@
 import Layout from "../src/components/Layout";
 import Quotes from "../src/components/Quotes";
+import Search from "../src/components/Search";
 import NotionGateway from "../src/gateways/notionGateway";
 import GetQuotesUseCase from "../src/useCases/getQuotes";
+import { useState } from "react";
 
 const Home = ({ quotes }) => {
+  const [searchResults, setSearchResults] = useState(quotes);
+
   return (
     <>
       <Layout title="Home">
         <h1>Quotes</h1>
-        <Quotes quotes={quotes} />
+        <Search quotes={searchResults} setQuotes={setSearchResults} />
+        <Quotes quotes={searchResults} />
       </Layout>
     </>
   );
