@@ -62,10 +62,10 @@ To run all the tests:
 $ npm run test
 ```
 
-To run acceptance, journey, or unit tests:
+To run journey, or unit tests:
 
 ```sh
-$ npm run test:[acceptance/journey/unit] # for example, npm run test:unit to run unit tests
+$ npm run test:[journey/unit] # for example, npm run test:unit to run unit tests
 ```
 
 ## Docker
