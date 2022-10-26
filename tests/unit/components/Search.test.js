@@ -16,7 +16,10 @@ describe("Search component", () => {
   });
 
   describe("filters quotes", () => {
-    it("matching the search term", () => {
+    it("matching the exact search term", () => {
+      const searchTeam = "Hello!";
+      const dialogueText = "Hello!";
+
       let quotes = [
         {
           timestamp: 1593013680,
@@ -28,7 +31,7 @@ describe("Search component", () => {
         {
           timestamp: 1593013680,
           dialogue: [
-            { author: "Ting", text: "_Hello!_" },
+            { author: "Ting", text: dialogueText },
             { author: "Yusuf", text: "Goodbye!" },
           ],
         },
@@ -39,7 +42,7 @@ describe("Search component", () => {
       render(<Search quotes={quotes} setQuotes={setQuotes} />);
 
       fireEvent.change(screen.getByTestId("search"), {
-        target: { value: "Hello!" },
+        target: { value: searchTeam },
       });
 
       fireEvent.click(screen.getByText("Search"));
@@ -48,8 +51,43 @@ describe("Search component", () => {
         {
           timestamp: 1593013680,
           dialogue: [
-            { author: "Ting", text: "_Hello!_" },
+            { author: "Ting", text: dialogueText },
             { author: "Yusuf", text: "Goodbye!" },
+          ],
+        },
+      ]);
+    });
+
+    it("including the search term", () => {
+      const searchTeam = "Hello!";
+      const dialogueText = "_Hello!_";
+
+      let quotes = [
+        {
+          timestamp: 1593013680,
+          dialogue: [
+            { author: "Yusuf", text: "Goodbye!" },
+            { author: "Ting", text: dialogueText },
+          ],
+        },
+      ];
+
+      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+
+      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+
+      fireEvent.change(screen.getByTestId("search"), {
+        target: { value: searchTeam },
+      });
+
+      fireEvent.click(screen.getByText("Search"));
+
+      expect(quotes).toEqual([
+        {
+          timestamp: 1593013680,
+          dialogue: [
+            { author: "Yusuf", text: "Goodbye!" },
+            { author: "Ting", text: dialogueText },
           ],
         },
       ]);
