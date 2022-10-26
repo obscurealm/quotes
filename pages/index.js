@@ -12,7 +12,7 @@ const Home = ({ quotes }) => {
     <>
       <Layout title="Home">
         <h1>Quotes</h1>
-        <Search quotes={searchResults} setQuotes={setSearchResults} />
+        <Search quotes={quotes} setQuotes={setSearchResults} />
         <Quotes quotes={searchResults} />
       </Layout>
     </>
