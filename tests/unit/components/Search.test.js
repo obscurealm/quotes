@@ -12,7 +12,7 @@ describe("Search component", () => {
   it("displays the search box", () => {
     render(<Search />);
 
-    expect(screen.getByTestId("search")).toBeTruthy();
+    expect(screen.getByTestId("searchBox")).toBeTruthy();
   });
 
   describe("filters quotes", () => {
@@ -41,7 +41,7 @@ describe("Search component", () => {
 
       render(<Search quotes={quotes} setQuotes={setQuotes} />);
 
-      fireEvent.change(screen.getByTestId("search"), {
+      fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
       });
 
@@ -76,7 +76,7 @@ describe("Search component", () => {
 
       render(<Search quotes={quotes} setQuotes={setQuotes} />);
 
-      fireEvent.change(screen.getByTestId("search"), {
+      fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
       });
 
@@ -108,7 +108,7 @@ describe("Search component", () => {
 
       render(<Search quotes={quotes} setQuotes={setQuotes} />);
 
-      fireEvent.change(screen.getByTestId("search"), {
+      fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
       });
 
@@ -137,7 +137,7 @@ describe("Search component", () => {
 
       render(<Search quotes={quotes} setQuotes={setQuotes} />);
 
-      fireEvent.change(screen.getByTestId("search"), {
+      fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
       });
 

@@ -17,7 +17,7 @@ const Search = ({ quotes, setQuotes }) => {
   return (
     <>
       <input
-        data-testid="search"
+        data-testid="searchBox"
         value={searchTerm}
         onChange={handleInputChange}
       />
