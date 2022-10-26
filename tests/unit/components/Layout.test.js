@@ -25,11 +25,15 @@ describe("Layout component", () => {
   it("displays the title", () => {
     const title = "Yusuf";
 
-    render(<Layout title={title} />, {
-      container: document.head,
-    });
+    render(<Layout title={title} />);
 
     expect(document.title).toEqual("Yusuf");
+  });
+
+  it("displays the heading", () => {
+    render(<Layout />);
+
+    expect(screen.getByTestId("heading")).toHaveTextContent("Quotes");
   });
 
   it("displays the children", () => {

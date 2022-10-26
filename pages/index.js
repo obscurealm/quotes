@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Layout from "../src/components/Layout";
 import Quotes from "../src/components/Quotes";
 import Search from "../src/components/Search";
@@ -12,11 +11,6 @@ const Home = ({ quotes }) => {
   return (
     <>
       <Layout title="Home">
-        <Link href="/">
-          <a>
-            <h1>Quotes</h1>
-          </a>
-        </Link>
         <Search quotes={quotes} setQuotes={setSearchResults} />
         <Quotes quotes={searchResults} />
       </Layout>
