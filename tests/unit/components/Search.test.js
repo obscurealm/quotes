@@ -54,5 +54,34 @@ describe("Search component", () => {
         },
       ]);
     });
+
+    it("ignoring the casing of the search term", () => {
+      const searchTeam = "Hello!";
+      const dialogueText = "hello!";
+
+      let quotes = [
+        {
+          timestamp: 1593013680,
+          dialogue: [{ author: "Ting", text: dialogueText }],
+        },
+      ];
+
+      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+
+      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+
+      fireEvent.change(screen.getByTestId("search"), {
+        target: { value: searchTeam },
+      });
+
+      fireEvent.click(screen.getByText("Search"));
+
+      expect(quotes).toEqual([
+        {
+          timestamp: 1593013680,
+          dialogue: [{ author: "Ting", text: dialogueText }],
+        },
+      ]);
+    });
   });
 });
