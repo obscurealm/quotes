@@ -8,7 +8,7 @@ describe("view a quote", () => {
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length.of.at.least(1);
     });
-    cy.get("a")
+    cy.get('a[href*="quotes"]')
       .should("have.attr", "href")
       .and("include", "quotes")
       .then((href) => cy.visit(href));
@@ -22,7 +22,7 @@ describe("view a quote", () => {
 
   it("clicks back to list of quotes", () => {
     cy.visit("/");
-    cy.get("a")
+    cy.get('a[href*="quotes"]')
       .should("have.attr", "href")
       .and("include", "quotes")
       .then((href) => cy.visit(href));
