@@ -1,5 +1,5 @@
 import Search from "../../../src/components/Search";
-import React, { useState } from "react";
+import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("Search component", () => {
