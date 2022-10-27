@@ -2,6 +2,9 @@
 
 # Quotes
 
+A [Next.js](https://nextjs.org/) application serving a list of quotes using the [Notion](https://www.notion.so) 
+[API](https://developers.notion.com). 
+
 ## Contents
 
 - [Getting started](#getting-started)
@@ -16,7 +19,7 @@
 ### Prerequisites
 
 - [Docker](https://www.docker.com/get-started) (optional)
-- [NodeJS](https://nodejs.org/en/)
+- [NodeJS](https://nodejs.org/en)
   - run `nvm install` if using [NVM](https://github.com/nvm-sh/nvm)
 - [NPM](https://www.npmjs.com/get-npm)
 
@@ -48,7 +51,7 @@ Then visit [http://localhost:3000](http://localhost:3000).
 
 ### Formatting the application
 
-To run the formatter (using [Prettier](https://prettier.io/)):
+To run the formatter (using [Prettier](https://prettier.io)):
 
 ```sh
 $ npm run format
@@ -62,10 +65,17 @@ To run all the tests:
 $ npm run test
 ```
 
-To run journey, or unit tests:
+To run unit tests:
 
 ```sh
-$ npm run test:[journey/unit] # for example, npm run test:unit to run unit tests
+$ npm run test:unit
+```
+
+To run journey tests:
+
+```sh
+$ npm run test:journey # to automatically run the tests in headless mode
+$ npm run test:journey:open # to interactively run the tests in a browser
 ```
 
 ## Docker
