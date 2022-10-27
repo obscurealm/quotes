@@ -9,13 +9,13 @@ const Quote = ({ quote, hasLink = false }) => {
   return (
     <div data-cy="quote">
       {hasLink ? (
-        <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
-          <a>
-            <h2>
+        <h2>
+          <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
+            <a>
               {date} at {time}
-            </h2>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        </h2>
       ) : (
         <h2>
           {date} at {time}
