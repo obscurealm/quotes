@@ -21,6 +21,18 @@ describe("Search component", () => {
     expect(screen.getByText("Clear")).toBeTruthy();
   });
 
+  it("clears the search box", () => {
+    render(<Search quotes={[]} setQuotes={jest.fn()} />);
+
+    fireEvent.change(screen.getByTestId("searchBox"), {
+      target: { value: "Hello!" },
+    });
+
+    fireEvent.click(screen.getByText("Clear"));
+
+    expect(screen.getByTestId("searchBox")).toHaveValue("");
+  });
+
   describe("filters quotes", () => {
     it("matching the exact search term", () => {
       const searchTeam = "Hello!";

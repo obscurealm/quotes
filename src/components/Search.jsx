@@ -27,7 +27,9 @@ const Search = ({ quotes, setQuotes }) => {
       >
         Search
       </button>
-      <button data-testid="clearButton">Clear</button>
+      <button data-testid="clearButton" onClick={() => setSearchTerm("")}>
+        Clear
+      </button>
     </>
   );
 };
