@@ -22,8 +22,7 @@ describe("search a quote", () => {
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length(1);
     });
-    cy.get("[data-testid=searchBox]").clear().type("Emperor");
-    cy.get("[data-testid=searchButton]").click();
+    cy.get("[data-testid=searchBox]").clear().type("Emperor{enter}");
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length(3);
     });
