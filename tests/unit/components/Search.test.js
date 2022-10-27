@@ -15,6 +15,12 @@ describe("Search component", () => {
     expect(screen.getByTestId("searchBox")).toBeTruthy();
   });
 
+  it("displays the clear button", () => {
+    render(<Search />);
+
+    expect(screen.getByText("Clear")).toBeTruthy();
+  });
+
   describe("filters quotes", () => {
     it("matching the exact search term", () => {
       const searchTeam = "Hello!";
