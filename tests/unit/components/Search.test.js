@@ -168,5 +168,40 @@ describe("Search component", () => {
         },
       ]);
     });
+
+    it("pressing the enter/return key", () => {
+      const searchTeam = "hello!";
+      const dialogueText = "Hello!";
+
+      let quotes = [
+        {
+          timestamp: 1593013680,
+          dialogue: [{ author: "Yusuf", text: dialogueText }],
+        },
+        {
+          timestamp: 1593013681,
+          dialogue: [{ author: "Ting", text: "Bye!" }],
+        },
+      ];
+
+      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+
+      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+
+      const searchBox = screen.getByTestId("searchBox");
+
+      fireEvent.change(searchBox, {
+        target: { value: searchTeam },
+      });
+
+      fireEvent.keyDown(searchBox, { key: "Enter", keyCode: 13 });
+
+      expect(quotes).toEqual([
+        {
+          timestamp: 1593013680,
+          dialogue: [{ author: "Yusuf", text: dialogueText }],
+        },
+      ]);
+    });
   });
 });

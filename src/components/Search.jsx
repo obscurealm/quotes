@@ -7,6 +7,12 @@ const Search = ({ quotes, setQuotes }) => {
     setSearchTerm(event.target.value);
   };
 
+  const handleInputKeyDown = (event) => {
+    if (event.key === "Enter") {
+      setQuotes(filterQuotes(searchTerm));
+    }
+  };
+
   const filterQuotes = (searchTerm) =>
     quotes.filter((quote) =>
       quote.dialogue.some((message) =>
@@ -20,6 +26,7 @@ const Search = ({ quotes, setQuotes }) => {
         data-testid="searchBox"
         value={searchTerm}
         onChange={handleInputChange}
+        onKeyDown={handleInputKeyDown}
       />
       <button
         data-testid="searchButton"
