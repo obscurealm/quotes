@@ -9,6 +9,7 @@
     "format": "prettier --write '{pages,quotes,src,tests,utils}/**/*.{js,jsx,css,md,yml}'",
     "test": "jest && npm run test:journey",
     "test:journey": "start-server-and-test 'next dev --port 4000' 4000 'cypress run --project tests'",
+    "test:journey:open": "start-server-and-test 'next dev --port 4001' 4001 'cypress open --project tests --config baseUrl=http://localhost:4001'",
     "test:unit": "jest unit"
   },
   "keywords": [],
