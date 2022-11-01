@@ -9,21 +9,20 @@ const BLOCK_TYPE = {
 
 export default class NotionGateway {
   constructor(token, pageId) {
-    this.clients = [new Client({ auth: token })];
-    this.pageIds = [pageId];
+    this.workspaces = [{ client: new Client({ auth: token }), pageId: pageId }];
   }
 
   async retrieveQuotes() {
-    const blocksInWorkspacePages = await Promise.all(
-      this.clients.map(async (client, index) => {
+    const blocksInWorkspaces = await Promise.all(
+      this.workspaces.map(async ({ client, pageId }, index) => {
         let response = await client.blocks.children.list({
-          block_id: this.pageIds[index],
+          block_id: pageId,
         });
         let blocks = response.results;
 
         while (response.has_more) {
           response = await client.blocks.children.list({
-            block_id: this.pageIds[index],
+            block_id: pageId,
             start_cursor: response.next_cursor,
           });
 
@@ -34,7 +33,7 @@ export default class NotionGateway {
       })
     );
 
-    return blocksInWorkspacePages.reduce((quotes, blocks) => {
+    return blocksInWorkspaces.reduce((quotes, blocks) => {
       const datetimeBlocks = blocks.filter(
         (block) => block.type === BLOCK_TYPE.HeadingTwo
       );
