@@ -17,7 +17,7 @@ export default class NotionGateway {
 
   async retrieveQuotes() {
     const blocksInWorkspaces = await Promise.all(
-      this.workspaces.map(async ({ client, pageId }, index) => {
+      this.workspaces.map(async ({ client, pageId }) => {
         let response = await client.blocks.children.list({
           block_id: pageId,
         });
