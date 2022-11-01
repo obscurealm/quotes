@@ -4,9 +4,11 @@ import Quote from "./Quote";
 const Quotes = ({ quotes }) => {
   return (
     <div data-testid="quotes">
-      {quotes.map((quote, index) => (
-        <Quote key={index} quote={quote} hasLink={true} />
-      ))}
+      {quotes
+        .sort((quoteA, quoteB) => quoteA.timestamp - quoteB.timestamp)
+        .map((quote, index) => (
+          <Quote key={index} quote={quote} hasLink={true} />
+        ))}
     </div>
   );
 };
