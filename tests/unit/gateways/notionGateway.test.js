@@ -59,7 +59,7 @@ describe("when retrieving an empty list of quotes", () => {
 
     const gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
-      "pageId"
+      "pageId,anotherPageId"
     );
 
     const quotes = await gateway.retrieveQuotes();
@@ -69,6 +69,7 @@ describe("when retrieving an empty list of quotes", () => {
 });
 
 describe("when retrieving a non-empty list of quotes", () => {
+  let gateway;
   let list = jest
     .fn()
     .mockResolvedValue({
@@ -87,7 +88,12 @@ describe("when retrieving a non-empty list of quotes", () => {
       results: secondPageResults,
       has_more: false,
     });
-  let gateway;
+  let anotherList = jest.fn().mockResolvedValue({
+    object: "list",
+    results: [],
+    next_cursor: null,
+    has_more: false,
+  });
 
   beforeAll(async () => {
     Client.mockImplementationOnce(() => ({
@@ -99,17 +105,15 @@ describe("when retrieving a non-empty list of quotes", () => {
     })).mockImplementationOnce(() => ({
       blocks: {
         children: {
-          list: jest.fn().mockResolvedValue({
-            object: "list",
-            results: [],
-            next_cursor: null,
-            has_more: false,
-          }),
+          list: anotherList,
         },
       },
     }));
 
-    gateway = new NotionGateway("somerandomtoken,anotherrandomtoken", "pageId");
+    gateway = new NotionGateway(
+      "somerandomtoken,anotherrandomtoken",
+      "pageId,anotherPageId"
+    );
   });
 
   describe("with multiple quotes", () => {
@@ -119,9 +123,12 @@ describe("when retrieving a non-empty list of quotes", () => {
       quotes = await gateway.retrieveQuotes();
     });
 
-    it("calls Notion API with a page ID", async () => {
+    it("calls Notion API with multiple page IDs", async () => {
       expect(list).toBeCalledWith(
         expect.objectContaining({ block_id: "pageId" })
+      );
+      expect(anotherList).toBeCalledWith(
+        expect.objectContaining({ block_id: "anotherPageId" })
       );
     });
 

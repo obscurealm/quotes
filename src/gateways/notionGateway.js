@@ -9,12 +9,10 @@ const BLOCK_TYPE = {
 
 export default class NotionGateway {
   constructor(tokens, pageIds) {
-    this.workspaces = tokens
-      .split(",")
-      .map((token) => ({
-        client: new Client({ auth: token }),
-        pageId: pageIds,
-      }));
+    this.workspaces = tokens.split(",").map((token, index) => ({
+      client: new Client({ auth: token }),
+      pageId: pageIds?.split(",")[index],
+    }));
   }
 
   async retrieveQuotes() {
