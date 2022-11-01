@@ -10,20 +10,20 @@ const BLOCK_TYPE = {
 export default class NotionGateway {
   constructor(token, pageId) {
     this.clients = [new Client({ auth: token })];
-    this.pageId = pageId;
+    this.pageIds = [pageId];
   }
 
   async retrieveQuotes() {
     const blocksInWorkspacePages = await Promise.all(
-      this.clients.map(async (client) => {
+      this.clients.map(async (client, index) => {
         let response = await client.blocks.children.list({
-          block_id: this.pageId,
+          block_id: this.pageIds[index],
         });
         let blocks = response.results;
 
         while (response.has_more) {
           response = await client.blocks.children.list({
-            block_id: this.pageId,
+            block_id: this.pageIds[index],
             start_cursor: response.next_cursor,
           });
 
