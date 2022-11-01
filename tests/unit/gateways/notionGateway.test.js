@@ -10,6 +10,7 @@ import {
 jest.mock("@notionhq/client");
 
 const list = jest.fn();
+const list2 = jest.fn();
 
 Client.mockImplementation(() => {
   return {
@@ -19,23 +20,99 @@ Client.mockImplementation(() => {
       },
     },
   };
-});
+})
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list2,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list2,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list2,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list,
+        },
+      },
+    };
+  })
+  .mockImplementationOnce(() => {
+    return {
+      blocks: {
+        children: {
+          list: list2,
+        },
+      },
+    };
+  });
 
-it("constructs with a token", () => {
-  new NotionGateway("somerandomtoken", null);
+it("constructs with multiple tokens", () => {
+  new NotionGateway("somerandomtoken,anotherrandomtoken", null);
 
   expect(Client).toBeCalledWith({ auth: "somerandomtoken" });
+  expect(Client).toBeCalledWith({ auth: "anotherrandomtoken" });
+  expect(Client).toBeCalledTimes(2);
 });
 
 describe("when retrieving an empty list of quotes", () => {
   it("returns an empty list", async () => {
-    list.mockResolvedValueOnce({
+    list.mockResolvedValue({
       object: "list",
       results: [],
       next_cursor: null,
       has_more: false,
     });
-    const gateway = new NotionGateway("somerandomtoken", "pageId");
+
+    list2.mockResolvedValue({
+      object: "list",
+      results: [],
+      next_cursor: null,
+      has_more: false,
+    });
+
+    const gateway = new NotionGateway(
+      "somerandomtoken,anotherrandomtoken",
+      "pageId"
+    );
 
     const quotes = await gateway.retrieveQuotes();
 
@@ -65,7 +142,14 @@ describe("when retrieving a non-empty list of quotes", () => {
         has_more: false,
       });
 
-    gateway = new NotionGateway("somerandomtoken", "pageId");
+    list2.mockResolvedValue({
+      object: "list",
+      results: [],
+      next_cursor: null,
+      has_more: false,
+    });
+
+    gateway = new NotionGateway("somerandomtoken,anotherrandomtoken", "pageId");
   });
 
   describe("with multiple quotes", () => {

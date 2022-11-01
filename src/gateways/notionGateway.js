@@ -8,8 +8,13 @@ const BLOCK_TYPE = {
 };
 
 export default class NotionGateway {
-  constructor(token, pageId) {
-    this.workspaces = [{ client: new Client({ auth: token }), pageId: pageId }];
+  constructor(tokens, pageIds) {
+    this.workspaces = tokens
+      .split(",")
+      .map((token) => ({
+        client: new Client({ auth: token }),
+        pageId: pageIds,
+      }));
   }
 
   async retrieveQuotes() {
