@@ -9,68 +9,78 @@ const BLOCK_TYPE = {
 
 export default class NotionGateway {
   constructor(token, pageId) {
-    this.client = new Client({ auth: token });
+    this.clients = [new Client({ auth: token })];
     this.pageId = pageId;
   }
 
   async retrieveQuotes() {
-    let response = await this.client.blocks.children.list({
-      block_id: this.pageId,
-    });
-    let blocks = response.results;
+    const blocksInWorkspacePages = await Promise.all(
+      this.clients.map(async (client) => {
+        let response = await client.blocks.children.list({
+          block_id: this.pageId,
+        });
+        let blocks = response.results;
 
-    while (response.has_more) {
-      response = await this.client.blocks.children.list({
-        block_id: this.pageId,
-        start_cursor: response.next_cursor,
-      });
+        while (response.has_more) {
+          response = await client.blocks.children.list({
+            block_id: this.pageId,
+            start_cursor: response.next_cursor,
+          });
 
-      blocks = blocks.concat(response.results);
-    }
+          blocks = blocks.concat(response.results);
+        }
 
-    const datetimeBlocks = blocks.filter(
-      (block) => block.type === BLOCK_TYPE.HeadingTwo
+        return blocks;
+      })
     );
 
-    return datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
-      const blockIndex = blocks.findIndex(
-        (block) => block.id === datetimeBlock.id
+    return blocksInWorkspacePages.reduce((quotes, blocks) => {
+      const datetimeBlocks = blocks.filter(
+        (block) => block.type === BLOCK_TYPE.HeadingTwo
       );
 
-      const nextBlockIndex = blocks.findIndex(
-        (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id
-      );
-
-      const dialogueBlocks = this.isSingleQuoteMessage(nextBlockIndex)
-        ? blocks.slice(blockIndex + 1)
-        : blocks.slice(blockIndex + 1, nextBlockIndex);
-
-      const dialogue = dialogueBlocks
-        .filter((block) => block.type === BLOCK_TYPE.Paragraph)
-        .map((block) =>
-          block.paragraph.text
-            .map((content) => {
-              if (content.hasOwnProperty("annotations"))
-                content.plain_text = this.formatAnnotatedText(
-                  content.annotations,
-                  content.plain_text
-                );
-
-              return content.plain_text;
-            })
-            .join("")
+      const quote = datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
+        const blockIndex = blocks.findIndex(
+          (block) => block.id === datetimeBlock.id
         );
 
-      return {
-        timestamp: convertDateTimeToUnixTime(
-          convertDateTimeToUtc(
-            datetimeBlock.heading_2.text[0].text.content,
-            process.env.NOTION_PAGE_TZ
-          )
-        ),
-        dialogue,
-      };
-    });
+        const nextBlockIndex = blocks.findIndex(
+          (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id
+        );
+
+        const dialogueBlocks = this.isSingleQuoteMessage(nextBlockIndex)
+          ? blocks.slice(blockIndex + 1)
+          : blocks.slice(blockIndex + 1, nextBlockIndex);
+
+        const dialogue = dialogueBlocks
+          .filter((block) => block.type === BLOCK_TYPE.Paragraph)
+          .map((block) =>
+            block.paragraph.text
+              .map((content) => {
+                if (content.hasOwnProperty("annotations"))
+                  content.plain_text = this.formatAnnotatedText(
+                    content.annotations,
+                    content.plain_text
+                  );
+
+                return content.plain_text;
+              })
+              .join("")
+          );
+
+        return {
+          timestamp: convertDateTimeToUnixTime(
+            convertDateTimeToUtc(
+              datetimeBlock.heading_2.text[0].text.content,
+              process.env.NOTION_PAGE_TZ
+            )
+          ),
+          dialogue,
+        };
+      });
+
+      return quotes.concat(quote);
+    }, []);
   }
 
   async retrieveQuote(timestamp) {
