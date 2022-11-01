@@ -9,83 +9,21 @@ import {
 
 jest.mock("@notionhq/client");
 
-const list = jest.fn();
-const list2 = jest.fn();
-
-Client.mockImplementation(() => {
-  return {
+it("constructs with multiple tokens", () => {
+  Client.mockImplementationOnce(() => ({
     blocks: {
       children: {
-        list: list,
+        list: jest.fn(),
       },
     },
-  };
-})
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list2,
-        },
+  })).mockImplementationOnce(() => ({
+    blocks: {
+      children: {
+        list: jest.fn(),
       },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list,
-        },
-      },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list2,
-        },
-      },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list,
-        },
-      },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list2,
-        },
-      },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list,
-        },
-      },
-    };
-  })
-  .mockImplementationOnce(() => {
-    return {
-      blocks: {
-        children: {
-          list: list2,
-        },
-      },
-    };
-  });
+    },
+  }));
 
-it("constructs with multiple tokens", () => {
   new NotionGateway("somerandomtoken,anotherrandomtoken", null);
 
   expect(Client).toBeCalledWith({ auth: "somerandomtoken" });
@@ -95,19 +33,29 @@ it("constructs with multiple tokens", () => {
 
 describe("when retrieving an empty list of quotes", () => {
   it("returns an empty list", async () => {
-    list.mockResolvedValue({
-      object: "list",
-      results: [],
-      next_cursor: null,
-      has_more: false,
-    });
-
-    list2.mockResolvedValue({
-      object: "list",
-      results: [],
-      next_cursor: null,
-      has_more: false,
-    });
+    Client.mockImplementationOnce(() => ({
+      blocks: {
+        children: {
+          list: jest.fn().mockResolvedValue({
+            object: "list",
+            results: [],
+            next_cursor: null,
+            has_more: false,
+          }),
+        },
+      },
+    })).mockImplementationOnce(() => ({
+      blocks: {
+        children: {
+          list: jest.fn().mockResolvedValue({
+            object: "list",
+            results: [],
+            next_cursor: null,
+            has_more: false,
+          }),
+        },
+      },
+    }));
 
     const gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
@@ -121,33 +69,45 @@ describe("when retrieving an empty list of quotes", () => {
 });
 
 describe("when retrieving a non-empty list of quotes", () => {
+  let list = jest
+    .fn()
+    .mockResolvedValue({
+      object: "list",
+      results: results,
+      has_more: false,
+    })
+    .mockResolvedValueOnce({
+      object: "list",
+      results: firstPageResults,
+      next_cursor: "5",
+      has_more: true,
+    })
+    .mockResolvedValueOnce({
+      object: "list",
+      results: secondPageResults,
+      has_more: false,
+    });
   let gateway;
 
   beforeAll(async () => {
-    list
-      .mockResolvedValue({
-        object: "list",
-        results: results,
-        has_more: false,
-      })
-      .mockResolvedValueOnce({
-        object: "list",
-        results: firstPageResults,
-        next_cursor: "5",
-        has_more: true,
-      })
-      .mockResolvedValueOnce({
-        object: "list",
-        results: secondPageResults,
-        has_more: false,
-      });
-
-    list2.mockResolvedValue({
-      object: "list",
-      results: [],
-      next_cursor: null,
-      has_more: false,
-    });
+    Client.mockImplementationOnce(() => ({
+      blocks: {
+        children: {
+          list: list,
+        },
+      },
+    })).mockImplementationOnce(() => ({
+      blocks: {
+        children: {
+          list: jest.fn().mockResolvedValue({
+            object: "list",
+            results: [],
+            next_cursor: null,
+            has_more: false,
+          }),
+        },
+      },
+    }));
 
     gateway = new NotionGateway("somerandomtoken,anotherrandomtoken", "pageId");
   });
