@@ -20,6 +20,7 @@ export default class GetQuotesUseCase {
       return {
         timestamp: quote.timestamp,
         dialogue: dialogues,
+        meta: quote.meta,
       };
     });
   }

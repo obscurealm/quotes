@@ -18,6 +18,9 @@ describe("getQuotes use case", () => {
             text: "Goodbye!",
           },
         ],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
       },
       {
         timestamp: 1593013680,
@@ -28,6 +31,9 @@ describe("getQuotes use case", () => {
             text: "Hello!",
           },
         ],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
       },
       {
         timestamp: 1593013680,
@@ -38,6 +44,9 @@ describe("getQuotes use case", () => {
             text: "What do you think of `data: data`?",
           },
         ],
+        meta: {
+          workspacePage: "Tingker Bell Quotes",
+        },
       },
     ]);
   });
