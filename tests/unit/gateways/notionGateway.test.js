@@ -9,6 +9,20 @@ import {
 
 jest.mock("@notionhq/client");
 
+const retrievePage = (title) =>
+  jest.fn().mockResolvedValue({
+    object: "page",
+    properties: {
+      title: {
+        title: [
+          {
+            plain_text: title,
+          },
+        ],
+      },
+    },
+  });
+
 it("constructs with multiple tokens", () => {
   Client.mockImplementationOnce(() => ({
     blocks: {
@@ -45,18 +59,7 @@ describe("when retrieving an empty list of quotes", () => {
         },
       },
       pages: {
-        retrieve: jest.fn().mockResolvedValue({
-          object: "page",
-          properties: {
-            title: {
-              title: [
-                {
-                  plain_text: "Emperor King Yusuf Quotes",
-                },
-              ],
-            },
-          },
-        }),
+        retrieve: retrievePage("Emperor King Yusuf Quotes"),
       },
     })).mockImplementationOnce(() => ({
       blocks: {
@@ -70,18 +73,7 @@ describe("when retrieving an empty list of quotes", () => {
         },
       },
       pages: {
-        retrieve: jest.fn().mockResolvedValue({
-          object: "page",
-          properties: {
-            title: {
-              title: [
-                {
-                  plain_text: "Tingker Bell Quotes",
-                },
-              ],
-            },
-          },
-        }),
+        retrieve: retrievePage("Tingker Bell Quotes"),
       },
     }));
 
@@ -131,18 +123,7 @@ describe("when retrieving a non-empty list of quotes", () => {
         },
       },
       pages: {
-        retrieve: jest.fn().mockResolvedValue({
-          object: "page",
-          properties: {
-            title: {
-              title: [
-                {
-                  plain_text: "Emperor King Yusuf Quotes",
-                },
-              ],
-            },
-          },
-        }),
+        retrieve: retrievePage("Emperor King Yusuf Quotes"),
       },
     })).mockImplementationOnce(() => ({
       blocks: {
@@ -151,18 +132,7 @@ describe("when retrieving a non-empty list of quotes", () => {
         },
       },
       pages: {
-        retrieve: jest.fn().mockResolvedValue({
-          object: "page",
-          properties: {
-            title: {
-              title: [
-                {
-                  plain_text: "Tingker Bell Quotes",
-                },
-              ],
-            },
-          },
-        }),
+        retrieve: retrievePage("Tingker Bell Quotes"),
       },
     }));
 
