@@ -6,6 +6,19 @@ import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
 const Quote = ({ quote, hasLink = false }) => {
   const { date, time } = formatUnixTimeToDateTime(quote.timestamp);
 
+  const replaceEmojiText = (emojiText) =>
+    emojiText
+      .split(/(:yusuf:)/g)
+      .map((elem) => {
+        if (!elem) return "";
+        if (elem == ":yusuf:")
+          return `<img src="/images/yusuf.png" alt="emoji" />`;
+
+        return elem;
+      })
+      .flat()
+      .join("");
+
   return (
     <div data-cy="quote">
       {hasLink ? (
@@ -22,16 +35,18 @@ const Quote = ({ quote, hasLink = false }) => {
         </h2>
       )}
 
-      {quote.dialogue.map((dialogue, index) => (
-        <p key={index}>
-          <strong>{dialogue.author}</strong>:{" "}
-          <span
-            dangerouslySetInnerHTML={{
-              __html: convertMarkdownToHtml(dialogue.text),
-            }}
-          />
-        </p>
-      ))}
+      {quote.dialogue.map((dialogue, index) => {
+        return (
+          <p key={index}>
+            <strong>{dialogue.author}</strong>:{" "}
+            <span
+              dangerouslySetInnerHTML={{
+                __html: convertMarkdownToHtml(replaceEmojiText(dialogue.text)),
+              }}
+            />
+          </p>
+        );
+      })}
     </div>
   );
 };

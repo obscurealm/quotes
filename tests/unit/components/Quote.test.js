@@ -40,4 +40,18 @@ describe("Quote component", () => {
       screen.getByText("18 February 2021 at 12:00pm").closest("a")
     ).toBeNull();
   });
+
+  it("replaces :yusuf: with the emoji", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [{ author: "Yusuf", text: "What powers? Being smol? :yusuf:" }],
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.getByAltText("emoji")).toHaveAttribute(
+      "src",
+      "/images/yusuf.png"
+    );
+  });
 });
