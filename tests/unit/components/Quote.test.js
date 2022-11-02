@@ -49,7 +49,7 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} hasLink={false} />);
 
-    expect(screen.getByAltText("emoji")).toHaveAttribute(
+    expect(screen.getByAltText("Iconic Yusuf smirk.")).toHaveAttribute(
       "src",
       "/images/yusuf.png"
     );
@@ -65,7 +65,7 @@ describe("Quote component", () => {
 
     render(<Quote quote={quote} hasLink={false} />);
 
-    expect(screen.getByAltText("emoji")).toHaveAttribute(
+    expect(screen.getByAltText("Iconic Tingker Bell.")).toHaveAttribute(
       "src",
       "/images/tingker-bell.png"
     );

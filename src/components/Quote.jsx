@@ -3,20 +3,29 @@ import Link from "next/link";
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
 
+const emojis = {
+  ":yusuf:": {
+    src: "/images/yusuf.png",
+    alt: "Iconic Yusuf smirk.",
+  },
+  ":tingker-bell:": {
+    src: "/images/tingker-bell.png",
+    alt: "Iconic Tingker Bell.",
+  },
+};
+
 const Quote = ({ quote, hasLink = false }) => {
   const { date, time } = formatUnixTimeToDateTime(quote.timestamp);
 
   const replaceEmojiText = (emojiText) =>
     emojiText
       .split(/(:[a-z-]+?:)/g)
-      .map((elem) => {
-        if (!elem) return "";
-        if (elem == ":yusuf:")
-          return `<img src="/images/yusuf.png" alt="emoji" />`;
-        if (elem == ":tingker-bell:")
-          return `<img src="/images/tingker-bell.png" alt="emoji" />`;
+      .map((text) => {
+        if (!text) return "";
+        if (emojis[text])
+          return `<img src="${emojis[text].src}" alt="${emojis[text].alt}" />`;
 
-        return elem;
+        return text;
       })
       .flat()
       .join("");
