@@ -8,4 +8,17 @@ describe("Filter component", () => {
 
     expect(screen.getByText("Filter")).toBeTruthy();
   });
+
+  it("displays the dropdown", () => {
+    render(<Filter />);
+
+    const dropdown = screen.getByRole("combobox");
+    const dropdownOptions = dropdown.childNodes;
+
+    expect(dropdown).toBeInTheDocument();
+    expect(dropdownOptions).toHaveLength(3);
+    expect(dropdownOptions[0]).toHaveValue("All");
+    expect(dropdownOptions[1]).toHaveValue("Emperor King Yusuf Quotes");
+    expect(dropdownOptions[2]).toHaveValue("Tingker Bell Quotes");
+  });
 });
