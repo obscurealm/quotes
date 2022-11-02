@@ -7,18 +7,18 @@ import GetQuotesUseCase from "../src/useCases/getQuotes";
 import { useState } from "react";
 
 const Home = ({ quotes }) => {
-  const [searchResults, setSearchResults] = useState(quotes);
+  const [results, setResults] = useState(quotes);
 
   return (
     <>
       <Layout title="Home">
         <Search
           quotes={quotes}
-          setQuotes={setSearchResults}
+          setQuotes={setResults}
           style={{ clear: "right", marginBottom: "1rem" }}
         />
-        <Filter quotes={quotes} setQuotes={setSearchResults} />
-        <Quotes quotes={searchResults} />
+        <Filter quotes={quotes} setQuotes={setResults} />
+        <Quotes quotes={results} />
       </Layout>
     </>
   );
