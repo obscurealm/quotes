@@ -113,4 +113,46 @@ describe("Filter component", () => {
       },
     ]);
   });
+
+  describe("when 'All' is selected after already filtering", () => {
+    it("resets quotes back to initial list", () => {
+      let quotes = [
+        {
+          timestamp: "1613649600",
+          dialogue: [{ author: "Y", text: "poo" }],
+          meta: {
+            workspacePage: "Emperor King Yusuf Quotes",
+          },
+        },
+        {
+          timestamp: "1614610800",
+          dialogue: [
+            {
+              author: "T",
+              text: "I don't know the meaning of the word evil.",
+            },
+          ],
+          meta: {
+            workspacePage: "Tingker Bell Quotes",
+          },
+        },
+      ];
+
+      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+
+      render(<Filter quotes={quotes} setQuotes={setQuotes} />);
+
+      fireEvent.change(screen.getByRole("combobox"), {
+        target: { value: "Tingker Bell Quotes" },
+      });
+      fireEvent.click(screen.getByText("Filter"));
+
+      fireEvent.change(screen.getByRole("combobox"), {
+        target: { value: "All" },
+      });
+      fireEvent.click(screen.getByText("Filter"));
+
+      expect(quotes).toHaveLength(2);
+    });
+  });
 });

@@ -12,12 +12,14 @@ const Filter = ({ quotes, setQuotes }) => {
     .filter((value, index, self) => self.indexOf(value) === index);
 
   const filterQuotes = (workspacePage) =>
-    quotes.filter((quote) => quote.meta.workspacePage === workspacePage);
+    workspacePage == "All"
+      ? quotes
+      : quotes.filter((quote) => quote.meta.workspacePage === workspacePage);
 
   return (
     <>
       <select onChange={handleDropdownChange} data-testid="workspacePageFilter">
-        <option>All</option>
+        <option value="All">All</option>
         {workspacePages.map((workspacePage, index) => (
           <option key={index} value={workspacePage}>
             {workspacePage}
