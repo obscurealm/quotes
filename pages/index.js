@@ -1,3 +1,4 @@
+import Filter from "../src/components/Filter";
 import Layout from "../src/components/Layout";
 import Quotes from "../src/components/Quotes";
 import Search from "../src/components/Search";
@@ -12,6 +13,7 @@ const Home = ({ quotes }) => {
     <>
       <Layout title="Home">
         <Search quotes={quotes} setQuotes={setSearchResults} />
+        <Filter quotes={quotes} setQuotes={setSearchResults} />
         <Quotes quotes={searchResults} />
       </Layout>
     </>

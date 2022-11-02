@@ -16,7 +16,7 @@ const Filter = ({ quotes, setQuotes }) => {
 
   return (
     <>
-      <select onChange={handleDropdownChange}>
+      <select onChange={handleDropdownChange} data-testid="workspacePageFilter">
         <option>All</option>
         {workspacePages.map((workspacePage, index) => (
           <option key={index} value={workspacePage}>
