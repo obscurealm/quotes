@@ -6,12 +6,12 @@ describe("filters quotes", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length.of.at.least(1);
+      expect($div).have.length.of.at.least(10);
     });
     cy.get("[data-testid=workspacePageFilter]").select("Tingker Bell Quotes");
     cy.get("[data-testid=filterButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(10);
+      expect($div).have.length(9);
     });
   });
 });
