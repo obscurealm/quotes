@@ -54,4 +54,20 @@ describe("Quote component", () => {
       "/images/yusuf.png"
     );
   });
+
+  it("replaces :tingker-bell: with the emoji", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [
+        { author: "Yusuf", text: "Good evening Tingker Bell! :tingker-bell:" },
+      ],
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.getByAltText("emoji")).toHaveAttribute(
+      "src",
+      "/images/tingker-bell.png"
+    );
+  });
 });

@@ -8,11 +8,13 @@ const Quote = ({ quote, hasLink = false }) => {
 
   const replaceEmojiText = (emojiText) =>
     emojiText
-      .split(/(:yusuf:)/g)
+      .split(/(:[a-z-]+?:)/g)
       .map((elem) => {
         if (!elem) return "";
         if (elem == ":yusuf:")
           return `<img src="/images/yusuf.png" alt="emoji" />`;
+        if (elem == ":tingker-bell:")
+          return `<img src="/images/tingker-bell.png" alt="emoji" />`;
 
         return elem;
       })
