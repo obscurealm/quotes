@@ -86,4 +86,19 @@ describe("Quote component", () => {
       "18.5px"
     );
   });
+
+  it("displays emoji images vertically aligned with the bottom of the text", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [
+        { author: "Yusuf", text: "Good evening Tingker Bell! :tingker-bell:" },
+      ],
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.getByAltText("Iconic Tingker Bell.")).toHaveStyle({
+      "vertical-align": "text-bottom",
+    });
+  });
 });

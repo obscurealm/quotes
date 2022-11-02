@@ -18,4 +18,10 @@ describe("convertMarkdownToHtml util", () => {
 
     expect(html).toEqual('<img src="x" />');
   });
+
+  it("allows images with styling", () => {
+    const html = convertMarkdownToHtml('<img src=x style="color: blue;" />');
+
+    expect(html).toEqual('<img src="x" style="color:blue" />');
+  });
 });
