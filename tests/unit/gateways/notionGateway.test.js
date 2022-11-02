@@ -44,6 +44,20 @@ describe("when retrieving an empty list of quotes", () => {
           }),
         },
       },
+      pages: {
+        retrieve: jest.fn().mockResolvedValue({
+          object: "page",
+          properties: {
+            title: {
+              title: [
+                {
+                  plain_text: "Emperor King Yusuf Quotes",
+                },
+              ],
+            },
+          },
+        }),
+      },
     })).mockImplementationOnce(() => ({
       blocks: {
         children: {
@@ -54,6 +68,20 @@ describe("when retrieving an empty list of quotes", () => {
             has_more: false,
           }),
         },
+      },
+      pages: {
+        retrieve: jest.fn().mockResolvedValue({
+          object: "page",
+          properties: {
+            title: {
+              title: [
+                {
+                  plain_text: "Tingker Bell Quotes",
+                },
+              ],
+            },
+          },
+        }),
       },
     }));
 
@@ -102,11 +130,39 @@ describe("when retrieving a non-empty list of quotes", () => {
           list: list,
         },
       },
+      pages: {
+        retrieve: jest.fn().mockResolvedValue({
+          object: "page",
+          properties: {
+            title: {
+              title: [
+                {
+                  plain_text: "Emperor King Yusuf Quotes",
+                },
+              ],
+            },
+          },
+        }),
+      },
     })).mockImplementationOnce(() => ({
       blocks: {
         children: {
           list: anotherList,
         },
+      },
+      pages: {
+        retrieve: jest.fn().mockResolvedValue({
+          object: "page",
+          properties: {
+            title: {
+              title: [
+                {
+                  plain_text: "Tingker Bell Quotes",
+                },
+              ],
+            },
+          },
+        }),
       },
     }));
 
@@ -141,14 +197,23 @@ describe("when retrieving a non-empty list of quotes", () => {
               "Y: Good evening Tingker Bell! :tingker-bell:",
               "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
             ],
+            meta: {
+              workspacePage: "Emperor King Yusuf Quotes",
+            },
           }),
           expect.objectContaining({
             timestamp: 1644249000,
             dialogue: ["Y: uwu"],
+            meta: {
+              workspacePage: "Emperor King Yusuf Quotes",
+            },
           }),
           expect.objectContaining({
             timestamp: 1644759000,
             dialogue: ["T: -_-"],
+            meta: {
+              workspacePage: "Emperor King Yusuf Quotes",
+            },
           }),
         ])
       );

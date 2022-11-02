@@ -18,6 +18,12 @@ export default class NotionGateway {
   async retrieveQuotes() {
     const blocksInWorkspaces = await Promise.all(
       this.workspaces.map(async ({ client, pageId }) => {
+        const title = (
+          await client.pages.retrieve({
+            page_id: pageId,
+          })
+        ).properties.title.title[0].plain_text;
+
         let response = await client.blocks.children.list({
           block_id: pageId,
         });
@@ -32,11 +38,11 @@ export default class NotionGateway {
           blocks = blocks.concat(response.results);
         }
 
-        return blocks;
+        return { title, blocks };
       })
     );
 
-    return blocksInWorkspaces.reduce((quotes, blocks) => {
+    return blocksInWorkspaces.reduce((quotes, { title, blocks }) => {
       const datetimeBlocks = blocks.filter(
         (block) => block.type === BLOCK_TYPE.HeadingTwo
       );
@@ -78,6 +84,9 @@ export default class NotionGateway {
             )
           ),
           dialogue,
+          meta: {
+            workspacePage: title,
+          },
         };
       });
 
