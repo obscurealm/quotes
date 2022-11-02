@@ -12,7 +12,11 @@ const Home = ({ quotes }) => {
   return (
     <>
       <Layout title="Home">
-        <Search quotes={quotes} setQuotes={setSearchResults} />
+        <Search
+          quotes={quotes}
+          setQuotes={setSearchResults}
+          style={{ clear: "right", marginBottom: "1rem" }}
+        />
         <Filter quotes={quotes} setQuotes={setSearchResults} />
         <Quotes quotes={searchResults} />
       </Layout>

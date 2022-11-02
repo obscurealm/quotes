@@ -1,6 +1,7 @@
 import Search from "../../../src/components/Search";
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import Quote from "../../../src/components/Quote";
 
 describe("Search component", () => {
   it("displays the search button", () => {
@@ -203,5 +204,19 @@ describe("Search component", () => {
     fireEvent.click(screen.getByText("Reset"));
 
     expect(screen.getByTestId("searchBox")).toHaveValue("");
+  });
+
+  it("styles the search", () => {
+    render(
+      <Search
+        quotes={[]}
+        setQuotes={jest.fn()}
+        style={{ marginBottom: "1rem" }}
+      />
+    );
+
+    expect(screen.getByTestId("search")).toHaveStyle({
+      marginBottom: "1rem",
+    });
   });
 });

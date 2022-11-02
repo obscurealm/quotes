@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Search = ({ quotes, setQuotes }) => {
+const Search = ({ quotes, setQuotes, style = {} }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
@@ -21,7 +21,7 @@ const Search = ({ quotes, setQuotes }) => {
     );
 
   return (
-    <>
+    <div data-testid="search" style={style}>
       <input
         data-testid="searchBox"
         value={searchTerm}
@@ -43,7 +43,7 @@ const Search = ({ quotes, setQuotes }) => {
       >
         Reset
       </button>
-    </>
+    </div>
   );
 };
 
