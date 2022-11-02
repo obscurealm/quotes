@@ -1,6 +1,6 @@
 import Filter from "../../../src/components/Filter";
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("Filter component", () => {
   it("displays the filter button", () => {
@@ -56,5 +56,61 @@ describe("Filter component", () => {
     expect(dropdownOptions[0]).toHaveValue("All");
     expect(dropdownOptions[1]).toHaveValue("Emperor King Yusuf Quotes");
     expect(dropdownOptions[2]).toHaveValue("Tingker Bell Quotes");
+  });
+
+  it("filters quotes by workspace page", () => {
+    let quotes = [
+      {
+        timestamp: "1613649600",
+        dialogue: [{ author: "Y", text: "poo" }],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
+      },
+      {
+        timestamp: "1613649600",
+        dialogue: [{ author: "Y", text: "speedieboi" }],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
+      },
+      {
+        timestamp: "1614610800",
+        dialogue: [
+          {
+            author: "T",
+            text: "I don't know the meaning of the word evil.",
+          },
+        ],
+        meta: {
+          workspacePage: "Tingker Bell Quotes",
+        },
+      },
+    ];
+
+    const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+
+    render(<Filter quotes={quotes} setQuotes={setQuotes} />);
+
+    fireEvent.change(screen.getByRole("combobox"), {
+      target: { value: "Tingker Bell Quotes" },
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+
+    expect(quotes).toEqual([
+      {
+        timestamp: "1614610800",
+        dialogue: [
+          {
+            author: "T",
+            text: "I don't know the meaning of the word evil.",
+          },
+        ],
+        meta: {
+          workspacePage: "Tingker Bell Quotes",
+        },
+      },
+    ]);
   });
 });
