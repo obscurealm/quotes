@@ -31,7 +31,7 @@ const Quote = ({ quote, hasLink = false }) => {
       .join("");
 
   return (
-    <div data-cy="quote">
+    <div data-testid="quote">
       {hasLink ? (
         <h2>
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>

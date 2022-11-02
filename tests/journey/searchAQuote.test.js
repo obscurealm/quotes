@@ -5,12 +5,12 @@ describe("search a quote", () => {
       expect(title).to.equal("Home");
     });
     cy.get("h1").contains("Quotes");
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length.of.at.least(1);
     });
     cy.get("[data-testid=searchBox]").type("butt");
     cy.get("[data-testid=searchButton]").click();
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
     });
   });
@@ -19,11 +19,11 @@ describe("search a quote", () => {
     cy.visit("/");
     cy.get("[data-testid=searchBox]").type("butt");
     cy.get("[data-testid=searchButton]").click();
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
     });
     cy.get("[data-testid=searchBox]").clear().type("Emperor{enter}");
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(3);
     });
   });
@@ -32,11 +32,11 @@ describe("search a quote", () => {
     cy.visit("/");
     cy.get("[data-testid=searchBox]").type("butt");
     cy.get("[data-testid=searchButton]").click();
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
     });
     cy.get("[data-testid=resetButton]").click();
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length.greaterThan(1);
     });
   });

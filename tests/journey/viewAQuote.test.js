@@ -5,7 +5,7 @@ describe("view a quote", () => {
       expect(title).to.equal("Home");
     });
     cy.get("h1").contains("Quotes");
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length.of.at.least(1);
     });
     cy.get('a[href*="quotes"]')
@@ -15,7 +15,7 @@ describe("view a quote", () => {
     cy.title().should((title) => {
       expect(title).to.equal("Quote");
     });
-    cy.get("[data-cy=quote]").should(($div) => {
+    cy.get("[data-testid=quote]").should(($div) => {
       expect($div).to.have.lengthOf(1);
     });
   });
