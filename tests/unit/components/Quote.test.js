@@ -70,4 +70,20 @@ describe("Quote component", () => {
       "/images/tingker-bell.png"
     );
   });
+
+  it("displays emoji images with the correct size", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [
+        { author: "Yusuf", text: "Good evening Tingker Bell! :tingker-bell:" },
+      ],
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.getByAltText("Iconic Tingker Bell.")).toHaveAttribute(
+      "width",
+      "18.5px"
+    );
+  });
 });

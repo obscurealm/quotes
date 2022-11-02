@@ -23,7 +23,7 @@ const Quote = ({ quote, hasLink = false }) => {
       .map((text) => {
         if (!text) return "";
         if (emojis[text])
-          return `<img src="${emojis[text].src}" alt="${emojis[text].alt}" />`;
+          return `<img src="${emojis[text].src}" alt="${emojis[text].alt}" width="18.5px" />`;
 
         return text;
       })
