@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Filter = ({ quotes, setQuotes }) => {
+const Filter = ({ quotes, setResults }) => {
   const [workspacePage, setWorkspacePage] = useState("All");
 
   const handleDropdownChange = (event) => {
@@ -28,7 +28,7 @@ const Filter = ({ quotes, setQuotes }) => {
       </select>
       <button
         data-testid="filterButton"
-        onClick={() => setQuotes(filterQuotes(workspacePage))}
+        onClick={() => setResults(filterQuotes(workspacePage))}
       >
         Filter
       </button>

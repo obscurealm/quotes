@@ -88,9 +88,9 @@ describe("Filter component", () => {
       },
     ];
 
-    const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+    const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-    render(<Filter quotes={quotes} setQuotes={setQuotes} />);
+    render(<Filter quotes={quotes} setResults={setResults} />);
 
     fireEvent.change(screen.getByRole("combobox"), {
       target: { value: "Tingker Bell Quotes" },
@@ -138,9 +138,9 @@ describe("Filter component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Filter quotes={quotes} setQuotes={setQuotes} />);
+      render(<Filter quotes={quotes} setResults={setResults} />);
 
       fireEvent.change(screen.getByRole("combobox"), {
         target: { value: "Tingker Bell Quotes" },

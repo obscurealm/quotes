@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Search = ({ quotes, setQuotes, style = {} }) => {
+const Search = ({ quotes, setResults, style = {} }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event) => {
@@ -9,7 +9,7 @@ const Search = ({ quotes, setQuotes, style = {} }) => {
 
   const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      setQuotes(filterQuotes(searchTerm));
+      setResults(filterQuotes(searchTerm));
     }
   };
 
@@ -30,7 +30,7 @@ const Search = ({ quotes, setQuotes, style = {} }) => {
       />
       <button
         data-testid="searchButton"
-        onClick={() => setQuotes(filterQuotes(searchTerm))}
+        onClick={() => setResults(filterQuotes(searchTerm))}
       >
         Search
       </button>
@@ -38,7 +38,7 @@ const Search = ({ quotes, setQuotes, style = {} }) => {
         data-testid="resetButton"
         onClick={() => {
           setSearchTerm("");
-          setQuotes(quotes);
+          setResults(quotes);
         }}
       >
         Reset

@@ -14,10 +14,10 @@ const Home = ({ quotes }) => {
       <Layout title="Home">
         <Search
           quotes={quotes}
-          setQuotes={setResults}
+          setResults={setResults}
           style={{ clear: "right", marginBottom: "1rem" }}
         />
-        <Filter quotes={quotes} setQuotes={setResults} />
+        <Filter quotes={quotes} setResults={setResults} />
         <Quotes quotes={results} />
       </Layout>
     </>

@@ -44,9 +44,9 @@ describe("Search component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+      render(<Search quotes={quotes} setResults={setResults} />);
 
       fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
@@ -79,9 +79,9 @@ describe("Search component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+      render(<Search quotes={quotes} setResults={setResults} />);
 
       fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
@@ -111,9 +111,9 @@ describe("Search component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+      render(<Search quotes={quotes} setResults={setResults} />);
 
       fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
@@ -140,9 +140,9 @@ describe("Search component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+      render(<Search quotes={quotes} setResults={setResults} />);
 
       fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
@@ -173,9 +173,9 @@ describe("Search component", () => {
         },
       ];
 
-      const setQuotes = (updatedQuotes) => (quotes = updatedQuotes);
+      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
 
-      render(<Search quotes={quotes} setQuotes={setQuotes} />);
+      render(<Search quotes={quotes} setResults={setResults} />);
 
       const searchBox = screen.getByTestId("searchBox");
 
@@ -195,7 +195,7 @@ describe("Search component", () => {
   });
 
   it("clears the search box", () => {
-    render(<Search quotes={[]} setQuotes={jest.fn()} />);
+    render(<Search quotes={[]} setResults={jest.fn()} />);
 
     fireEvent.change(screen.getByTestId("searchBox"), {
       target: { value: "Hello!" },
@@ -210,7 +210,7 @@ describe("Search component", () => {
     render(
       <Search
         quotes={[]}
-        setQuotes={jest.fn()}
+        setResults={jest.fn()}
         style={{ marginBottom: "1rem" }}
       />
     );
