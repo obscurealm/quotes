@@ -15,10 +15,10 @@ describe("Search component", () => {
     expect(screen.getByTestId("searchBox")).toBeTruthy();
   });
 
-  it("displays the clear button", () => {
+  it("displays the reset button", () => {
     render(<Search />);
 
-    expect(screen.getByText("Clear")).toBeTruthy();
+    expect(screen.getByText("Reset")).toBeTruthy();
   });
 
   describe("filters quotes", () => {
@@ -200,7 +200,7 @@ describe("Search component", () => {
       target: { value: "Hello!" },
     });
 
-    fireEvent.click(screen.getByText("Clear"));
+    fireEvent.click(screen.getByText("Reset"));
 
     expect(screen.getByTestId("searchBox")).toHaveValue("");
   });

@@ -28,14 +28,14 @@ describe("search a quote", () => {
     });
   });
 
-  it("clears filtered list of quotes", () => {
+  it("resets filtered list of quotes", () => {
     cy.visit("/");
     cy.get("[data-testid=searchBox]").type("butt");
     cy.get("[data-testid=searchButton]").click();
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length(1);
     });
-    cy.get("[data-testid=clearButton]").click();
+    cy.get("[data-testid=resetButton]").click();
     cy.get("[data-cy=quote]").should(($div) => {
       expect($div).have.length.greaterThan(1);
     });
