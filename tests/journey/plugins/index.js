@@ -6,7 +6,7 @@ const {
   tingkerBellQuotes,
 } = require("../../journey/fixtures/quotes");
 
-module.exports = async (on, config) => {
+const plugins = async (on, config) => {
   const app = next({ dev: true, dir: "../" });
   const handleNextRequests = app.getRequestHandler();
   const port = 4000;
@@ -86,3 +86,5 @@ module.exports = async (on, config) => {
 
   return config;
 };
+
+exports.plugins = plugins;
