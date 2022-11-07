@@ -20,7 +20,7 @@
     "@testing-library/react": "^11.2.5",
     "cypress": "^9.4.1",
     "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1",
+    "jest-environment-jsdom": "^29.2.2",
     "nock": "^13.2.9",
     "prettier": "^2.1.2"
   },
