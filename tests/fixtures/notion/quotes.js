@@ -3,7 +3,7 @@ export const results = [
     id: "1",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "17 Jun 2022 at 15:40",
@@ -16,7 +16,7 @@ export const results = [
     id: "2",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: Good afternoon Tingker Bell! :tingker-bell:",
         },
@@ -27,7 +27,7 @@ export const results = [
     id: "3",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text:
             "T: Good afternoon Emperor King Yusuf! :emperor-king-yusuf:",
@@ -39,7 +39,7 @@ export const results = [
     id: "4",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "20 Jun 2022 at 13:30",
@@ -52,7 +52,7 @@ export const results = [
     id: "5",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: :yusuf-eye-roll:",
         },
@@ -66,7 +66,7 @@ export const firstPageResults = [
     id: "1",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "21 Oct 2021 at 16:06",
@@ -79,7 +79,7 @@ export const firstPageResults = [
     id: "2",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: Good evening Tingker Bell! :tingker-bell:",
         },
@@ -90,7 +90,7 @@ export const firstPageResults = [
     id: "3",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text:
             "T: Good evening Emperor King Yusuf! :emperor-king-yusuf:",
@@ -102,7 +102,7 @@ export const firstPageResults = [
     id: "4",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "7 Feb 2022 at 15:50",
@@ -118,7 +118,7 @@ export const secondPageResults = [
     id: "5",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: uwu",
         },
@@ -129,7 +129,7 @@ export const secondPageResults = [
     id: "6",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "13 Feb 2022 at 13:30",
@@ -142,7 +142,7 @@ export const secondPageResults = [
     id: "7",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "T: -_-",
         },
@@ -156,7 +156,7 @@ export const annotatedResults = [
     id: "1",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "24 Jun 2022 at 11:00",
@@ -169,7 +169,7 @@ export const annotatedResults = [
     id: "2",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: ",
         },
@@ -198,7 +198,7 @@ export const annotatedResults = [
     id: "3",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "T: ",
         },

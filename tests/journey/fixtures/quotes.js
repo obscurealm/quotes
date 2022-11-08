@@ -3,7 +3,7 @@ const emperorKingYusufQuotes = [
     id: "1",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "17 Jun 2022 at 15:40",
@@ -16,7 +16,7 @@ const emperorKingYusufQuotes = [
     id: "2",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: Good afternoon Tingker Bell! :tingker-bell:",
         },
@@ -27,7 +27,7 @@ const emperorKingYusufQuotes = [
     id: "3",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text:
             "T: Good afternoon Emperor King Yusuf! :emperor-king-yusuf:",
@@ -39,7 +39,7 @@ const emperorKingYusufQuotes = [
     id: "4",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "20 Jun 2022 at 13:30",
@@ -52,7 +52,7 @@ const emperorKingYusufQuotes = [
     id: "5",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: :yusuf-eye-roll:",
         },
@@ -66,7 +66,7 @@ const tingkerBellQuotes = [
     id: "1",
     type: "heading_2",
     heading_2: {
-      text: [
+      rich_text: [
         {
           text: {
             content: "1 Mar 2022 at 9:40",
@@ -79,7 +79,7 @@ const tingkerBellQuotes = [
     id: "2",
     type: "paragraph",
     paragraph: {
-      text: [
+      rich_text: [
         {
           plain_text: "Y: Good morning Tingker Bell! :tingker-bell:",
         },

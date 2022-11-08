@@ -63,7 +63,7 @@ export default class NotionGateway {
         const dialogue = dialogueBlocks
           .filter((block) => block.type === BLOCK_TYPE.Paragraph)
           .map((block) =>
-            block.paragraph.text
+            block.paragraph.rich_text
               .map((content) => {
                 if (content.hasOwnProperty("annotations"))
                   content.plain_text = this.formatAnnotatedText(
@@ -79,7 +79,7 @@ export default class NotionGateway {
         return {
           timestamp: convertDateTimeToUnixTime(
             convertDateTimeToUtc(
-              datetimeBlock.heading_2.text[0].text.content,
+              datetimeBlock.heading_2.rich_text[0].text.content,
               process.env.NOTION_PAGE_TZ
             )
           ),
