@@ -35,9 +35,7 @@ const Quote = ({ quote, hasLink = false }) => {
       {hasLink ? (
         <h2>
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
-            <a>
-              {date} at {time}
-            </a>
+            {date} at {time}
           </Link>
         </h2>
       ) : (

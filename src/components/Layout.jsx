@@ -10,9 +10,7 @@ const Layout = ({ title = "Quotes", children, showBreadcrumbs }) => {
         <title>{title}</title>
       </Head>
       <Link href="/">
-        <a>
-          <h1 data-testid="heading">Quotes</h1>
-        </a>
+        <h1 data-testid="heading">Quotes</h1>
       </Link>
       {showBreadcrumbs && <Breadcrumbs />}
       {children}
