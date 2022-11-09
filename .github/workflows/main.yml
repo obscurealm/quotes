@@ -30,13 +30,13 @@ jobs:
         with:
           command: npm run test:journey
       - name: Screenshots
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
           path: tests/journey/screenshots
       - name: Videos
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-videos
