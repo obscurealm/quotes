@@ -34,13 +34,13 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: tests/cypress/screenshots
+          path: tests/journey/screenshots
       - name: Videos
         uses: actions/upload-artifact@v1
         if: failure()
         with:
           name: cypress-videos
-          path: tests/cypress/videos
+          path: tests/journey/videos
 
   deployment:
     name: 🚀 Deployment
