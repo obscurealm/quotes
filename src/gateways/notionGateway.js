@@ -1,4 +1,4 @@
-import { Client, LogLevel } from "@notionhq/client";
+import { Client } from "@notionhq/client";
 import convertDateTimeToUnixTime from "../../utils/convertDateTimeToUnixTime";
 import convertDateTimeToUtc from "../../utils/convertDateTimeToUtc";
 
@@ -10,7 +10,7 @@ const BLOCK_TYPE = {
 export default class NotionGateway {
   constructor(tokens, pageIds) {
     this.workspaces = tokens.split(",").map((token, index) => ({
-      client: new Client({ auth: token, logLevel: LogLevel.DEBUG }),
+      client: new Client({ auth: token }),
       pageId: pageIds?.split(",")[index],
     }));
   }
