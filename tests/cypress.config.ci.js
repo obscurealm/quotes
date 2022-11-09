@@ -1,17 +1,12 @@
+const defaultConfig = require("./cypress.config");
 const { defineConfig } = require("cypress");
-const { plugins } = require("./journey/plugins");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "http://localhost:4000",
-    excludeSpecPattern: "**/plugins/*.js",
-    fixturesFolder: "journey/fixtures",
+    ...defaultConfig.e2e,
     screenshotsFolder: "journey/screenshots",
-    setupNodeEvents(on, config) {
-      return plugins(on, config);
-    },
-    specPattern: "journey/*.test.js",
-    supportFile: false,
+    screenshotOnRunFailure: true,
+    video: true,
     videosFolder: "journey/videos",
   },
 });
