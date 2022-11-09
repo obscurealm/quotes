@@ -9,6 +9,7 @@
     "format": "prettier --write '{pages,quotes,src,tests,utils}/**/*.{js,jsx,css,md,yml}'",
     "test": "jest && npm run test:journey",
     "test:journey": "cypress run --project tests",
+    "test:journey:ci": "cypress run --project tests --config-file=cypress.config.ci.js",
     "test:journey:open": "cypress open --project tests",
     "test:unit": "jest unit"
   },
