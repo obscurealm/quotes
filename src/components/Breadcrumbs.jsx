@@ -26,18 +26,14 @@ const Breadcrumbs = () => {
           if (breadcrumb.breadcrumb == "Home") {
             return (
               <Link href="/" key={index}>
-                <a>
-                  <li>{breadcrumb.breadcrumb}</li>
-                </a>
+                <li>{breadcrumb.breadcrumb}</li>
               </Link>
             );
           }
 
           return (
             <Link href={breadcrumb.href} key={index}>
-              <a>
-                <li>{breadcrumb.breadcrumb}</li>
-              </a>
+              <li>{breadcrumb.breadcrumb}</li>
             </Link>
           );
         })
