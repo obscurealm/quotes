@@ -9,7 +9,7 @@ describe("filter quotes", () => {
   });
 
   it("filters a list of quotes", () => {
-    cy.visit("/asdf");
+    cy.visit("/");
     cy.title().should((title) => {
       expect(title).to.equal("Home");
     });
