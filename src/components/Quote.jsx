@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useReducer, useState } from "react";
 import Link from "next/link";
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
@@ -15,7 +15,13 @@ const emojis = {
 };
 
 const Quote = ({ quote, hasLink = false }) => {
-  const { date, time } = formatUnixTimeToDateTime(quote.timestamp);
+  const [formattedTimestamp, setFormattedTimestamp] = useState({});
+
+  useEffect(() => {
+    setFormattedTimestamp(formatUnixTimeToDateTime(quote.timestamp));
+  }, [quote]);
+
+  const { date, time } = formattedTimestamp;
 
   const replaceEmojiText = (emojiText) =>
     emojiText
