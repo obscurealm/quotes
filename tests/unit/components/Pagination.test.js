@@ -35,6 +35,12 @@ describe("Pagination component", () => {
         "#"
       );
     });
+
+    it("hides the next link", () => {
+      render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
+
+      expect(screen.queryByText("Next")).not.toBeInTheDocument();
+    });
   });
 
   describe("when the current page is the first page", () => {

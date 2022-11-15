@@ -28,7 +28,8 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
     <>
       <Link href="#">Previous</Link>
       <PageNumberLinks />
-      <Link href="#">Next</Link>
+
+      {currentPage !== pageNumbers.at(-1) && <Link href="#">Next</Link>}
     </>
   );
 };
