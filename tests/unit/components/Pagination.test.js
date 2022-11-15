@@ -52,5 +52,11 @@ describe("Pagination component", () => {
         "#"
       );
     });
+
+    it("hides the previous link", () => {
+      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+
+      expect(screen.queryByText("Previous")).not.toBeInTheDocument();
+    });
   });
 });
