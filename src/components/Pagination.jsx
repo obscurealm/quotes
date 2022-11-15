@@ -24,12 +24,16 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
       </span>
     ));
 
+  const isNotFirstPage = currentPage !== pageNumbers.at(0);
+  const isNotLastPage = currentPage !== pageNumbers.at(-1);
+
   return (
     <>
-      {currentPage !== pageNumbers.at(0) && <Link href="#">Previous</Link>}
+      {isNotFirstPage && <Link href="#">Previous</Link>}
+
       <PageNumberLinks />
 
-      {currentPage !== pageNumbers.at(-1) && <Link href="#">Next</Link>}
+      {isNotLastPage && <Link href="#">Next</Link>}
     </>
   );
 };
