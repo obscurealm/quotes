@@ -10,7 +10,8 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
 
   const PageNumberLinks = () =>
     pageNumbers.map((pageNumber) => (
-      <span
+      <Link
+        href="#"
         key={pageNumber}
         style={
           currentPage === pageNumber
@@ -21,7 +22,7 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
         }
       >
         {pageNumber}
-      </span>
+      </Link>
     ));
 
   const isNotFirstPage = currentPage !== pageNumbers.at(0);
