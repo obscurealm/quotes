@@ -2,7 +2,7 @@ import Pagination from "../../../src/components/Pagination";
 import { render, screen } from "@testing-library/react";
 
 describe("Pagination component", () => {
-  it("displays the total number of pages based on page size", () => {
+  it("displays the total number of pages given the page size", () => {
     render(<Pagination pageSize={2} totalCount={10} />);
 
     expect(screen.getByText(/1/)).toBeVisible();
