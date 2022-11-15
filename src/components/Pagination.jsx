@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Pagination = ({ pageSize, totalCount, currentPage }) => {
   const totalNumberOfPages = totalCount / pageSize;
 
@@ -6,20 +8,28 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
     (x, i) => i + 1
   );
 
-  return pageNumbers.map((pageNumber) => (
-    <span
-      key={pageNumber}
-      style={
-        currentPage === pageNumber
-          ? {
-              borderStyle: "solid",
-            }
-          : null
-      }
-    >
-      {pageNumber}
-    </span>
-  ));
+  const PageNumberLinks = () =>
+    pageNumbers.map((pageNumber) => (
+      <span
+        key={pageNumber}
+        style={
+          currentPage === pageNumber
+            ? {
+                borderStyle: "solid",
+              }
+            : null
+        }
+      >
+        {pageNumber}
+      </span>
+    ));
+
+  return (
+    <>
+      <Link href="#">Previous</Link>
+      <PageNumberLinks />
+    </>
+  );
 };
 
 export default Pagination;

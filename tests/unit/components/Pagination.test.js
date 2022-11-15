@@ -25,4 +25,15 @@ describe("Pagination component", () => {
       "border-style": "solid",
     });
   });
+
+  describe("when the current page is the last page", () => {
+    it("displays the previous link", () => {
+      render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
+
+      expect(screen.getByText("Previous").closest("a")).toHaveAttribute(
+        "href",
+        "#"
+      );
+    });
+  });
 });
