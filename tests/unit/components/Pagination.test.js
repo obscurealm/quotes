@@ -36,4 +36,15 @@ describe("Pagination component", () => {
       );
     });
   });
+
+  describe("when the current page is the first page", () => {
+    it("displays the next link", () => {
+      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+
+      expect(screen.getByText("Next").closest("a")).toHaveAttribute(
+        "href",
+        "#"
+      );
+    });
+  });
 });

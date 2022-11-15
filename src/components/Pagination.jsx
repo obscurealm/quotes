@@ -28,6 +28,7 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
     <>
       <Link href="#">Previous</Link>
       <PageNumberLinks />
+      <Link href="#">Next</Link>
     </>
   );
 };
