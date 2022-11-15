@@ -1,4 +1,4 @@
-const Pagination = ({ pageSize, totalCount }) => {
+const Pagination = ({ pageSize, totalCount, currentPage }) => {
   const totalNumberOfPages = totalCount / pageSize;
 
   const pageNumbers = Array.from(
@@ -7,7 +7,18 @@ const Pagination = ({ pageSize, totalCount }) => {
   );
 
   return pageNumbers.map((pageNumber) => (
-    <span key={pageNumber}>{pageNumber}</span>
+    <span
+      key={pageNumber}
+      style={
+        currentPage === pageNumber
+          ? {
+              borderStyle: "solid",
+            }
+          : null
+      }
+    >
+      {pageNumber}
+    </span>
   ));
 };
 

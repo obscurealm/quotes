@@ -11,4 +11,18 @@ describe("Pagination component", () => {
     expect(screen.getByText(/4/)).toBeVisible();
     expect(screen.getByText(/5/)).toBeVisible();
   });
+
+  it("highlights the current page number", () => {
+    render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+
+    expect(screen.getByText(/1/)).not.toHaveStyle({
+      "border-style": "solid",
+    });
+    expect(screen.getByText(/2/)).toHaveStyle({
+      "border-style": "solid",
+    });
+    expect(screen.getByText(/3/)).not.toHaveStyle({
+      "border-style": "solid",
+    });
+  });
 });
