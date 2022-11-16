@@ -1,6 +1,7 @@
 import Filter from "../../../src/components/Filter";
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import Search from "../../../src/components/Search";
 
 describe("Filter component", () => {
   it("displays the filter button", () => {
@@ -153,6 +154,14 @@ describe("Filter component", () => {
       fireEvent.click(screen.getByText("Filter"));
 
       expect(quotes).toHaveLength(2);
+    });
+  });
+
+  it("styles the filter", () => {
+    render(<Filter quotes={[]} style={{ marginBottom: "1rem" }} />);
+
+    expect(screen.getByTestId("filter")).toHaveStyle({
+      marginBottom: "1rem",
     });
   });
 });

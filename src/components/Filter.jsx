@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Filter = ({ quotes, setResults }) => {
+const Filter = ({ quotes, setResults, style = {} }) => {
   const [workspacePage, setWorkspacePage] = useState("All");
 
   const handleDropdownChange = (event) => {
@@ -17,7 +17,7 @@ const Filter = ({ quotes, setResults }) => {
       : quotes.filter((quote) => quote.meta.workspacePage === workspacePage);
 
   return (
-    <>
+    <div data-testid="filter" style={style}>
       <select onChange={handleDropdownChange} data-testid="workspacePageFilter">
         <option key="All">All</option>
         {workspacePages.map((workspacePage) => (
@@ -30,7 +30,7 @@ const Filter = ({ quotes, setResults }) => {
       >
         Filter
       </button>
-    </>
+    </div>
   );
 };
 
