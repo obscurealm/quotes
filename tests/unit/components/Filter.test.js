@@ -1,7 +1,6 @@
 import Filter from "../../../src/components/Filter";
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Search from "../../../src/components/Search";
 
 describe("Filter component", () => {
   it("displays the filter button", () => {
