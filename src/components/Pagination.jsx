@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const Pagination = ({ pageSize, totalCount, currentPage }) => {
+  const spacingBetweenLinks = "1rem";
   const totalNumberOfPages = totalCount / pageSize;
 
   const pageNumbers = Array.from(
@@ -17,8 +18,12 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
           currentPage === pageNumber
             ? {
                 borderStyle: "solid",
+                padding: "0.25rem",
+                marginRight: spacingBetweenLinks,
               }
-            : null
+            : {
+                marginRight: spacingBetweenLinks,
+              }
         }
       >
         {pageNumber}
@@ -29,13 +34,19 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
   const isNotLastPage = currentPage !== pageNumbers.at(-1);
 
   return (
-    <>
-      {isNotFirstPage && <Link href="#">Previous</Link>}
+    <div
+      style={{ marginTop: spacingBetweenLinks, padding: "0.5rem 0 0.5rem 0" }}
+    >
+      {isNotFirstPage && (
+        <Link href="#" style={{ marginRight: spacingBetweenLinks }}>
+          Previous
+        </Link>
+      )}
 
       <PageNumberLinks />
 
       {isNotLastPage && <Link href="#">Next</Link>}
-    </>
+    </div>
   );
 };
 
