@@ -59,4 +59,12 @@ describe("Pagination component", () => {
       expect(screen.queryByText("Previous")).not.toBeInTheDocument();
     });
   });
+
+  it("styles the pagination", () => {
+    render(<Pagination style={{ marginBottom: "1rem" }} />);
+
+    expect(screen.getByTestId("pagination")).toHaveStyle({
+      marginBottom: "1rem",
+    });
+  });
 });

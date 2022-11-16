@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Pagination = ({ pageSize, totalCount, currentPage }) => {
+const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
   const spacingBetweenLinks = "1rem";
   const totalNumberOfPages = totalCount / pageSize;
 
@@ -34,9 +34,7 @@ const Pagination = ({ pageSize, totalCount, currentPage }) => {
   const isNotLastPage = currentPage !== pageNumbers.at(-1);
 
   return (
-    <div
-      style={{ marginTop: spacingBetweenLinks, padding: "0.5rem 0 0.5rem 0" }}
-    >
+    <div data-testid="pagination" style={style}>
       {isNotFirstPage && (
         <Link href="#" style={{ marginRight: spacingBetweenLinks }}>
           Previous
