@@ -5,6 +5,8 @@ jobs:
   acceptance-and-unit-tests:
     name: 🧪 Acceptance and unit tests
     env:
+      NOTION_API_TOKEN: notionApiToken
+      NOTION_PAGE_ID: notionPageId
       NOTION_PAGE_TZ: Europe/London
     runs-on: ubuntu-latest
     steps:
