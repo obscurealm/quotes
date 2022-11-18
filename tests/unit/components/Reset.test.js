@@ -47,6 +47,25 @@ describe("Reset component", () => {
       });
     });
 
+    it("removes the page query parameter", () => {
+      useRouter.mockReturnValue({
+        query: {
+          page: "1",
+        },
+        push: routerMock,
+      });
+
+      render(<Reset />);
+
+      fireEvent.click(screen.getByText("Reset"));
+
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: {},
+      });
+    });
+
     it("removes the search query parameter", () => {
       useRouter.mockReturnValue({
         query: {
