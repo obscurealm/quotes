@@ -31,7 +31,7 @@ describe("Reset component", () => {
     it("removes the filter query parameter", () => {
       useRouter.mockReturnValue({
         query: {
-          filter: "ting",
+          filter: "Tingker Bell Quotes",
         },
         push: routerMock,
       });
