@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Search = ({ style = {} }) => {
-  const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState(router.query.search);
+
+  useEffect(() => {
+    setSearchTerm(router.query.search);
+  }, [router]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -36,19 +40,6 @@ const Search = ({ style = {} }) => {
         }
       >
         Search
-      </button>
-      <button
-        data-testid="resetButton"
-        onClick={() => {
-          setSearchTerm("");
-
-          router.push({
-            pathname: "/",
-            query: {},
-          });
-        }}
-      >
-        Reset
       </button>
     </div>
   );

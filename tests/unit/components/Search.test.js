@@ -7,6 +7,19 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Search component", () => {
+  const routerMock = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    useRouter.mockReturnValue({
+      query: {
+        search: "",
+      },
+      push: routerMock,
+    });
+  });
+
   it("displays the search button", () => {
     render(<Search />);
 
@@ -19,23 +32,7 @@ describe("Search component", () => {
     expect(screen.getByTestId("searchBox")).toBeTruthy();
   });
 
-  it("displays the reset button", () => {
-    render(<Search />);
-
-    expect(screen.getByText("Reset")).toBeTruthy();
-  });
-
   describe("filters quotes", () => {
-    const routerMock = jest.fn();
-
-    beforeEach(() => {
-      jest.clearAllMocks();
-
-      useRouter.mockReturnValue({
-        push: routerMock,
-      });
-    });
-
     it("matching/including the search term", () => {
       const searchTeam = "Hello!";
 
@@ -75,16 +72,17 @@ describe("Search component", () => {
     });
   });
 
-  it("clears the search box", () => {
-    render(<Search />);
-
-    fireEvent.change(screen.getByTestId("searchBox"), {
-      target: { value: "Hello!" },
+  it("matches the search query parameter by default", () => {
+    useRouter.mockReturnValue({
+      query: {
+        search: "Yusuf",
+      },
+      push: routerMock,
     });
 
-    fireEvent.click(screen.getByText("Reset"));
+    render(<Search />);
 
-    expect(screen.getByTestId("searchBox")).toHaveValue("");
+    expect(screen.getByTestId("searchBox")).toHaveValue("Yusuf");
   });
 
   it("styles the search", () => {
