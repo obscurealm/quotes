@@ -28,6 +28,25 @@ describe("Reset component", () => {
       jest.clearAllMocks();
     });
 
+    it("removes the filter query parameter", () => {
+      useRouter.mockReturnValue({
+        query: {
+          filter: "ting",
+        },
+        push: routerMock,
+      });
+
+      render(<Reset />);
+
+      fireEvent.click(screen.getByText("Reset"));
+
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: {},
+      });
+    });
+
     it("removes the search query parameter", () => {
       useRouter.mockReturnValue({
         query: {
