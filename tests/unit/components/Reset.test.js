@@ -28,7 +28,7 @@ describe("Reset component", () => {
       jest.clearAllMocks();
     });
 
-    it("removes the filter query parameter", () => {
+    it("sets the filter query parameter to 'All'", () => {
       useRouter.mockReturnValue({
         query: {
           filter: "Tingker Bell Quotes",
@@ -44,7 +44,7 @@ describe("Reset component", () => {
       expect(routerMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
-          filter: null,
+          filter: "All",
         }),
       });
     });

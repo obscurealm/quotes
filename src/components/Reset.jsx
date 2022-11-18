@@ -10,7 +10,7 @@ const Reset = ({ style }) => {
       onClick={() =>
         router.push({
           pathname: "/",
-          query: { ...router.query, filter: null, page: null, search: null },
+          query: { ...router.query, filter: "All", page: null, search: null },
         })
       }
     >
