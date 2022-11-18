@@ -1,5 +1,10 @@
 import Reset from "../../../src/components/Reset";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { useRouter } from "next/router";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
 
 describe("Reset component", () => {
   it("displays the reset button", () => {
@@ -13,6 +18,33 @@ describe("Reset component", () => {
 
     expect(screen.getByTestId("resetButton")).toHaveStyle({
       marginBottom: "1rem",
+    });
+  });
+
+  describe("when clicking the reset button", () => {
+    const routerMock = jest.fn();
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("removes the search query parameter", () => {
+      useRouter.mockReturnValue({
+        query: {
+          search: "ting",
+        },
+        push: routerMock,
+      });
+
+      render(<Reset />);
+
+      fireEvent.click(screen.getByText("Reset"));
+
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: {},
+      });
     });
   });
 });
