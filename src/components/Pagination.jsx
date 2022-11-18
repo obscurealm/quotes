@@ -39,14 +39,29 @@ const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
   return (
     <div data-testid="pagination" style={style}>
       {isNotFirstPage && (
-        <Link href="#" style={{ marginRight: spacingBetweenLinks }}>
+        <Link
+          href={{
+            pathname: "/",
+            query: { page: currentPage - 1 },
+          }}
+          style={{ marginRight: spacingBetweenLinks }}
+        >
           Previous
         </Link>
       )}
 
       <PageNumberLinks />
 
-      {isNotLastPage && <Link href="#">Next</Link>}
+      {isNotLastPage && (
+        <Link
+          href={{
+            pathname: "/",
+            query: { page: currentPage + 1 },
+          }}
+        >
+          Next
+        </Link>
+      )}
     </div>
   );
 };

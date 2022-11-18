@@ -32,7 +32,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Previous").closest("a")).toHaveAttribute(
         "href",
-        "#"
+        "/?page=2"
       );
     });
 
@@ -49,7 +49,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Next").closest("a")).toHaveAttribute(
         "href",
-        "#"
+        "/?page=2"
       );
     });
 
