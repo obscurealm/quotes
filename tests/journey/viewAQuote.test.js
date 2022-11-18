@@ -1,4 +1,13 @@
 describe("view a quote", () => {
+  beforeEach(() => {
+    cy.task("clearNock");
+    cy.task("stubNotionApi");
+  });
+
+  afterEach(() => {
+    cy.task("clearNock");
+  });
+
   it("clicks through to a quote", () => {
     cy.visit("/");
     cy.title().should((title) => {
@@ -6,7 +15,7 @@ describe("view a quote", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length.of.at.least(1);
+      expect($div).to.have.length(3);
     });
     cy.get('a[href*="quotes"]')
       .should("have.attr", "href")
@@ -16,7 +25,7 @@ describe("view a quote", () => {
       expect(title).to.equal("Quote");
     });
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).to.have.lengthOf(1);
+      expect($div).to.have.length(1);
     });
   });
 

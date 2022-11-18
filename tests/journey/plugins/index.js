@@ -42,8 +42,17 @@ const plugins = async (on, config) => {
         nock.activate();
       }
 
+      const [emperorKingYusufPageId, tingkerBellPageId] =
+        process.env.NOTION_PAGE_ID.split(",");
+
+      const firstPageIdUrl = new RegExp(
+        `\/v1\/pages\/${emperorKingYusufPageId}`
+      );
+      const secondPageIdUrl = new RegExp(`\/v1\/pages\/${tingkerBellPageId}`);
+
       nock("https://api.notion.com")
-        .get(/\/v1\/pages\/.*/)
+        .persist()
+        .get(firstPageIdUrl)
         .reply(200, {
           object: "page",
           properties: {
@@ -56,7 +65,7 @@ const plugins = async (on, config) => {
             },
           },
         })
-        .get(/\/v1\/pages\/.*/)
+        .get(secondPageIdUrl)
         .reply(200, {
           object: "page",
           properties: {
@@ -70,12 +79,18 @@ const plugins = async (on, config) => {
           },
         });
 
+      const firstBlockIdUrl = new RegExp(
+        `\/v1\/blocks\/${emperorKingYusufPageId}`
+      );
+      const secondBlockIdUrl = new RegExp(`\/v1\/blocks\/${tingkerBellPageId}`);
+
       nock("https://api.notion.com")
-        .get(/\/v1\/blocks\/.*/)
+        .persist()
+        .get(firstBlockIdUrl)
         .reply(200, {
           results: emperorKingYusufQuotes,
         })
-        .get(/\/v1\/blocks\/.*/)
+        .get(secondBlockIdUrl)
         .reply(200, {
           results: tingkerBellQuotes,
         });

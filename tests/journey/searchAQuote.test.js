@@ -1,4 +1,13 @@
 describe("search a quote", () => {
+  beforeEach(() => {
+    cy.task("clearNock");
+    cy.task("stubNotionApi");
+  });
+
+  afterEach(() => {
+    cy.task("clearNock");
+  });
+
   it("filters a list of quotes", () => {
     cy.visit("/");
     cy.title().should((title) => {
@@ -6,9 +15,9 @@ describe("search a quote", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length.of.at.least(1);
+      expect($div).have.length(3);
     });
-    cy.get("[data-testid=searchBox]").type("butt");
+    cy.get("[data-testid=searchBox]").type("morning");
     cy.get("[data-testid=searchButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
@@ -17,27 +26,27 @@ describe("search a quote", () => {
 
   it("filters initial list of quotes", () => {
     cy.visit("/");
-    cy.get("[data-testid=searchBox]").type("butt");
+    cy.get("[data-testid=searchBox]").type("morning");
     cy.get("[data-testid=searchButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
     });
-    cy.get("[data-testid=searchBox]").clear().type("Emperor{enter}");
+    cy.get("[data-testid=searchBox]").clear().type("Good{enter}");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(3);
+      expect($div).have.length(2);
     });
   });
 
   it("resets filtered list of quotes", () => {
     cy.visit("/");
-    cy.get("[data-testid=searchBox]").type("butt");
+    cy.get("[data-testid=searchBox]").type("morning");
     cy.get("[data-testid=searchButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
       expect($div).have.length(1);
     });
     cy.get("[data-testid=resetButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length.greaterThan(1);
+      expect($div).have.length(3);
     });
   });
 });

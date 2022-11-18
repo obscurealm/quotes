@@ -11,9 +11,9 @@
     "preinstall": "git config core.hooksPath .hooks",
     "test": "npm run test:unit && npm run test:acceptance && npm run test:journey",
     "test:acceptance": "jest acceptance",
-    "test:journey": "cypress run --project tests",
-    "test:journey:ci": "cypress run --project tests --config-file=cypress.config.ci.js",
-    "test:journey:open": "cypress open --project tests",
+    "test:journey": "NODE_ENV=test cypress run --project tests",
+    "test:journey:ci": "npm run test:journey -- --config-file=cypress.config.ci.js",
+    "test:journey:open": "NODE_ENV=test cypress open --project tests",
     "test:unit": "TZ=UTC jest unit"
   },
   "keywords": [],
