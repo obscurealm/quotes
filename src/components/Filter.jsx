@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Filter = ({ quotes, style = {} }) => {
-  const [workspacePage, setWorkspacePage] = useState("All");
   const router = useRouter();
+  const filter = router.query.filter;
+  const [workspacePage, setWorkspacePage] = useState(filter);
+
+  useEffect(() => {
+    setWorkspacePage(filter);
+  }, [filter, router]);
 
   const handleDropdownChange = (event) => {
     setWorkspacePage(event.target.value);
@@ -15,10 +20,14 @@ const Filter = ({ quotes, style = {} }) => {
 
   return (
     <div data-testid="filter" style={style}>
-      <select onChange={handleDropdownChange} data-testid="workspacePageFilter">
+      <select
+        value={workspacePage}
+        onChange={handleDropdownChange}
+        data-testid="workspacePageFilter"
+      >
         <option key="All">All</option>
-        {workspacePages?.map((workspacePage) => (
-          <option key={workspacePage}>{workspacePage}</option>
+        {workspacePages?.map((workspacePageOption) => (
+          <option key={workspacePageOption}>{workspacePageOption}</option>
         ))}
       </select>
       <button

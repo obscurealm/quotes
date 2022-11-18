@@ -23,4 +23,18 @@ describe("filter quotes", () => {
       expect($div).have.length(1);
     });
   });
+
+  it("resets filtered list of quotes", () => {
+    cy.visit("/");
+    cy.get("[data-testid=workspacePageFilter]").select("Tingker Bell Quotes");
+    cy.get("[data-testid=filterButton]").click();
+    cy.get("[data-testid=quote]").should(($div) => {
+      expect($div).have.length(1);
+    });
+    cy.get("[data-testid=resetButton]").click();
+    cy.get("[data-testid=workspacePageFilter]").should("have.value", "All");
+    cy.get("[data-testid=quote]").should(($div) => {
+      expect($div).have.length(3);
+    });
+  });
 });

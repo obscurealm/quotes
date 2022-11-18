@@ -1,12 +1,26 @@
 import Filter from "../../../src/components/Filter";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
+import Search from "../../../src/components/Search";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
 describe("Filter component", () => {
+  const routerMock = jest.fn();
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    useRouter.mockReturnValue({
+      query: {
+        filter: "",
+      },
+      push: routerMock,
+    });
+  });
+
   it("displays the filter button", () => {
     render(<Filter quotes={[]} />);
 
@@ -63,14 +77,6 @@ describe("Filter component", () => {
   });
 
   it("filters quotes by workspace page", () => {
-    const routerMock = jest.fn();
-
-    jest.clearAllMocks();
-
-    useRouter.mockReturnValue({
-      push: routerMock,
-    });
-
     let quotes = [
       {
         timestamp: "1613649600",
@@ -117,14 +123,6 @@ describe("Filter component", () => {
 
   describe("when 'All' is selected after already filtering", () => {
     it("resets quotes back to initial list", () => {
-      const routerMock = jest.fn();
-
-      jest.clearAllMocks();
-
-      useRouter.mockReturnValue({
-        push: routerMock,
-      });
-
       let quotes = [
         {
           timestamp: "1613649600",
@@ -171,6 +169,50 @@ describe("Filter component", () => {
         query: { filter: "All", page: 1 },
       });
     });
+  });
+
+  it("matches the filter query parameter by default", () => {
+    useRouter.mockReturnValue({
+      query: {
+        filter: "Emperor King Yusuf Quotes",
+      },
+      push: routerMock,
+    });
+
+    const quotes = [
+      {
+        timestamp: "1613649600",
+        dialogue: [{ author: "Y", text: "poo" }],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
+      },
+      {
+        timestamp: "1613649600",
+        dialogue: [{ author: "Y", text: "speedieboi" }],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
+      },
+      {
+        timestamp: "1614610800",
+        dialogue: [
+          {
+            author: "T",
+            text: "I don't know the meaning of the word evil.",
+          },
+        ],
+        meta: {
+          workspacePage: "Tingker Bell Quotes",
+        },
+      },
+    ];
+
+    render(<Filter quotes={quotes} />);
+
+    expect(screen.getByTestId("workspacePageFilter")).toHaveValue(
+      "Emperor King Yusuf Quotes"
+    );
   });
 
   it("styles the filter", () => {
