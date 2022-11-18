@@ -22,7 +22,7 @@ const Home = () => {
   const updatedQuotes = data.data.quotes;
 
   const searchedQuotes =
-    query.search == undefined || query.search == null
+    query.search === undefined || query.search == null
       ? updatedQuotes
       : updatedQuotes?.filter((quote) =>
           quote.dialogue.some((message) =>
@@ -31,7 +31,7 @@ const Home = () => {
         );
 
   const filteredQuotes =
-    query.filter == undefined || query.filter == null || query.filter == "All"
+    query.filter === undefined || query.filter == null || query.filter === "All"
       ? searchedQuotes
       : searchedQuotes?.filter(
           (quote) => quote.meta.workspacePage === query.filter
