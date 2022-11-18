@@ -54,4 +54,16 @@ describe("Quotes component", () => {
     expect(sortedQuotes[1]).toHaveTextContent("18 Feb");
     expect(sortedQuotes[2]).toHaveTextContent("1 Mar");
   });
+
+  describe("when no quotes are provided", () => {
+    it("displays a message", () => {
+      const quotes = [];
+
+      render(<Quotes quotes={quotes} />);
+
+      expect(screen.getByTestId("quotes")).toHaveTextContent(
+        "No quotes found."
+      );
+    });
+  });
 });
