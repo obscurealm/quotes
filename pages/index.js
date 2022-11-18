@@ -2,46 +2,41 @@ import Filter from "../src/components/Filter";
 import Layout from "../src/components/Layout";
 import Quotes from "../src/components/Quotes";
 import Search from "../src/components/Search";
-import NotionGateway from "../src/gateways/notionGateway";
-import GetQuotesUseCase from "../src/useCases/getQuotes";
-import { useState } from "react";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 
-const Home = ({ quotes }) => {
-  const [results, setResults] = useState(quotes);
+const Home = () => {
+  const { query } = useRouter();
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data } = useSWR("/api/quotes", fetcher);
+
+  const updatedQuotes = data?.data.quotes;
+
+  const searchedQuotes =
+    query.search == undefined || query.search == null
+      ? updatedQuotes
+      : updatedQuotes?.filter((quote) =>
+          quote.dialogue.some((message) =>
+            message.text.toLowerCase().includes(query.search.toLowerCase())
+          )
+        );
+
+  const filteredQuotes =
+    query.filter == undefined || query.filter == null || query.filter == "All"
+      ? searchedQuotes
+      : searchedQuotes?.filter(
+          (quote) => quote.meta.workspacePage === query.filter
+        );
 
   return (
     <>
       <Layout title="Home">
-        <Search
-          quotes={quotes}
-          setResults={setResults}
-          style={{ clear: "right", marginBottom: "1rem" }}
-        />
-        <Filter quotes={quotes} setResults={setResults} />
-        <Quotes quotes={results} />
+        <Search style={{ clear: "right", marginBottom: "1rem" }} />
+        <Filter quotes={updatedQuotes} />
+        <Quotes quotes={filteredQuotes || []} />
       </Layout>
     </>
   );
-};
-
-const getListOfQuotes = async () => {
-  const gateway = new NotionGateway(
-    process.env.NOTION_API_TOKEN,
-    process.env.NOTION_PAGE_ID
-  );
-  const getQuotes = new GetQuotesUseCase(gateway);
-
-  return await getQuotes.execute();
-};
-
-export const getServerSideProps = async () => {
-  const quotes = await getListOfQuotes();
-
-  return {
-    props: {
-      quotes,
-    },
-  };
 };
 
 export default Home;

@@ -1,7 +1,10 @@
 import Search from "../../../src/components/Search";
-import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Quote from "../../../src/components/Quote";
+import { useRouter } from "next/router";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
 
 describe("Search component", () => {
   it("displays the search button", () => {
@@ -23,65 +26,20 @@ describe("Search component", () => {
   });
 
   describe("filters quotes", () => {
-    it("matching the exact search term", () => {
-      const searchTeam = "Hello!";
-      const dialogueText = "Hello!";
+    const routerMock = jest.fn();
 
-      let quotes = [
-        {
-          timestamp: 1593013680,
-          dialogue: [
-            { author: "Ting", text: "Another one!" },
-            { author: "Yusuf", text: "What do you think of `data: data`?" },
-          ],
-        },
-        {
-          timestamp: 1593013680,
-          dialogue: [
-            { author: "Ting", text: dialogueText },
-            { author: "Yusuf", text: "Goodbye!" },
-          ],
-        },
-      ];
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
-
-      render(<Search quotes={quotes} setResults={setResults} />);
-
-      fireEvent.change(screen.getByTestId("searchBox"), {
-        target: { value: searchTeam },
+      useRouter.mockReturnValue({
+        push: routerMock,
       });
-
-      fireEvent.click(screen.getByText("Search"));
-
-      expect(quotes).toEqual([
-        {
-          timestamp: 1593013680,
-          dialogue: [
-            { author: "Ting", text: dialogueText },
-            { author: "Yusuf", text: "Goodbye!" },
-          ],
-        },
-      ]);
     });
 
-    it("including the search term", () => {
+    it("matching/including the search term", () => {
       const searchTeam = "Hello!";
-      const dialogueText = "_Hello!_";
 
-      let quotes = [
-        {
-          timestamp: 1593013680,
-          dialogue: [
-            { author: "Yusuf", text: "Goodbye!" },
-            { author: "Ting", text: dialogueText },
-          ],
-        },
-      ];
-
-      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
-
-      render(<Search quotes={quotes} setResults={setResults} />);
+      render(<Search />);
 
       fireEvent.change(screen.getByTestId("searchBox"), {
         target: { value: searchTeam },
@@ -89,93 +47,17 @@ describe("Search component", () => {
 
       fireEvent.click(screen.getByText("Search"));
 
-      expect(quotes).toEqual([
-        {
-          timestamp: 1593013680,
-          dialogue: [
-            { author: "Yusuf", text: "Goodbye!" },
-            { author: "Ting", text: dialogueText },
-          ],
-        },
-      ]);
-    });
-
-    it("ignoring the casing of the search term", () => {
-      const searchTeam = "Hello!";
-      const dialogueText = "hello!";
-
-      let quotes = [
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Ting", text: dialogueText }],
-        },
-      ];
-
-      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
-
-      render(<Search quotes={quotes} setResults={setResults} />);
-
-      fireEvent.change(screen.getByTestId("searchBox"), {
-        target: { value: searchTeam },
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: { page: 1, search: "Hello!" },
       });
-
-      fireEvent.click(screen.getByText("Search"));
-
-      expect(quotes).toEqual([
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Ting", text: dialogueText }],
-        },
-      ]);
-    });
-
-    it("ignoring the casing of the dialogue text", () => {
-      const searchTeam = "hello!";
-      const dialogueText = "Hello!";
-
-      let quotes = [
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Ting", text: dialogueText }],
-        },
-      ];
-
-      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
-
-      render(<Search quotes={quotes} setResults={setResults} />);
-
-      fireEvent.change(screen.getByTestId("searchBox"), {
-        target: { value: searchTeam },
-      });
-
-      fireEvent.click(screen.getByText("Search"));
-
-      expect(quotes).toEqual([
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Ting", text: dialogueText }],
-        },
-      ]);
     });
 
     it("pressing the enter/return key", () => {
       const searchTeam = "hello!";
-      const dialogueText = "Hello!";
 
-      let quotes = [
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Yusuf", text: dialogueText }],
-        },
-        {
-          timestamp: 1593013681,
-          dialogue: [{ author: "Ting", text: "Bye!" }],
-        },
-      ];
-
-      const setResults = (updatedQuotes) => (quotes = updatedQuotes);
-
-      render(<Search quotes={quotes} setResults={setResults} />);
+      render(<Search />);
 
       const searchBox = screen.getByTestId("searchBox");
 
@@ -185,17 +67,16 @@ describe("Search component", () => {
 
       fireEvent.keyDown(searchBox, { key: "Enter", keyCode: 13 });
 
-      expect(quotes).toEqual([
-        {
-          timestamp: 1593013680,
-          dialogue: [{ author: "Yusuf", text: dialogueText }],
-        },
-      ]);
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: { page: 1, search: "hello!" },
+      });
     });
   });
 
   it("clears the search box", () => {
-    render(<Search quotes={[]} setResults={jest.fn()} />);
+    render(<Search />);
 
     fireEvent.change(screen.getByTestId("searchBox"), {
       target: { value: "Hello!" },
@@ -207,13 +88,7 @@ describe("Search component", () => {
   });
 
   it("styles the search", () => {
-    render(
-      <Search
-        quotes={[]}
-        setResults={jest.fn()}
-        style={{ marginBottom: "1rem" }}
-      />
-    );
+    render(<Search style={{ marginBottom: "1rem" }} />);
 
     expect(screen.getByTestId("search")).toHaveStyle({
       marginBottom: "1rem",

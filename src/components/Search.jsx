@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Search = ({ quotes, setResults, style = {} }) => {
+const Search = ({ style = {} }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -9,16 +11,12 @@ const Search = ({ quotes, setResults, style = {} }) => {
 
   const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      setResults(filterQuotes(searchTerm));
+      router.push({
+        pathname: "/",
+        query: { ...router.query, search: searchTerm, page: 1 },
+      });
     }
   };
-
-  const filterQuotes = (searchTerm) =>
-    quotes.filter((quote) =>
-      quote.dialogue.some((message) =>
-        message.text.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
 
   return (
     <div data-testid="search" style={style}>
@@ -30,7 +28,12 @@ const Search = ({ quotes, setResults, style = {} }) => {
       />
       <button
         data-testid="searchButton"
-        onClick={() => setResults(filterQuotes(searchTerm))}
+        onClick={() =>
+          router.push({
+            pathname: "/",
+            query: { ...router.query, search: searchTerm, page: 1 },
+          })
+        }
       >
         Search
       </button>
@@ -38,7 +41,11 @@ const Search = ({ quotes, setResults, style = {} }) => {
         data-testid="resetButton"
         onClick={() => {
           setSearchTerm("");
-          setResults(quotes);
+
+          router.push({
+            pathname: "/",
+            query: {},
+          });
         }}
       >
         Reset

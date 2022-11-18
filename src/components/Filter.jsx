@@ -1,32 +1,34 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Filter = ({ quotes, setResults, style = {} }) => {
+const Filter = ({ quotes, style = {} }) => {
   const [workspacePage, setWorkspacePage] = useState("All");
+  const router = useRouter();
 
   const handleDropdownChange = (event) => {
     setWorkspacePage(event.target.value);
   };
 
   const workspacePages = quotes
-    .map((quote) => quote.meta.workspacePage)
+    ?.map((quote) => quote.meta.workspacePage)
     .filter((value, index, self) => self.indexOf(value) === index);
-
-  const filterQuotes = () =>
-    workspacePage == "All"
-      ? quotes
-      : quotes.filter((quote) => quote.meta.workspacePage === workspacePage);
 
   return (
     <div data-testid="filter" style={style}>
       <select onChange={handleDropdownChange} data-testid="workspacePageFilter">
         <option key="All">All</option>
-        {workspacePages.map((workspacePage) => (
+        {workspacePages?.map((workspacePage) => (
           <option key={workspacePage}>{workspacePage}</option>
         ))}
       </select>
       <button
         data-testid="filterButton"
-        onClick={() => setResults(filterQuotes())}
+        onClick={() =>
+          router.push({
+            pathname: "/",
+            query: { ...router.query, filter: workspacePage, page: 1 },
+          })
+        }
       >
         Filter
       </button>
