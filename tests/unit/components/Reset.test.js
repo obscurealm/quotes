@@ -43,7 +43,9 @@ describe("Reset component", () => {
       expect(routerMock).toHaveBeenCalledTimes(1);
       expect(routerMock).toHaveBeenCalledWith({
         pathname: "/",
-        query: {},
+        query: expect.objectContaining({
+          filter: null,
+        }),
       });
     });
 
@@ -62,7 +64,9 @@ describe("Reset component", () => {
       expect(routerMock).toHaveBeenCalledTimes(1);
       expect(routerMock).toHaveBeenCalledWith({
         pathname: "/",
-        query: {},
+        query: expect.objectContaining({
+          page: null,
+        }),
       });
     });
 
@@ -81,7 +85,30 @@ describe("Reset component", () => {
       expect(routerMock).toHaveBeenCalledTimes(1);
       expect(routerMock).toHaveBeenCalledWith({
         pathname: "/",
-        query: {},
+        query: expect.objectContaining({
+          search: null,
+        }),
+      });
+    });
+
+    it("keeps required query parameters", () => {
+      useRouter.mockReturnValue({
+        query: {
+          required: "true",
+        },
+        push: routerMock,
+      });
+
+      render(<Reset />);
+
+      fireEvent.click(screen.getByText("Reset"));
+
+      expect(routerMock).toHaveBeenCalledTimes(1);
+      expect(routerMock).toHaveBeenCalledWith({
+        pathname: "/",
+        query: expect.objectContaining({
+          required: "true",
+        }),
       });
     });
   });
