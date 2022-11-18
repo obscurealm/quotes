@@ -1,7 +1,20 @@
 import Pagination from "../../../src/components/Pagination";
 import { render, screen } from "@testing-library/react";
+import { useRouter } from "next/router";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
 
 describe("Pagination component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+
+    useRouter.mockReturnValue({
+      query: {},
+    });
+  });
+
   it("displays the total number of pages given the page size", () => {
     render(<Pagination pageSize={2} totalCount={10} />);
 
@@ -26,6 +39,29 @@ describe("Pagination component", () => {
     });
   });
 
+  it("keeps required query parameters", () => {
+    useRouter.mockReturnValue({
+      query: {
+        required: "true",
+      },
+    });
+
+    render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+
+    expect(screen.getByText(/1/)).toHaveAttribute(
+      "href",
+      expect.stringContaining("required=true")
+    );
+    expect(screen.getByText(/2/)).toHaveAttribute(
+      "href",
+      expect.stringContaining("required=true")
+    );
+    expect(screen.getByText(/3/)).toHaveAttribute(
+      "href",
+      expect.stringContaining("required=true")
+    );
+  });
+
   describe("when the current page is the last page", () => {
     it("displays the previous link", () => {
       render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
@@ -40,6 +76,21 @@ describe("Pagination component", () => {
       render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
 
       expect(screen.queryByText("Next")).not.toBeInTheDocument();
+    });
+
+    it("keeps required query parameters", () => {
+      useRouter.mockReturnValue({
+        query: {
+          required: "true",
+        },
+      });
+
+      render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+
+      expect(screen.getByText("Previous")).toHaveAttribute(
+        "href",
+        expect.stringContaining("required=true")
+      );
     });
   });
 
@@ -57,6 +108,21 @@ describe("Pagination component", () => {
       render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
 
       expect(screen.queryByText("Previous")).not.toBeInTheDocument();
+    });
+
+    it("keeps required query parameters", () => {
+      useRouter.mockReturnValue({
+        query: {
+          required: "true",
+        },
+      });
+
+      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+
+      expect(screen.getByText("Next")).toHaveAttribute(
+        "href",
+        expect.stringContaining("required=true")
+      );
     });
   });
 

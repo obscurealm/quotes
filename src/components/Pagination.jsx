@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
+  const { query } = useRouter();
   const spacingBetweenLinks = "1rem";
   const totalNumberOfPages = totalCount / pageSize;
 
@@ -14,7 +16,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
       <Link
         href={{
           pathname: "/",
-          query: { page: pageNumber },
+          query: { ...query, page: pageNumber },
         }}
         key={pageNumber}
         style={
@@ -42,7 +44,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
         <Link
           href={{
             pathname: "/",
-            query: { page: currentPage - 1 },
+            query: { ...query, page: currentPage - 1 },
           }}
           style={{ marginRight: spacingBetweenLinks }}
         >
@@ -56,7 +58,7 @@ const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
         <Link
           href={{
             pathname: "/",
-            query: { page: currentPage + 1 },
+            query: { ...query, page: currentPage + 1 },
           }}
         >
           Next
