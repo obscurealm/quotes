@@ -26,8 +26,8 @@ const Filter = ({ quotes, style = {} }) => {
         data-testid="workspacePageFilter"
       >
         <option key="All">All</option>
-        {workspacePages?.map((workspacePageOption) => (
-          <option key={workspacePageOption}>{workspacePageOption}</option>
+        {workspacePages?.map((workspacePage) => (
+          <option key={workspacePage}>{workspacePage}</option>
         ))}
       </select>
       <button
