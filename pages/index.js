@@ -1,6 +1,7 @@
 import Filter from "../src/components/Filter";
 import Layout from "../src/components/Layout";
 import Quotes from "../src/components/Quotes";
+import Reset from "../src/components/Reset";
 import Search from "../src/components/Search";
 import useSWR from "swr";
 import { useRouter } from "next/router";
@@ -32,7 +33,11 @@ const Home = () => {
     <>
       <Layout title="Home">
         <Search style={{ clear: "right", marginBottom: "1rem" }} />
-        <Filter quotes={updatedQuotes} />
+        <Filter
+          quotes={updatedQuotes}
+          style={{ clear: "right", marginBottom: "1rem" }}
+        />
+        <Reset />
         <Quotes quotes={filteredQuotes || []} />
       </Layout>
     </>
