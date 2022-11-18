@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 
 const Search = ({ style = {} }) => {
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState(router.query.search);
+  const search = router.query.search || "";
+  const [searchTerm, setSearchTerm] = useState(search);
 
   useEffect(() => {
-    setSearchTerm(router.query.search);
-  }, [router]);
+    setSearchTerm(search);
+  }, [search, router]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
