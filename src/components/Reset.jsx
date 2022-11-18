@@ -1,5 +1,9 @@
-const Reset = () => {
-  return <button data-testid="resetButton">Reset</button>;
+const Reset = ({ style }) => {
+  return (
+    <button data-testid="resetButton" style={style}>
+      Reset
+    </button>
+  );
 };
 
 export default Reset;
