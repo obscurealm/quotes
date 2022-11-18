@@ -12,7 +12,10 @@ const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
   const PageNumberLinks = () =>
     pageNumbers.map((pageNumber) => (
       <Link
-        href="#"
+        href={{
+          pathname: "/",
+          query: { page: pageNumber },
+        }}
         key={pageNumber}
         style={
           currentPage === pageNumber

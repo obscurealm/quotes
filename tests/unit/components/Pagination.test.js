@@ -5,11 +5,11 @@ describe("Pagination component", () => {
   it("displays the total number of pages given the page size", () => {
     render(<Pagination pageSize={2} totalCount={10} />);
 
-    expect(screen.getByText(/1/)).toHaveAttribute("href", "#");
-    expect(screen.getByText(/2/)).toHaveAttribute("href", "#");
-    expect(screen.getByText(/3/)).toHaveAttribute("href", "#");
-    expect(screen.getByText(/4/)).toHaveAttribute("href", "#");
-    expect(screen.getByText(/5/)).toHaveAttribute("href", "#");
+    expect(screen.getByText(/1/)).toHaveAttribute("href", "/?page=1");
+    expect(screen.getByText(/2/)).toHaveAttribute("href", "/?page=2");
+    expect(screen.getByText(/3/)).toHaveAttribute("href", "/?page=3");
+    expect(screen.getByText(/4/)).toHaveAttribute("href", "/?page=4");
+    expect(screen.getByText(/5/)).toHaveAttribute("href", "/?page=5");
   });
 
   it("highlights the current page number", () => {
