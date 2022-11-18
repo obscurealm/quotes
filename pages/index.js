@@ -1,5 +1,6 @@
 import Filter from "../src/components/Filter";
 import Layout from "../src/components/Layout";
+import Loader from "../src/components/Loader";
 import Quotes from "../src/components/Quotes";
 import Reset from "../src/components/Reset";
 import Search from "../src/components/Search";
@@ -11,7 +12,14 @@ const Home = () => {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const { data } = useSWR("/api/quotes", fetcher);
 
-  const updatedQuotes = data?.data.quotes;
+  if (!data)
+    return (
+      <Layout>
+        <Loader />
+      </Layout>
+    );
+
+  const updatedQuotes = data.data.quotes;
 
   const searchedQuotes =
     query.search == undefined || query.search == null
