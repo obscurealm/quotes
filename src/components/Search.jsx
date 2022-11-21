@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Search = ({ style = {} }) => {
-  const router = useRouter();
-  const search = router.query.search || "";
+  const { push, query } = useRouter();
+  const search = query.search || "";
   const [searchTerm, setSearchTerm] = useState(search);
 
   useEffect(() => {
     setSearchTerm(search);
-  }, [search, router]);
+  }, [search]);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -16,9 +16,9 @@ const Search = ({ style = {} }) => {
 
   const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      router.push({
+      push({
         pathname: "/",
-        query: { ...router.query, search: searchTerm, page: 1 },
+        query: { ...query, search: searchTerm, page: 1 },
       });
     }
   };
@@ -34,9 +34,9 @@ const Search = ({ style = {} }) => {
       <button
         data-testid="searchButton"
         onClick={() =>
-          router.push({
+          push({
             pathname: "/",
-            query: { ...router.query, search: searchTerm, page: 1 },
+            query: { ...query, search: searchTerm, page: 1 },
           })
         }
       >

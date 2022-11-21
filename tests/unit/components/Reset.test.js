@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
 
 jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockReturnValue({}),
 }));
 
 describe("Reset component", () => {

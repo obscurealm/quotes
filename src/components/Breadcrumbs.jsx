@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Breadcrumbs = () => {
-  const router = useRouter();
-  const linkPath = router.asPath.split("/");
+  const { asPath } = useRouter();
+  const linkPath = asPath.split("/");
   linkPath.shift();
 
   const pathArray = linkPath.map((path, i) => {

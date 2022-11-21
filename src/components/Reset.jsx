@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
 
 const Reset = ({ style }) => {
-  const router = useRouter();
+  const { push, query } = useRouter();
 
   return (
     <button
       data-testid="resetButton"
       style={style}
       onClick={() =>
-        router.push({
+        push({
           pathname: "/",
-          query: { ...router.query, filter: "All", page: 1, search: null },
+          query: { ...query, filter: "All", page: 1, search: null },
         })
       }
     >

@@ -2,20 +2,20 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Filter = ({ quotes, style = {} }) => {
-  const router = useRouter();
-  const filter = router.query.filter;
+  const { push, query } = useRouter();
+  const filter = query.filter;
   const [workspacePage, setWorkspacePage] = useState(filter);
 
   useEffect(() => {
     setWorkspacePage(filter);
-  }, [filter, router]);
+  }, [filter]);
 
   const handleDropdownChange = (event) => {
     setWorkspacePage(event.target.value);
-    router.push({
+    push({
       pathname: "/",
       query: {
-        ...router.query,
+        ...query,
         filter: event.target.value,
         page: 1,
       },
