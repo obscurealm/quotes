@@ -15,4 +15,15 @@ describe("Sort component", () => {
 
     expect(dropdown).toBeInTheDocument();
   });
+
+  it("displays sort by options as dropdown options", () => {
+    render(<Sort />);
+
+    const dropdown = screen.getByRole("combobox");
+    const dropdownOptions = dropdown.childNodes;
+
+    expect(dropdownOptions).toHaveLength(2);
+    expect(dropdownOptions[0]).toHaveValue("Latest first");
+    expect(dropdownOptions[1]).toHaveValue("Oldest first");
+  });
 });

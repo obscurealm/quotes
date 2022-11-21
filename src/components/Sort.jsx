@@ -1,7 +1,11 @@
 const Sort = () => {
   return (
     <>
-      Sort by: <select></select>
+      Sort by:{" "}
+      <select>
+        <option>Latest first</option>
+        <option>Oldest first</option>
+      </select>
     </>
   );
 };
