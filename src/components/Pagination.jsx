@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Pagination = ({ pageSize, totalCount, currentPage, style }) => {
+const Pagination = ({ pageSize, totalCount, style }) => {
   const { query } = useRouter();
+  const currentPage = parseInt(query.page) || 1;
   const spacingBetweenLinks = "1rem";
   const totalNumberOfPages = totalCount / pageSize;
 

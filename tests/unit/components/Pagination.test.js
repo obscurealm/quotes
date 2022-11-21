@@ -26,7 +26,11 @@ describe("Pagination component", () => {
   });
 
   it("highlights the current page number", () => {
-    render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+    useRouter.mockReturnValue({
+      query: { page: "2" },
+    });
+
+    render(<Pagination pageSize={2} totalCount={6} />);
 
     expect(screen.getByText(/1/)).not.toHaveStyle({
       "border-style": "solid",
@@ -42,11 +46,12 @@ describe("Pagination component", () => {
   it("keeps required query parameters", () => {
     useRouter.mockReturnValue({
       query: {
+        page: "2",
         required: "true",
       },
     });
 
-    render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+    render(<Pagination pageSize={2} totalCount={6} />);
 
     expect(screen.getByText(/1/)).toHaveAttribute(
       "href",
@@ -63,8 +68,14 @@ describe("Pagination component", () => {
   });
 
   describe("when the current page is the last page", () => {
+    beforeEach(() => {
+      useRouter.mockReturnValue({
+        query: { page: "3" },
+      });
+    });
+
     it("displays the previous link", () => {
-      render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.getByText("Previous").closest("a")).toHaveAttribute(
         "href",
@@ -73,7 +84,7 @@ describe("Pagination component", () => {
     });
 
     it("hides the next link", () => {
-      render(<Pagination pageSize={2} totalCount={6} currentPage={3} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.queryByText("Next")).not.toBeInTheDocument();
     });
@@ -81,11 +92,12 @@ describe("Pagination component", () => {
     it("keeps required query parameters", () => {
       useRouter.mockReturnValue({
         query: {
+          page: "2",
           required: "true",
         },
       });
 
-      render(<Pagination pageSize={2} totalCount={6} currentPage={2} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.getByText("Previous")).toHaveAttribute(
         "href",
@@ -95,8 +107,14 @@ describe("Pagination component", () => {
   });
 
   describe("when the current page is the first page", () => {
+    beforeEach(() => {
+      useRouter.mockReturnValue({
+        query: { page: "1" },
+      });
+    });
+
     it("displays the next link", () => {
-      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.getByText("Next").closest("a")).toHaveAttribute(
         "href",
@@ -105,7 +123,7 @@ describe("Pagination component", () => {
     });
 
     it("hides the previous link", () => {
-      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.queryByText("Previous")).not.toBeInTheDocument();
     });
@@ -117,7 +135,7 @@ describe("Pagination component", () => {
         },
       });
 
-      render(<Pagination pageSize={2} totalCount={6} currentPage={1} />);
+      render(<Pagination pageSize={2} totalCount={6} />);
 
       expect(screen.getByText("Next")).toHaveAttribute(
         "href",
