@@ -20,7 +20,11 @@ const Home = () => {
       </Layout>
     );
 
-  const updatedQuotes = data.data.quotes;
+  let updatedQuotes = data.data.quotes;
+
+  updatedQuotes = updatedQuotes.sort(
+    (quoteA, quoteB) => quoteA.timestamp - quoteB.timestamp
+  );
 
   const searchedQuotes =
     query.search === undefined || query.search == null

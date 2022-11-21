@@ -7,11 +7,9 @@ const Quotes = ({ quotes }) => {
       {quotes.length === 0 ? (
         <p>No quotes found.</p>
       ) : (
-        [...quotes]
-          .sort((quoteA, quoteB) => quoteA.timestamp - quoteB.timestamp)
-          .map((quote, index) => (
-            <Quote key={index} quote={quote} hasLink={true} />
-          ))
+        [...quotes].map((quote, index) => (
+          <Quote key={index} quote={quote} hasLink={true} />
+        ))
       )}
     </div>
   );

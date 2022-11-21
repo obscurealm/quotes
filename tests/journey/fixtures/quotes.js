@@ -42,7 +42,7 @@ const emperorKingYusufQuotes = [
       rich_text: [
         {
           text: {
-            content: "20 Jun 2022 at 13:30",
+            content: "20 Oct 2022 at 13:30",
           },
         },
       ],

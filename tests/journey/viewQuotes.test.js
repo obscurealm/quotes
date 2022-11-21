@@ -34,4 +34,10 @@ describe("view quotes", () => {
       expect($div).to.have.length(5);
     });
   });
+
+  it("displays sorted quotes by date time", () => {
+    cy.visit("/");
+    cy.contains("Next").click();
+    cy.get("a").contains("20 October 2022");
+  });
 });
