@@ -54,8 +54,8 @@ const Home = () => {
       <Layout title="Home">
         <Search style={{ marginBottom: "1rem" }} />
         <Filter quotes={quotes} style={{ marginBottom: "1rem" }} />
-        <Sort style={{ marginBottom: "1rem" }} />
-        <Reset />
+        <Reset style={{ marginBottom: "1rem" }} />
+        <Sort />
         <Quotes quotes={paginatedQuotes} />
         <Pagination pageSize={pageSize} totalCount={filteredQuotes.length} />
       </Layout>
