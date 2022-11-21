@@ -1,7 +1,6 @@
 import Filter from "../../../src/components/Filter";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/router";
-import Search from "../../../src/components/Search";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
