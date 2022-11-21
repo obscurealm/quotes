@@ -16,7 +16,7 @@ const Sort = ({ style }) => {
   return (
     <div data-testid="sort" style={style}>
       Sort by:{" "}
-      <select onChange={handleDropdownChange}>
+      <select data-testid="sortByDropdown" onChange={handleDropdownChange}>
         <option value="latest">Latest first</option>
         <option value="oldest">Oldest first</option>
       </select>

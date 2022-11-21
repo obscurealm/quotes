@@ -35,9 +35,14 @@ describe("view quotes", () => {
     });
   });
 
-  it("displays sorted quotes by date time", () => {
+  it("displays sorted quotes by latest date time", () => {
     cy.visit("/");
-    cy.contains("Next").click();
-    cy.get("a").contains("20 October 2022");
+    cy.contains("20 October 2022");
+  });
+
+  it("displays sorted quotes by oldest date time", () => {
+    cy.visit("/");
+    cy.get("[data-testid=sortByDropdown]").select("Oldest first");
+    cy.get("a").contains("1 March 2022");
   });
 });
