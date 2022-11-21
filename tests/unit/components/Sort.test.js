@@ -72,4 +72,12 @@ describe("Sort component", () => {
       query: { sort: "latest", page: 1 },
     });
   });
+
+  it("styles the sort", () => {
+    render(<Sort style={{ marginBottom: "1rem" }} />);
+
+    expect(screen.getByTestId("sort")).toHaveStyle({
+      marginBottom: "1rem",
+    });
+  });
 });

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const Sort = () => {
+const Sort = ({ style }) => {
   const { push } = useRouter();
 
   const handleDropdownChange = (event) => {
@@ -14,13 +14,13 @@ const Sort = () => {
   };
 
   return (
-    <>
+    <div data-testid="sort" style={style}>
       Sort by:{" "}
       <select onChange={handleDropdownChange}>
         <option value="latest">Latest first</option>
         <option value="oldest">Oldest first</option>
       </select>
-    </>
+    </div>
   );
 };
 
