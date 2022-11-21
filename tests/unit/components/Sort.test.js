@@ -73,6 +73,29 @@ describe("Sort component", () => {
     });
   });
 
+  it("keeps required query parameters", () => {
+    useRouter.mockReturnValue({
+      query: {
+        required: "true",
+      },
+      push: routerMock,
+    });
+
+    render(<Sort />);
+
+    fireEvent.change(screen.getByRole("combobox"), {
+      target: { value: "latest" },
+    });
+
+    expect(routerMock).toHaveBeenCalledTimes(1);
+    expect(routerMock).toHaveBeenCalledWith({
+      pathname: "/",
+      query: expect.objectContaining({
+        required: "true",
+      }),
+    });
+  });
+
   it("styles the sort", () => {
     render(<Sort style={{ marginBottom: "1rem" }} />);
 

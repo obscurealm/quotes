@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 
 const Sort = ({ style }) => {
-  const { push } = useRouter();
+  const { push, query } = useRouter();
 
   const handleDropdownChange = (event) => {
     push({
       pathname: "/",
       query: {
+        ...query,
         sort: event.target.value,
         page: 1,
       },
