@@ -1,4 +1,3 @@
-import React from "react";
 import Quote from "./Quote";
 
 const Quotes = ({ quotes }) => {
@@ -7,7 +6,7 @@ const Quotes = ({ quotes }) => {
       {quotes.length === 0 ? (
         <p>No quotes found.</p>
       ) : (
-        [...quotes].map((quote, index) => (
+        quotes.map((quote, index) => (
           <Quote key={index} quote={quote} hasLink={true} />
         ))
       )}
