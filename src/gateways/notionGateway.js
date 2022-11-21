@@ -1,4 +1,4 @@
-import { Client } from "@notionhq/client";
+import { Client, collectPaginatedAPI } from "@notionhq/client";
 import convertDateTimeToUnixTime from "../../utils/convertDateTimeToUnixTime";
 import convertDateTimeToUtc from "../../utils/convertDateTimeToUtc";
 
@@ -24,19 +24,9 @@ export default class NotionGateway {
           })
         ).properties.title.title[0].plain_text;
 
-        let response = await client.blocks.children.list({
+        const blocks = await collectPaginatedAPI(client.blocks.children.list, {
           block_id: pageId,
         });
-        let blocks = response.results;
-
-        while (response.has_more) {
-          response = await client.blocks.children.list({
-            block_id: pageId,
-            start_cursor: response.next_cursor,
-          });
-
-          blocks = blocks.concat(response.results);
-        }
 
         return { title, blocks };
       })

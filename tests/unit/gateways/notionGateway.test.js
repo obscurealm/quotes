@@ -1,4 +1,4 @@
-import { Client } from "@notionhq/client";
+import { Client, collectPaginatedAPI } from "@notionhq/client";
 import NotionGateway from "../../../src/gateways/notionGateway";
 import {
   results,
@@ -50,12 +50,7 @@ describe("when retrieving an empty list of quotes", () => {
     Client.mockImplementationOnce(() => ({
       blocks: {
         children: {
-          list: jest.fn().mockResolvedValue({
-            object: "list",
-            results: [],
-            next_cursor: null,
-            has_more: false,
-          }),
+          list: jest.fn(),
         },
       },
       pages: {
@@ -64,18 +59,15 @@ describe("when retrieving an empty list of quotes", () => {
     })).mockImplementationOnce(() => ({
       blocks: {
         children: {
-          list: jest.fn().mockResolvedValue({
-            object: "list",
-            results: [],
-            next_cursor: null,
-            has_more: false,
-          }),
+          list: jest.fn(),
         },
       },
       pages: {
         retrieve: retrievePage("Tingker Bell Quotes"),
       },
     }));
+
+    collectPaginatedAPI.mockResolvedValue([]);
 
     const gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
@@ -90,30 +82,8 @@ describe("when retrieving an empty list of quotes", () => {
 
 describe("when retrieving a non-empty list of quotes", () => {
   let gateway;
-  let list = jest
-    .fn()
-    .mockResolvedValue({
-      object: "list",
-      results: results,
-      has_more: false,
-    })
-    .mockResolvedValueOnce({
-      object: "list",
-      results: firstPageResults,
-      next_cursor: "5",
-      has_more: true,
-    })
-    .mockResolvedValueOnce({
-      object: "list",
-      results: secondPageResults,
-      has_more: false,
-    });
-  let anotherList = jest.fn().mockResolvedValue({
-    object: "list",
-    results: [],
-    next_cursor: null,
-    has_more: false,
-  });
+  const list = jest.fn();
+  const anotherList = jest.fn();
 
   beforeAll(async () => {
     Client.mockImplementationOnce(() => ({
@@ -136,6 +106,11 @@ describe("when retrieving a non-empty list of quotes", () => {
       },
     }));
 
+    collectPaginatedAPI
+      .mockResolvedValue(results)
+      .mockResolvedValueOnce([...firstPageResults, ...secondPageResults])
+      .mockResolvedValueOnce([]);
+
     gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
       "pageId,anotherPageId"
@@ -150,10 +125,12 @@ describe("when retrieving a non-empty list of quotes", () => {
     });
 
     it("calls Notion API with multiple page IDs", async () => {
-      expect(list).toBeCalledWith(
+      expect(collectPaginatedAPI).toBeCalledWith(
+        list,
         expect.objectContaining({ block_id: "pageId" })
       );
-      expect(anotherList).toBeCalledWith(
+      expect(collectPaginatedAPI).toBeCalledWith(
+        anotherList,
         expect.objectContaining({ block_id: "anotherPageId" })
       );
     });
@@ -208,12 +185,7 @@ describe("when retrieving a non-empty list of quotes", () => {
 
   describe("with an annotated quote", () => {
     it("returns a formatted quote", async () => {
-      list.mockResolvedValueOnce({
-        object: "list",
-        results: annotatedResults,
-        next_cursor: null,
-        has_more: false,
-      });
+      collectPaginatedAPI.mockResolvedValue(annotatedResults);
 
       const quote = await gateway.retrieveQuote(1656064800);
 
