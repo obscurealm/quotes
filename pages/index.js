@@ -26,31 +26,28 @@ const Home = () => {
     (quoteA, quoteB) => quoteA.timestamp - quoteB.timestamp
   );
 
+  const { search, filter = "All", page = 1 } = query;
+
   const searchedQuotes =
-    query.search === undefined || query.search == null
+    search == null
       ? updatedQuotes
       : updatedQuotes?.filter((quote) =>
           quote.dialogue.some((message) =>
-            message.text.toLowerCase().includes(query.search.toLowerCase())
+            message.text.toLowerCase().includes(search.toLowerCase())
           )
         );
 
   const filteredQuotes =
-    query.filter === undefined || query.filter == null || query.filter === "All"
+    filter === "All"
       ? searchedQuotes
-      : searchedQuotes?.filter(
-          (quote) => quote.meta.workspacePage === query.filter
-        );
+      : searchedQuotes?.filter((quote) => quote.meta.workspacePage === filter);
 
   const pageSize = 5;
 
-  const paginatedQuotes =
-    query.page === undefined || query.page === null
-      ? filteredQuotes?.slice(0, pageSize)
-      : filteredQuotes?.slice(
-          (query.page - 1) * pageSize,
-          query.page * pageSize
-        );
+  const paginatedQuotes = filteredQuotes?.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
 
   return (
     <>
