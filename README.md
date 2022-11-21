@@ -71,6 +71,12 @@ To run unit tests:
 $ npm run test:unit
 ```
 
+To run acceptance tests:
+
+```sh
+$ npm run test:acceptance
+```
+
 To run journey tests:
 
 ```sh
