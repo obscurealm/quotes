@@ -41,21 +41,35 @@ describe("Sort component", () => {
     const dropdownOptions = dropdown.childNodes;
 
     expect(dropdownOptions).toHaveLength(2);
-    expect(dropdownOptions[0]).toHaveValue("Latest first");
-    expect(dropdownOptions[1]).toHaveValue("Oldest first");
+    expect(dropdownOptions[0]).toHaveValue("latest");
+    expect(dropdownOptions[1]).toHaveValue("oldest");
   });
 
   it("sets the sort query parameter to 'oldest'", () => {
     render(<Sort />);
 
     fireEvent.change(screen.getByRole("combobox"), {
-      target: { value: "Oldest first" },
+      target: { value: "oldest" },
     });
 
     expect(routerMock).toHaveBeenCalledTimes(1);
     expect(routerMock).toHaveBeenCalledWith({
       pathname: "/",
       query: { sort: "oldest", page: 1 },
+    });
+  });
+
+  it("sets the sort query parameter to 'latest'", () => {
+    render(<Sort />);
+
+    fireEvent.change(screen.getByRole("combobox"), {
+      target: { value: "latest" },
+    });
+
+    expect(routerMock).toHaveBeenCalledTimes(1);
+    expect(routerMock).toHaveBeenCalledWith({
+      pathname: "/",
+      query: { sort: "latest", page: 1 },
     });
   });
 });

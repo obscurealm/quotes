@@ -7,7 +7,7 @@ const Sort = () => {
     push({
       pathname: "/",
       query: {
-        sort: "oldest",
+        sort: event.target.value,
         page: 1,
       },
     });
@@ -17,8 +17,8 @@ const Sort = () => {
     <>
       Sort by:{" "}
       <select onChange={handleDropdownChange}>
-        <option>Latest first</option>
-        <option>Oldest first</option>
+        <option value="latest">Latest first</option>
+        <option value="oldest">Oldest first</option>
       </select>
     </>
   );
