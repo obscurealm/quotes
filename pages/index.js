@@ -55,11 +55,8 @@ const Home = () => {
   return (
     <>
       <Layout title="Home">
-        <Search style={{ clear: "right", marginBottom: "1rem" }} />
-        <Filter
-          quotes={updatedQuotes}
-          style={{ clear: "right", marginBottom: "1rem" }}
-        />
+        <Search style={{ marginBottom: "1rem" }} />
+        <Filter quotes={updatedQuotes} style={{ marginBottom: "1rem" }} />
         <Reset />
         <Quotes quotes={paginatedQuotes || []} />
         <Pagination pageSize={pageSize} totalCount={filteredQuotes.length} />
