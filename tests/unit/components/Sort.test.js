@@ -7,4 +7,12 @@ describe("Sort component", () => {
 
     expect(screen.getByText("Sort by:")).toBeVisible();
   });
+
+  it("displays the dropdown", () => {
+    render(<Sort />);
+
+    const dropdown = screen.getByRole("combobox");
+
+    expect(dropdown).toBeInTheDocument();
+  });
 });

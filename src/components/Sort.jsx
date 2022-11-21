@@ -1,5 +1,9 @@
 const Sort = () => {
-  return <>Sort by:</>;
+  return (
+    <>
+      Sort by: <select></select>
+    </>
+  );
 };
 
 export default Sort;
