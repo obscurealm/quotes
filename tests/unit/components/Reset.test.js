@@ -49,10 +49,10 @@ describe("Reset component", () => {
       });
     });
 
-    it("removes the page query parameter", () => {
+    it("sets the page query parameter to '1'", () => {
       useRouter.mockReturnValue({
         query: {
-          page: "1",
+          page: "5",
         },
         push: routerMock,
       });
@@ -65,7 +65,7 @@ describe("Reset component", () => {
       expect(routerMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
-          page: null,
+          page: 1,
         }),
       });
     });

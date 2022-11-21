@@ -1,6 +1,7 @@
 import Filter from "../src/components/Filter";
 import Layout from "../src/components/Layout";
 import Loader from "../src/components/Loader";
+import Pagination from "../src/components/Pagination";
 import Quotes from "../src/components/Quotes";
 import Reset from "../src/components/Reset";
 import Search from "../src/components/Search";
@@ -37,6 +38,16 @@ const Home = () => {
           (quote) => quote.meta.workspacePage === query.filter
         );
 
+  const pageSize = 5;
+
+  const paginatedQuotes =
+    query.page === undefined || query.page === null
+      ? filteredQuotes?.slice(0, pageSize)
+      : filteredQuotes?.slice(
+          (query.page - 1) * pageSize,
+          query.page * pageSize
+        );
+
   return (
     <>
       <Layout title="Home">
@@ -46,7 +57,8 @@ const Home = () => {
           style={{ clear: "right", marginBottom: "1rem" }}
         />
         <Reset />
-        <Quotes quotes={filteredQuotes || []} />
+        <Quotes quotes={paginatedQuotes || []} />
+        <Pagination pageSize={pageSize} totalCount={filteredQuotes.length} />
       </Layout>
     </>
   );

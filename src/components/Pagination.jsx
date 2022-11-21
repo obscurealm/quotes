@@ -5,7 +5,10 @@ const Pagination = ({ pageSize, totalCount, style }) => {
   const { query } = useRouter();
   const currentPage = parseInt(query.page) || 1;
   const spacingBetweenLinks = "1rem";
-  const totalNumberOfPages = totalCount / pageSize;
+  const totalNumberOfPages =
+    totalCount % pageSize === 0
+      ? totalCount / pageSize
+      : totalCount / pageSize + 1;
 
   const pageNumbers = Array.from(
     { length: totalNumberOfPages },

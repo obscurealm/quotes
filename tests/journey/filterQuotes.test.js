@@ -15,7 +15,7 @@ describe("filter quotes", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(6);
+      expect($div).have.length(5);
     });
     cy.get("[data-testid=workspacePageFilter]").select("Tingker Bell Quotes");
     cy.get("[data-testid=filterButton]").click();
@@ -34,7 +34,7 @@ describe("filter quotes", () => {
     cy.get("[data-testid=resetButton]").click();
     cy.get("[data-testid=workspacePageFilter]").should("have.value", "All");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(6);
+      expect($div).have.length(5);
     });
   });
 });
