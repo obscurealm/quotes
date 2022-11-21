@@ -7,7 +7,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Filter component", () => {
-  const routerMock = jest.fn();
+  const routerPushMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -16,7 +16,7 @@ describe("Filter component", () => {
       query: {
         filter: "",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
   });
 
@@ -105,8 +105,8 @@ describe("Filter component", () => {
       target: { value: "Tingker Bell Quotes" },
     });
 
-    expect(routerMock).toHaveBeenCalledTimes(1);
-    expect(routerMock).toHaveBeenCalledWith({
+    expect(routerPushMock).toHaveBeenCalledTimes(1);
+    expect(routerPushMock).toHaveBeenCalledWith({
       pathname: "/",
       query: { filter: "Tingker Bell Quotes", page: 1 },
     });
@@ -142,8 +142,8 @@ describe("Filter component", () => {
         target: { value: "Tingker Bell Quotes" },
       });
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: { filter: "Tingker Bell Quotes", page: 1 },
       });
@@ -152,8 +152,8 @@ describe("Filter component", () => {
         target: { value: "All" },
       });
 
-      expect(routerMock).toHaveBeenCalledTimes(2);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(2);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: { filter: "All", page: 1 },
       });
@@ -165,7 +165,7 @@ describe("Filter component", () => {
       query: {
         filter: "Emperor King Yusuf Quotes",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
 
     const quotes = [

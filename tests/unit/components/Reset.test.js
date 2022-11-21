@@ -22,7 +22,7 @@ describe("Reset component", () => {
   });
 
   describe("when clicking the reset button", () => {
-    const routerMock = jest.fn();
+    const routerPushMock = jest.fn();
 
     beforeEach(() => {
       jest.clearAllMocks();
@@ -33,15 +33,15 @@ describe("Reset component", () => {
         query: {
           filter: "Tingker Bell Quotes",
         },
-        push: routerMock,
+        push: routerPushMock,
       });
 
       render(<Reset />);
 
       fireEvent.click(screen.getByText("Reset"));
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
           filter: "All",
@@ -54,15 +54,15 @@ describe("Reset component", () => {
         query: {
           page: "5",
         },
-        push: routerMock,
+        push: routerPushMock,
       });
 
       render(<Reset />);
 
       fireEvent.click(screen.getByText("Reset"));
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
           page: 1,
@@ -75,15 +75,15 @@ describe("Reset component", () => {
         query: {
           search: "ting",
         },
-        push: routerMock,
+        push: routerPushMock,
       });
 
       render(<Reset />);
 
       fireEvent.click(screen.getByText("Reset"));
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
           search: null,
@@ -96,15 +96,15 @@ describe("Reset component", () => {
         query: {
           required: "true",
         },
-        push: routerMock,
+        push: routerPushMock,
       });
 
       render(<Reset />);
 
       fireEvent.click(screen.getByText("Reset"));
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: expect.objectContaining({
           required: "true",

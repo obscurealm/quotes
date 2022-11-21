@@ -7,7 +7,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Search component", () => {
-  const routerMock = jest.fn();
+  const routerPushMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -16,7 +16,7 @@ describe("Search component", () => {
       query: {
         search: "",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
   });
 
@@ -44,8 +44,8 @@ describe("Search component", () => {
 
       fireEvent.click(screen.getByText("Search"));
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: { page: 1, search: "Hello!" },
       });
@@ -64,8 +64,8 @@ describe("Search component", () => {
 
       fireEvent.keyDown(searchBox, { key: "Enter", keyCode: 13 });
 
-      expect(routerMock).toHaveBeenCalledTimes(1);
-      expect(routerMock).toHaveBeenCalledWith({
+      expect(routerPushMock).toHaveBeenCalledTimes(1);
+      expect(routerPushMock).toHaveBeenCalledWith({
         pathname: "/",
         query: { page: 1, search: "hello!" },
       });
@@ -77,7 +77,7 @@ describe("Search component", () => {
       query: {
         search: "Yusuf",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
 
     render(<Search />);

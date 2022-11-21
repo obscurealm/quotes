@@ -7,7 +7,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Sort component", () => {
-  const routerMock = jest.fn();
+  const routerPushMock = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -16,7 +16,7 @@ describe("Sort component", () => {
       query: {
         sort: "",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
   });
 
@@ -52,8 +52,8 @@ describe("Sort component", () => {
       target: { value: "oldest" },
     });
 
-    expect(routerMock).toHaveBeenCalledTimes(1);
-    expect(routerMock).toHaveBeenCalledWith({
+    expect(routerPushMock).toHaveBeenCalledTimes(1);
+    expect(routerPushMock).toHaveBeenCalledWith({
       pathname: "/",
       query: { sort: "oldest", page: 1 },
     });
@@ -66,8 +66,8 @@ describe("Sort component", () => {
       target: { value: "latest" },
     });
 
-    expect(routerMock).toHaveBeenCalledTimes(1);
-    expect(routerMock).toHaveBeenCalledWith({
+    expect(routerPushMock).toHaveBeenCalledTimes(1);
+    expect(routerPushMock).toHaveBeenCalledWith({
       pathname: "/",
       query: { sort: "latest", page: 1 },
     });
@@ -78,7 +78,7 @@ describe("Sort component", () => {
       query: {
         required: "true",
       },
-      push: routerMock,
+      push: routerPushMock,
     });
 
     render(<Sort />);
@@ -87,8 +87,8 @@ describe("Sort component", () => {
       target: { value: "latest" },
     });
 
-    expect(routerMock).toHaveBeenCalledTimes(1);
-    expect(routerMock).toHaveBeenCalledWith({
+    expect(routerPushMock).toHaveBeenCalledTimes(1);
+    expect(routerPushMock).toHaveBeenCalledWith({
       pathname: "/",
       query: expect.objectContaining({
         required: "true",
