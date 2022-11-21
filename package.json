@@ -7,7 +7,7 @@
     "dev": "next dev",
     "dev:docker": "docker-compose down && docker-compose up",
     "format": "prettier --write '{pages,quotes,src,tests,utils}/**/*.{js,jsx,css,md,yml}'",
-    "lint": "next lint",
+    "lint": "next lint --max-warnings 0",
     "preinstall": "git config core.hooksPath .hooks",
     "test": "npm run test:unit && npm run test:acceptance && npm run test:journey",
     "test:acceptance": "jest acceptance",
