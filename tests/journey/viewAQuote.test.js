@@ -15,7 +15,7 @@ describe("view a quote", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).to.have.length(3);
+      expect($div).to.have.length(6);
     });
     cy.get('a[href*="quotes"]')
       .should("have.attr", "href")

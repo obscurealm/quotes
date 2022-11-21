@@ -15,7 +15,7 @@ describe("search a quote", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(3);
+      expect($div).have.length(6);
     });
     cy.get("[data-testid=searchBox]").type("morning");
     cy.get("[data-testid=searchButton]").click();
@@ -33,7 +33,7 @@ describe("search a quote", () => {
     });
     cy.get("[data-testid=searchBox]").clear().type("Good{enter}");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(2);
+      expect($div).have.length(3);
     });
   });
 
@@ -46,7 +46,7 @@ describe("search a quote", () => {
     });
     cy.get("[data-testid=resetButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(3);
+      expect($div).have.length(6);
     });
   });
 });

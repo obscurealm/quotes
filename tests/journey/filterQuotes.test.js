@@ -15,12 +15,12 @@ describe("filter quotes", () => {
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(3);
+      expect($div).have.length(6);
     });
     cy.get("[data-testid=workspacePageFilter]").select("Tingker Bell Quotes");
     cy.get("[data-testid=filterButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(1);
+      expect($div).have.length(4);
     });
   });
 
@@ -29,12 +29,12 @@ describe("filter quotes", () => {
     cy.get("[data-testid=workspacePageFilter]").select("Tingker Bell Quotes");
     cy.get("[data-testid=filterButton]").click();
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(1);
+      expect($div).have.length(4);
     });
     cy.get("[data-testid=resetButton]").click();
     cy.get("[data-testid=workspacePageFilter]").should("have.value", "All");
     cy.get("[data-testid=quote]").should(($div) => {
-      expect($div).have.length(3);
+      expect($div).have.length(6);
     });
   });
 });
