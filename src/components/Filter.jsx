@@ -12,6 +12,14 @@ const Filter = ({ quotes, style = {} }) => {
 
   const handleDropdownChange = (event) => {
     setWorkspacePage(event.target.value);
+    router.push({
+      pathname: "/",
+      query: {
+        ...router.query,
+        filter: event.target.value,
+        page: 1,
+      },
+    });
   };
 
   const workspacePages = quotes
@@ -30,17 +38,6 @@ const Filter = ({ quotes, style = {} }) => {
           <option key={workspacePage}>{workspacePage}</option>
         ))}
       </select>
-      <button
-        data-testid="filterButton"
-        onClick={() =>
-          router.push({
-            pathname: "/",
-            query: { ...router.query, filter: workspacePage, page: 1 },
-          })
-        }
-      >
-        Filter
-      </button>
     </div>
   );
 };

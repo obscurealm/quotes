@@ -21,12 +21,6 @@ describe("Filter component", () => {
     });
   });
 
-  it("displays the filter button", () => {
-    render(<Filter quotes={[]} />);
-
-    expect(screen.getByText("Filter")).toBeTruthy();
-  });
-
   it("displays the dropdown", () => {
     render(<Filter quotes={[]} />);
 
@@ -112,8 +106,6 @@ describe("Filter component", () => {
       target: { value: "Tingker Bell Quotes" },
     });
 
-    fireEvent.click(screen.getByText("Filter"));
-
     expect(routerMock).toHaveBeenCalledTimes(1);
     expect(routerMock).toHaveBeenCalledWith({
       pathname: "/",
@@ -150,7 +142,6 @@ describe("Filter component", () => {
       fireEvent.change(screen.getByRole("combobox"), {
         target: { value: "Tingker Bell Quotes" },
       });
-      fireEvent.click(screen.getByText("Filter"));
 
       expect(routerMock).toHaveBeenCalledTimes(1);
       expect(routerMock).toHaveBeenCalledWith({
@@ -161,7 +152,6 @@ describe("Filter component", () => {
       fireEvent.change(screen.getByRole("combobox"), {
         target: { value: "All" },
       });
-      fireEvent.click(screen.getByText("Filter"));
 
       expect(routerMock).toHaveBeenCalledTimes(2);
       expect(routerMock).toHaveBeenCalledWith({
