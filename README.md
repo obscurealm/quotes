@@ -28,13 +28,13 @@ A [Next.js](https://nextjs.org/) application serving a list of quotes using the 
 1. Clone the repo
 
 ```sh
-$ git clone git@github.com:yusufsheiqh/quotes.git
+git clone git@github.com:yusufsheiqh/quotes.git
 ```
 
 2. Install packages in `quotes` directory
 
 ```sh
-$ npm i
+npm i
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ $ npm i
 To run the application for local development:
 
 ```sh
-$ npm run dev
+npm run dev
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
@@ -54,7 +54,7 @@ Then visit [http://localhost:3000](http://localhost:3000).
 To run the formatter (using [Prettier](https://prettier.io)):
 
 ```sh
-$ npm run format
+npm run format
 ```
 
 ### Running the tests
@@ -62,26 +62,26 @@ $ npm run format
 To run all the tests:
 
 ```sh
-$ npm run test
+npm run test
 ```
 
 To run unit tests:
 
 ```sh
-$ npm run test:unit
+npm run test:unit
 ```
 
 To run acceptance tests:
 
 ```sh
-$ npm run test:acceptance
+npm run test:acceptance
 ```
 
 To run journey tests:
 
 ```sh
-$ npm run test:journey # to automatically run the tests in headless mode
-$ npm run test:journey:open # to interactively run the tests in a browser
+npm run test:journey # to automatically run the tests in headless mode
+npm run test:journey:open # to interactively run the tests in a browser
 ```
 
 ## Docker
@@ -89,7 +89,7 @@ $ npm run test:journey:open # to interactively run the tests in a browser
 ### Running the application
 
 ```sh
-$ npm run dev:docker
+npm run dev:docker
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
