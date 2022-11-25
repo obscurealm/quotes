@@ -32,15 +32,9 @@ describe("Pagination component", () => {
 
     render(<Pagination pageSize={2} totalCount={6} />);
 
-    expect(screen.getByText(/1/)).not.toHaveStyle({
-      "border-style": "solid",
-    });
-    expect(screen.getByText(/2/)).toHaveStyle({
-      "border-style": "solid",
-    });
-    expect(screen.getByText(/3/)).not.toHaveStyle({
-      "border-style": "solid",
-    });
+    expect(screen.getByText(/1/)).not.toHaveClass("currentPaginationLink");
+    expect(screen.getByText(/2/)).toHaveClass("currentPaginationLink");
+    expect(screen.getByText(/3/)).not.toHaveClass("currentPaginationLink");
   });
 
   it("keeps required query parameters", () => {

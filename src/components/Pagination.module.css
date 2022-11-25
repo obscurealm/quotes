@@ -1,0 +1,9 @@
+.paginationLink,
+.currentPaginationLink {
+  margin-right: 1rem;
+}
+
+.currentPaginationLink {
+  border: solid;
+  padding: 0.25rem;
+}

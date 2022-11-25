@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "./Pagination.module.css";
 
 const Pagination = ({ pageSize, totalCount, style }) => {
   const { query } = useRouter();
   const currentPage = parseInt(query.page) || 1;
-  const spacingBetweenLinks = "1rem";
   const totalNumberOfPages =
     totalCount % pageSize === 0
       ? totalCount / pageSize
@@ -23,17 +23,9 @@ const Pagination = ({ pageSize, totalCount, style }) => {
           query: { ...query, page: pageNumber },
         }}
         key={pageNumber}
-        style={
-          currentPage === pageNumber
-            ? {
-                borderStyle: "solid",
-                padding: "0.25rem",
-                marginRight: spacingBetweenLinks,
-              }
-            : {
-                marginRight: spacingBetweenLinks,
-              }
-        }
+        className={`${styles.paginationLink}${
+          currentPage == pageNumber ? ` ${styles.currentPaginationLink}` : ""
+        }`}
       >
         {pageNumber}
       </Link>
@@ -50,7 +42,7 @@ const Pagination = ({ pageSize, totalCount, style }) => {
             pathname: "/",
             query: { ...query, page: currentPage - 1 },
           }}
-          style={{ marginRight: spacingBetweenLinks }}
+          className={styles.paginationLink}
         >
           Previous
         </Link>
@@ -64,6 +56,7 @@ const Pagination = ({ pageSize, totalCount, style }) => {
             pathname: "/",
             query: { ...query, page: currentPage + 1 },
           }}
+          className={styles.paginationLink}
         >
           Next
         </Link>
