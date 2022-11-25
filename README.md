@@ -13,6 +13,8 @@ A [Next.js](https://nextjs.org/) application serving a list of quotes using the 
 - [Usage](#usage)
   - [Running the application](#running-the-application)
   - [Running the tests](#running-the-tests)
+  - [Formatting the code](#formatting-the-code)
+  - [Linting the code](#linting-the-code)
 
 ## Getting started
 
@@ -45,17 +47,10 @@ To run the application for local development:
 
 ```sh
 npm run dev
+npm run dev:docker # using Docker
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000).
-
-### Formatting the application
-
-To run the formatter (using [Prettier](https://prettier.io)):
-
-```sh
-npm run format
-```
 
 ### Running the tests
 
@@ -84,12 +79,18 @@ npm run test:journey # to automatically run the tests in headless mode
 npm run test:journey:open # to interactively run the tests in a browser
 ```
 
-## Docker
+### Formatting the code
 
-### Running the application
+To run the formatter (using [Prettier](https://prettier.io)):
 
 ```sh
-npm run dev:docker
+npm run format
 ```
 
-Then visit [http://localhost:3000](http://localhost:3000).
+### Linting the code
+
+To run the linter (using [ESLint](https://eslint.org/)):
+
+```sh
+npm run lint
+```
