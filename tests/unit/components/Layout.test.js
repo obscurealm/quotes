@@ -22,12 +22,22 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Layout component", () => {
-  it("displays the title", () => {
-    const title = "Yusuf";
+  describe("when a title is provided", () => {
+    it("displays the title", () => {
+      const title = "Yusuf";
 
-    render(<Layout title={title} />);
+      render(<Layout title={title} />);
 
-    expect(document.title).toEqual("Yusuf");
+      expect(document.title).toEqual("Yusuf");
+    });
+  });
+
+  describe("when a title isn't provided", () => {
+    it("displays 'Quotes' as the title", () => {
+      render(<Layout />);
+
+      expect(document.title).toEqual("Quotes");
+    });
   });
 
   it("displays the heading", () => {
