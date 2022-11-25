@@ -101,4 +101,18 @@ describe("Quote component", () => {
       "vertical-align": "text-bottom",
     });
   });
+
+  it("displays the origin of the quote", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [{ author: "Yusuf", text: "speedieboi" }],
+      meta: {
+        workspacePage: "Emperor King Yusuf Quotes",
+      },
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.getByText("From Emperor King Yusuf Quotes")).toBeVisible();
+  });
 });

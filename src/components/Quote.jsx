@@ -38,17 +38,17 @@ const Quote = ({ quote, hasLink = false }) => {
 
   return (
     <div data-testid="quote">
-      {hasLink ? (
-        <h2>
+      <h2 style={{ marginBottom: "0.5rem" }}>
+        {hasLink ? (
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
             {date} at {time}
           </Link>
-        </h2>
-      ) : (
-        <h2>
-          {date} at {time}
-        </h2>
-      )}
+        ) : (
+          `${date} at ${time}`
+        )}
+      </h2>
+
+      <em>From {quote.meta?.workspacePage}</em>
 
       {quote.dialogue.map((dialogue, index) => {
         return (
