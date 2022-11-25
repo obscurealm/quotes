@@ -11,7 +11,7 @@ describe("view a quote", () => {
   it("clicks through to a quote", () => {
     cy.visit("/");
     cy.title().should((title) => {
-      expect(title).to.equal("Home");
+      expect(title).to.equal("Quotes");
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {
@@ -22,7 +22,7 @@ describe("view a quote", () => {
       .and("include", "quotes")
       .then((href) => cy.visit(href));
     cy.title().should((title) => {
-      expect(title).to.equal("Quote");
+      expect(title).to.equal("Quote - Quotes");
     });
     cy.get("[data-testid=quote]").should(($div) => {
       expect($div).to.have.length(1);
@@ -39,7 +39,7 @@ describe("view a quote", () => {
       .should("have.attr", "href")
       .then((href) => cy.visit(href));
     cy.title().should((title) => {
-      expect(title).to.equal("Home");
+      expect(title).to.equal("Quotes");
     });
   });
 });

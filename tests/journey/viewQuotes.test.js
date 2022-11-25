@@ -11,7 +11,7 @@ describe("view quotes", () => {
   it("clicks through pages of quotes", () => {
     cy.visit("/");
     cy.title().should((title) => {
-      expect(title).to.equal("Home");
+      expect(title).to.equal("Quotes");
     });
     cy.get("h1").contains("Quotes");
     cy.get("[data-testid=quote]").should(($div) => {

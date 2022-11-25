@@ -3,11 +3,13 @@ import Link from "next/link";
 import React from "react";
 import Breadcrumbs from "./Breadcrumbs";
 
-const Layout = ({ title = "Quotes", children, showBreadcrumbs }) => {
+const Layout = ({ title, children, showBreadcrumbs }) => {
+  const pageTitle = `${title == null ? "" : `${title} - `}Quotes`;
+
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{pageTitle}</title>
       </Head>
       <h1 data-testid="heading">
         <Link href="/">Quotes</Link>

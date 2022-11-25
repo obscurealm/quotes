@@ -51,7 +51,7 @@ const Home = () => {
 
   return (
     <>
-      <Layout title="Home">
+      <Layout>
         <Search style={{ marginBottom: "1rem" }} />
         <Filter quotes={quotes} style={{ marginBottom: "1rem" }} />
         <Reset style={{ marginBottom: "1rem" }} />
