@@ -34,9 +34,11 @@ const Pagination = ({ pageSize, totalCount, style }) => {
   const isNotFirstPage = currentPage !== pageNumbers.at(0);
   const isNotLastPage = currentPage !== pageNumbers.at(-1);
 
-  return (
+  return totalCount == 0 ? (
+    <></>
+  ) : (
     <div data-testid="pagination" style={style}>
-      {totalCount != 0 && isNotFirstPage && (
+      {isNotFirstPage && (
         <Link
           href={{
             pathname: "/",
@@ -50,7 +52,7 @@ const Pagination = ({ pageSize, totalCount, style }) => {
 
       <PageNumberLinks />
 
-      {totalCount != 0 && isNotLastPage && (
+      {isNotLastPage && (
         <Link
           href={{
             pathname: "/",
