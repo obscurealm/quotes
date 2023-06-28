@@ -50,7 +50,7 @@ const Pagination = ({ pageSize, totalCount, style }) => {
 
       <PageNumberLinks />
 
-      {isNotLastPage && (
+      {totalCount != 0 && isNotLastPage && (
         <Link
           href={{
             pathname: "/",

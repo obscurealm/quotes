@@ -144,6 +144,12 @@ describe("Pagination component", () => {
 
       expect(screen.queryByText("Previous")).not.toBeInTheDocument();
     });
+
+    it("hides the next link", () => {
+      render(<Pagination pageSize={2} totalCount={0} />);
+
+      expect(screen.queryByText("Next")).not.toBeInTheDocument();
+    });
   });
 
   it("styles the pagination", () => {
