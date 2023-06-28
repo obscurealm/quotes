@@ -6,12 +6,11 @@ import Quotes from "../src/components/Quotes";
 import Reset from "../src/components/Reset";
 import Search from "../src/components/Search";
 import Sort from "../src/components/Sort";
-import useQuotes from "../src/hooks/useQuotes";
+import { getListOfQuotes } from "./api/quotes";
 import { useRouter } from "next/router";
 
-const Home = () => {
+const Home = ({ quotes }) => {
   const { query } = useRouter();
-  let { quotes } = useQuotes();
 
   if (quotes === null)
     return (
@@ -62,5 +61,16 @@ const Home = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const quotes = await getListOfQuotes();
+
+  return {
+    props: {
+      quotes,
+    },
+    revalidate: 10,
+  };
+}
 
 export default Home;
