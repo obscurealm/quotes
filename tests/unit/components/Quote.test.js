@@ -115,4 +115,16 @@ describe("Quote component", () => {
 
     expect(screen.getByText("From Emperor King Yusuf Quotes")).toBeVisible();
   });
+
+  it("hides the origin of the quote when not provided", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [{ author: "Yusuf", text: "speedieboi" }],
+      meta: {},
+    };
+
+    render(<Quote quote={quote} hasLink={false} />);
+
+    expect(screen.queryByText("From")).not.toBeInTheDocument();
+  });
 });

@@ -48,7 +48,7 @@ const Quote = ({ quote, hasLink = false }) => {
         )}
       </h2>
 
-      <em>From {quote.meta?.workspacePage}</em>
+      {quote.meta?.workspacePage && <em>From {quote.meta?.workspacePage}</em>}
 
       {quote.dialogue.map((dialogue, index) => {
         return (
