@@ -138,6 +138,14 @@ describe("Pagination component", () => {
     });
   });
 
+  describe("when total count is 0", () => {
+    it("hides the previous link", () => {
+      render(<Pagination pageSize={2} totalCount={0} />);
+
+      expect(screen.queryByText("Previous")).not.toBeInTheDocument();
+    });
+  });
+
   it("styles the pagination", () => {
     render(<Pagination style={{ marginBottom: "1rem" }} />);
 
