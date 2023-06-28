@@ -2,7 +2,6 @@ import Layout from "../../src/components/Layout";
 import Quote from "../../src/components/Quote";
 import NotionGateway from "../../src/gateways/notionGateway";
 import GetQuoteUseCase from "../../src/useCases/getQuote";
-import { getListOfQuotes } from "../api/quotes";
 
 const QuotePage = ({ quote }) => {
   return (
@@ -24,25 +23,14 @@ const getAQuote = async (slug) => {
   return await getQuote.execute(parseInt(slug));
 };
 
-export async function getStaticProps({ params }) {
+export const getServerSideProps = async ({ params }) => {
   const quote = await getAQuote(params.id);
 
   return {
     props: {
       quote,
     },
-    revalidate: 10,
   };
-}
-
-export async function getStaticPaths() {
-  const quotes = await getListOfQuotes();
-
-  const paths = quotes.map((quote) => ({
-    params: { id: quote.timestamp.toString() },
-  }));
-
-  return { paths, fallback: "blocking" };
-}
+};
 
 export default QuotePage;
