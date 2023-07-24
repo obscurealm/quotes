@@ -24,7 +24,7 @@ const Home = ({ quotes }) => {
   quotes = quotes.sort((quoteA, quoteB) =>
     sort === "oldest"
       ? quoteA.timestamp - quoteB.timestamp
-      : quoteB.timestamp - quoteA.timestamp
+      : quoteB.timestamp - quoteA.timestamp,
   );
 
   const searchedQuotes =
@@ -32,8 +32,8 @@ const Home = ({ quotes }) => {
       ? quotes
       : quotes.filter((quote) =>
           quote.dialogue.some((message) =>
-            message.text.toLowerCase().includes(search.toLowerCase())
-          )
+            message.text.toLowerCase().includes(search.toLowerCase()),
+          ),
         );
 
   const filteredQuotes =
@@ -45,15 +45,15 @@ const Home = ({ quotes }) => {
 
   const paginatedQuotes = filteredQuotes.slice(
     (page - 1) * pageSize,
-    page * pageSize
+    page * pageSize,
   );
 
   return (
     <>
       <Layout>
-        <Search style={{ marginBottom: "1rem" }} />
-        <Filter quotes={quotes} style={{ marginBottom: "1rem" }} />
-        <Reset style={{ marginBottom: "1rem" }} />
+        <Search />
+        <Filter quotes={quotes} />
+        <Reset />
         <Sort />
         <Quotes quotes={paginatedQuotes} />
         <Pagination pageSize={pageSize} totalCount={filteredQuotes.length} />

@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+  @apply text-4xl font-bold mb-5;
+}
+
+h2 {
+  @apply text-2xl font-bold mb-5;
+}
+
+h3 {
+  @apply text-xl font-bold mb-5;
+}
+
+h4 {
+  @apply text-lg font-bold mb-5;
+}
+
+.button {
+  @apply border-2 px-2 py-1 mb-3;
+}
+
+input,
+select {
+  @apply rounded-b border-2 py-1 mb-3;
+}
+
+a {
+  @apply underline text-blue-700;
+}

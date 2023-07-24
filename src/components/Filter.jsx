@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const Filter = ({ quotes, style = {} }) => {
+const Filter = ({ quotes }) => {
   const { push, query } = useRouter();
   const filter = query.filter;
   const [workspacePage, setWorkspacePage] = useState(filter);
@@ -27,7 +27,7 @@ const Filter = ({ quotes, style = {} }) => {
     .filter((value, index, self) => self.indexOf(value) === index);
 
   return (
-    <div data-testid="filter" style={style}>
+    <div data-testid="filter">
       <select
         value={workspacePage}
         onChange={handleDropdownChange}

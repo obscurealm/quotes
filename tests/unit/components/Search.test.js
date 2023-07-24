@@ -84,12 +84,4 @@ describe("Search component", () => {
 
     expect(screen.getByTestId("searchBox")).toHaveValue("Yusuf");
   });
-
-  it("styles the search", () => {
-    render(<Search style={{ marginBottom: "1rem" }} />);
-
-    expect(screen.getByTestId("search")).toHaveStyle({
-      marginBottom: "1rem",
-    });
-  });
 });

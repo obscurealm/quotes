@@ -200,15 +200,7 @@ describe("Filter component", () => {
     render(<Filter quotes={quotes} />);
 
     expect(screen.getByTestId("workspacePageFilter")).toHaveValue(
-      "Emperor King Yusuf Quotes"
+      "Emperor King Yusuf Quotes",
     );
-  });
-
-  it("styles the filter", () => {
-    render(<Filter quotes={[]} style={{ marginBottom: "1rem" }} />);
-
-    expect(screen.getByTestId("filter")).toHaveStyle({
-      marginBottom: "1rem",
-    });
   });
 });

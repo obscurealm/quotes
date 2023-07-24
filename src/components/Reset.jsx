@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 
-const Reset = ({ style }) => {
+const Reset = () => {
   const { push, query } = useRouter();
 
   return (
     <button
       data-testid="resetButton"
-      style={style}
+      className="button"
       onClick={() =>
         push({
           pathname: "/",

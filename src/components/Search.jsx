@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const Search = ({ style = {} }) => {
+const Search = () => {
   const { push, query } = useRouter();
   const search = query.search || "";
   const [searchTerm, setSearchTerm] = useState(search);
@@ -24,7 +24,7 @@ const Search = ({ style = {} }) => {
   };
 
   return (
-    <div data-testid="search" style={style}>
+    <div data-testid="search">
       <input
         data-testid="searchBox"
         value={searchTerm}
@@ -33,6 +33,7 @@ const Search = ({ style = {} }) => {
       />
       <button
         data-testid="searchButton"
+        className="button"
         onClick={() =>
           push({
             pathname: "/",

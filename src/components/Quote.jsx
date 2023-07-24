@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import convertMarkdownToHtml from "../../utils/convertMarkdownToHtml";
 import formatUnixTimeToDateTime from "../../utils/formatUnixTimeToDateTime";
@@ -37,8 +37,8 @@ const Quote = ({ quote, hasLink = false }) => {
       .join("");
 
   return (
-    <div data-testid="quote">
-      <h2 style={{ marginBottom: "0.5rem" }}>
+    <div data-testid="quote" className="mb-5">
+      <h2 className="mb-2">
         {hasLink ? (
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
             {date} at {time}
@@ -48,7 +48,11 @@ const Quote = ({ quote, hasLink = false }) => {
         )}
       </h2>
 
-      {quote.meta?.workspacePage && <em>From {quote.meta?.workspacePage}</em>}
+      {quote.meta?.workspacePage && (
+        <div className="mb-3">
+          <em>From {quote.meta?.workspacePage}</em>
+        </div>
+      )}
 
       {quote.dialogue.map((dialogue, index) => {
         return (

@@ -13,14 +13,6 @@ describe("Reset component", () => {
     expect(screen.getByText("Reset")).toBeTruthy();
   });
 
-  it("styles the reset button", () => {
-    render(<Reset style={{ marginBottom: "1rem" }} />);
-
-    expect(screen.getByTestId("resetButton")).toHaveStyle({
-      marginBottom: "1rem",
-    });
-  });
-
   describe("when clicking the reset button", () => {
     const routerPushMock = jest.fn();
 
