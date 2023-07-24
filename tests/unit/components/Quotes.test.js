@@ -23,10 +23,10 @@ describe("Quotes component", () => {
 
     expect(screen.getByTestId("quotes").children).toHaveLength(2);
     expect(
-      screen.getByText("18 February 2021 at 12:00pm").closest("a")
+      screen.getByText("18 February 2021 at 12:00pm").closest("a"),
     ).toHaveAttribute("href", "/quotes/1613649600");
     expect(
-      screen.getByText("1 March 2021 at 3:00pm").closest("a")
+      screen.getByText("1 March 2021 at 3:00pm").closest("a"),
     ).toHaveAttribute("href", "/quotes/1614610800");
   });
 
@@ -37,7 +37,7 @@ describe("Quotes component", () => {
       render(<Quotes quotes={quotes} />);
 
       expect(screen.getByTestId("quotes")).toHaveTextContent(
-        "No quotes found."
+        "No quotes found.",
       );
     });
   });

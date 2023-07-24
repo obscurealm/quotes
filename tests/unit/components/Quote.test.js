@@ -24,7 +24,7 @@ describe("Quote component", () => {
     render(<Quote quote={quote} hasLink={true} />);
 
     expect(
-      screen.getByText("18 February 2021 at 12:00pm").closest("a")
+      screen.getByText("18 February 2021 at 12:00pm").closest("a"),
     ).toHaveAttribute("href", "/quotes/1613649600");
   });
 
@@ -37,7 +37,7 @@ describe("Quote component", () => {
     render(<Quote quote={quote} hasLink={false} />);
 
     expect(
-      screen.getByText("18 February 2021 at 12:00pm").closest("a")
+      screen.getByText("18 February 2021 at 12:00pm").closest("a"),
     ).toBeNull();
   });
 
@@ -51,7 +51,7 @@ describe("Quote component", () => {
 
     expect(screen.getByAltText("Iconic Yusuf smirk.")).toHaveAttribute(
       "src",
-      "/images/yusuf.png"
+      "/images/yusuf.png",
     );
   });
 
@@ -67,7 +67,7 @@ describe("Quote component", () => {
 
     expect(screen.getByAltText("Iconic Tingker Bell.")).toHaveAttribute(
       "src",
-      "/images/tingker-bell.png"
+      "/images/tingker-bell.png",
     );
   });
 
@@ -83,7 +83,7 @@ describe("Quote component", () => {
 
     expect(screen.getByAltText("Iconic Tingker Bell.")).toHaveAttribute(
       "width",
-      "18.5px"
+      "18.5px",
     );
   });
 

@@ -16,7 +16,7 @@ describe("Breadcrumbs component", () => {
     expect(screen.getByText(/Home/).closest("a")).toHaveAttribute("href", "/");
     expect(screen.getByText(/foo/).closest("a")).toHaveAttribute(
       "href",
-      "/quotes/foo"
+      "/quotes/foo",
     );
     expect(screen.queryByText(/bar/)).not.toBeInTheDocument();
   });

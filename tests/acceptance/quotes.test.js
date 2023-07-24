@@ -69,7 +69,7 @@ describe("GET /api/quotes", () => {
           data: {
             quotes: expect.any(Object),
           },
-        })
+        }),
       );
     });
   });

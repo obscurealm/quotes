@@ -23,7 +23,7 @@ const plugins = async (on, config) => {
         return reject(err);
       }
       console.log(
-        `\x1b[32mready\x1b[0m - started server on 0.0.0.0:${port}, url: http://localhost:${port}`
+        `\x1b[32mready\x1b[0m - started server on 0.0.0.0:${port}, url: http://localhost:${port}`,
       );
       resolve();
     });
@@ -46,7 +46,7 @@ const plugins = async (on, config) => {
         process.env.NOTION_PAGE_ID.split(",");
 
       const firstPageIdUrl = new RegExp(
-        `\/v1\/pages\/${emperorKingYusufPageId}`
+        `\/v1\/pages\/${emperorKingYusufPageId}`,
       );
       const secondPageIdUrl = new RegExp(`\/v1\/pages\/${tingkerBellPageId}`);
 
@@ -80,7 +80,7 @@ const plugins = async (on, config) => {
         });
 
       const firstBlockIdUrl = new RegExp(
-        `\/v1\/blocks\/${emperorKingYusufPageId}`
+        `\/v1\/blocks\/${emperorKingYusufPageId}`,
       );
       const secondBlockIdUrl = new RegExp(`\/v1\/blocks\/${tingkerBellPageId}`);
 

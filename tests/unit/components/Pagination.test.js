@@ -49,15 +49,15 @@ describe("Pagination component", () => {
 
     expect(screen.getByText(/1/)).toHaveAttribute(
       "href",
-      expect.stringContaining("required=true")
+      expect.stringContaining("required=true"),
     );
     expect(screen.getByText(/2/)).toHaveAttribute(
       "href",
-      expect.stringContaining("required=true")
+      expect.stringContaining("required=true"),
     );
     expect(screen.getByText(/3/)).toHaveAttribute(
       "href",
-      expect.stringContaining("required=true")
+      expect.stringContaining("required=true"),
     );
   });
 
@@ -73,7 +73,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Previous").closest("a")).toHaveAttribute(
         "href",
-        "/?page=2"
+        "/?page=2",
       );
     });
 
@@ -95,7 +95,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Previous")).toHaveAttribute(
         "href",
-        expect.stringContaining("required=true")
+        expect.stringContaining("required=true"),
       );
     });
   });
@@ -112,7 +112,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Next").closest("a")).toHaveAttribute(
         "href",
-        "/?page=2"
+        "/?page=2",
       );
     });
 
@@ -133,7 +133,7 @@ describe("Pagination component", () => {
 
       expect(screen.getByText("Next")).toHaveAttribute(
         "href",
-        expect.stringContaining("required=true")
+        expect.stringContaining("required=true"),
       );
     });
   });

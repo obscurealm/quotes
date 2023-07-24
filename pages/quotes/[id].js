@@ -16,7 +16,7 @@ const QuotePage = ({ quote }) => {
 const getAQuote = async (slug) => {
   const gateway = new NotionGateway(
     process.env.NOTION_API_TOKEN,
-    process.env.NOTION_PAGE_ID
+    process.env.NOTION_PAGE_ID,
   );
   const getQuote = new GetQuoteUseCase(gateway);
 

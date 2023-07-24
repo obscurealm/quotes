@@ -71,7 +71,7 @@ describe("when retrieving an empty list of quotes", () => {
 
     const gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
-      "pageId,anotherPageId"
+      "pageId,anotherPageId",
     );
 
     const quotes = await gateway.retrieveQuotes();
@@ -113,7 +113,7 @@ describe("when retrieving a non-empty list of quotes", () => {
 
     gateway = new NotionGateway(
       "somerandomtoken,anotherrandomtoken",
-      "pageId,anotherPageId"
+      "pageId,anotherPageId",
     );
   });
 
@@ -127,11 +127,11 @@ describe("when retrieving a non-empty list of quotes", () => {
     it("calls Notion API with multiple page IDs", async () => {
       expect(collectPaginatedAPI).toBeCalledWith(
         list,
-        expect.objectContaining({ block_id: "pageId" })
+        expect.objectContaining({ block_id: "pageId" }),
       );
       expect(collectPaginatedAPI).toBeCalledWith(
         anotherList,
-        expect.objectContaining({ block_id: "anotherPageId" })
+        expect.objectContaining({ block_id: "anotherPageId" }),
       );
     });
 
@@ -162,7 +162,7 @@ describe("when retrieving a non-empty list of quotes", () => {
               workspacePage: "Emperor King Yusuf Quotes",
             },
           }),
-        ])
+        ]),
       );
     });
   });
@@ -178,7 +178,7 @@ describe("when retrieving a non-empty list of quotes", () => {
             "Y: Good afternoon Tingker Bell! :tingker-bell:",
             "T: Good afternoon Emperor King Yusuf! :emperor-king-yusuf:",
           ],
-        })
+        }),
       );
     });
   });
@@ -196,7 +196,7 @@ describe("when retrieving a non-empty list of quotes", () => {
             "Y: **bold**_italic_~~strikethrough~~",
             "T: <u>underline</u>`code`",
           ],
-        })
+        }),
       );
     });
   });

@@ -29,21 +29,21 @@ export default class NotionGateway {
         });
 
         return { title, blocks };
-      })
+      }),
     );
 
     return blocksInWorkspaces.reduce((quotes, { title, blocks }) => {
       const datetimeBlocks = blocks.filter(
-        (block) => block.type === BLOCK_TYPE.HeadingTwo
+        (block) => block.type === BLOCK_TYPE.HeadingTwo,
       );
 
       const quote = datetimeBlocks.map((datetimeBlock, datetimeBlockIndex) => {
         const blockIndex = blocks.findIndex(
-          (block) => block.id === datetimeBlock.id
+          (block) => block.id === datetimeBlock.id,
         );
 
         const nextBlockIndex = blocks.findIndex(
-          (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id
+          (block) => block.id === datetimeBlocks[datetimeBlockIndex + 1]?.id,
         );
 
         const dialogueBlocks = this.isSingleQuoteMessage(nextBlockIndex)
@@ -58,20 +58,20 @@ export default class NotionGateway {
                 if (content.hasOwnProperty("annotations"))
                   content.plain_text = this.formatAnnotatedText(
                     content.annotations,
-                    content.plain_text
+                    content.plain_text,
                   );
 
                 return content.plain_text;
               })
-              .join("")
+              .join(""),
           );
 
         return {
           timestamp: convertDateTimeToUnixTime(
             convertDateTimeToUtc(
               datetimeBlock.heading_2.rich_text[0].text.content,
-              process.env.NOTION_PAGE_TZ
-            )
+              process.env.NOTION_PAGE_TZ,
+            ),
           ),
           dialogue,
           meta: {

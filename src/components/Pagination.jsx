@@ -12,7 +12,7 @@ const Pagination = ({ pageSize, totalCount, style }) => {
 
   const pageNumbers = Array.from(
     { length: totalNumberOfPages },
-    (x, i) => i + 1
+    (x, i) => i + 1,
   );
 
   const PageNumberLinks = () =>

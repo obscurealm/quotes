@@ -25,7 +25,7 @@ const getQuotes = async (req, res) => {
 export const getListOfQuotes = async () => {
   const gateway = new NotionGateway(
     process.env.NOTION_API_TOKEN,
-    process.env.NOTION_PAGE_ID
+    process.env.NOTION_PAGE_ID,
   );
   const getQuotes = new GetQuotesUseCase(gateway);
 

@@ -11,7 +11,7 @@ describe("markdown gateway", () => {
     expect(gateway.retrieveQuote("1.md")).toEqual(
       expect.objectContaining({
         quote: "\nTing: _Hello!_\n\nYusuf: Goodbye!\n",
-      })
+      }),
     );
   });
 
@@ -19,7 +19,7 @@ describe("markdown gateway", () => {
     expect(gateway.retrieveQuote("2.md")).toEqual(
       expect.objectContaining({
         frontMatter: { timestamp: 1593013680 },
-      })
+      }),
     );
   });
 
@@ -32,7 +32,7 @@ describe("markdown gateway", () => {
         expect.objectContaining({
           quote: "\nTing: _Goodbye!_\n\nYusuf: Hello!\n",
         }),
-      ])
+      ]),
     );
   });
 
@@ -45,7 +45,7 @@ describe("markdown gateway", () => {
         expect.objectContaining({
           frontMatter: { timestamp: 1593013680 },
         }),
-      ])
+      ]),
     );
   });
 });
