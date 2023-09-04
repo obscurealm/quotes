@@ -6,15 +6,17 @@ export default class GetQuoteUseCase {
   async execute(timestamp) {
     const quote = await this.gateway.retrieveQuote(timestamp);
 
-    const dialogues = quote.dialogue.map((dialogue) => {
-      const delimiter = ": ";
-      const [author, ...text] = dialogue.split(delimiter);
+    const dialogues = quote.dialogue
+      .filter((dialogue) => dialogue !== "")
+      .map((dialogue) => {
+        const delimiter = ": ";
+        const [author, ...text] = dialogue.split(delimiter);
 
-      return {
-        author: author,
-        text: text.join(delimiter),
-      };
-    });
+        return {
+          author: author,
+          text: text.join(delimiter),
+        };
+      });
 
     return {
       timestamp: quote.timestamp,

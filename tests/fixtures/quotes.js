@@ -1,3 +1,11 @@
+export const quoteWithEmptyDialogue = {
+  timestamp: 1593013680,
+  dialogue: ["Ting: Another one!", ""],
+  meta: {
+    workspacePage: "Tingker Bell Quotes",
+  },
+};
+
 export default [
   {
     timestamp: 1593013680,
@@ -23,4 +31,5 @@ export default [
       workspacePage: "Tingker Bell Quotes",
     },
   },
+  quoteWithEmptyDialogue,
 ];

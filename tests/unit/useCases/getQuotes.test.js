@@ -48,6 +48,13 @@ describe("getQuotes use case", () => {
           workspacePage: "Tingker Bell Quotes",
         },
       },
+      {
+        timestamp: 1593013680,
+        dialogue: [{ author: "Ting", text: "Another one!" }],
+        meta: {
+          workspacePage: "Tingker Bell Quotes",
+        },
+      },
     ]);
   });
 });
