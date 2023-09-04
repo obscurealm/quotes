@@ -38,7 +38,7 @@ const Quote = ({ quote, hasLink = false }) => {
 
   return (
     <div data-testid="quote" className="mb-5">
-      <h2 className="mb-2">
+      <h2>
         {hasLink ? (
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
             {date} at {time}
