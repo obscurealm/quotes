@@ -11,11 +11,13 @@ const Layout = ({ title, children, showBreadcrumbs }) => {
       <Head>
         <title>{pageTitle}</title>
       </Head>
-      <h1 data-testid="heading">
-        <Link href="/">Quotes</Link>
-      </h1>
-      {showBreadcrumbs && <Breadcrumbs />}
-      {children}
+      <div className="container mx-auto p-5">
+        <h1 data-testid="heading">
+          <Link href="/">Quotes</Link>
+        </h1>
+        {showBreadcrumbs && <Breadcrumbs />}
+        {children}
+      </div>
     </>
   );
 };
