@@ -57,7 +57,11 @@ const Quote = ({ quote, hasLink = false }) => {
       {quote.dialogue.map((dialogue, index) => {
         return (
           <p key={index}>
-            <strong>{dialogue.author}</strong>:{" "}
+            {dialogue.author && (
+              <>
+                <strong>{dialogue.author}</strong>:{" "}
+              </>
+            )}
             <span
               dangerouslySetInnerHTML={{
                 __html: convertMarkdownToHtml(replaceEmojiText(dialogue.text)),

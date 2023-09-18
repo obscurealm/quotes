@@ -6,6 +6,14 @@ export const quoteWithEmptyDialogue = {
   },
 };
 
+export const quoteWithoutAnAuthor = {
+  timestamp: 1593013681,
+  dialogue: ["Ting: m8", "...", "Yusuf: m10"],
+  meta: {
+    workspacePage: "Emperor King Yusuf Quotes",
+  },
+};
+
 export default [
   {
     timestamp: 1593013680,

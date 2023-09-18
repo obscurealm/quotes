@@ -15,6 +15,18 @@ describe("Quote component", () => {
     expect(screen.getByText("speedieboi")).toBeTruthy();
   });
 
+  it("displays the quote without an author", () => {
+    const quote = {
+      timestamp: "1613649600",
+      dialogue: [{ author: null, text: "m11" }],
+    };
+
+    render(<Quote quote={quote} />);
+
+    expect(screen.getByText("m11")).toBeVisible();
+    !expect(screen.queryByText(":")).not.toBeInTheDocument();
+  });
+
   it("displays the quote with a link", () => {
     const quote = {
       timestamp: "1613649600",
