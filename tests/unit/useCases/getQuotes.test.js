@@ -55,6 +55,17 @@ describe("getQuotes use case", () => {
           workspacePage: "Tingker Bell Quotes",
         },
       },
+      {
+        timestamp: 1593013681,
+        dialogue: [
+          { author: "Ting", text: "m8" },
+          { author: null, text: "..." },
+          { author: "Yusuf", text: "m10" },
+        ],
+        meta: {
+          workspacePage: "Emperor King Yusuf Quotes",
+        },
+      },
     ]);
   });
 });

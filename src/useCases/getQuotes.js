@@ -11,11 +11,19 @@ export default class GetQuotesUseCase {
         .filter((dialogue) => dialogue !== "")
         .map((dialogue) => {
           const delimiter = ": ";
-          const [author, ...text] = dialogue.split(delimiter);
+
+          if (dialogue.includes(delimiter)) {
+            const [author, ...text] = dialogue.split(delimiter);
+
+            return {
+              author: author,
+              text: text.join(delimiter),
+            };
+          }
 
           return {
-            author: author,
-            text: text.join(delimiter),
+            author: null,
+            text: dialogue,
           };
         });
 
