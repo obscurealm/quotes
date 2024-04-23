@@ -37,7 +37,7 @@ const Quote = ({ quote, hasLink = false }) => {
       .join("");
 
   return (
-    <div data-testid="quote" className="mb-5">
+    <div data-testid="quote" className="mb-5 flex flex-col">
       <h2>
         {hasLink ? (
           <Link href={`/quotes/${encodeURIComponent(quote.timestamp)}`}>
@@ -54,22 +54,33 @@ const Quote = ({ quote, hasLink = false }) => {
         </div>
       )}
 
-      {quote.dialogue.map((dialogue, index) => {
-        return (
-          <p key={index}>
-            {dialogue.author && (
-              <>
-                <strong>{dialogue.author}</strong>:{" "}
-              </>
-            )}
-            <span
-              dangerouslySetInnerHTML={{
-                __html: convertMarkdownToHtml(replaceEmojiText(dialogue.text)),
-              }}
-            />
-          </p>
-        );
-      })}
+      <div className="flex flex-col space-y-2 bg-gray-200 p-4 rounded w-full md:w-1/2 lg:w-1/4">
+        {quote.dialogue.map((dialogue, index) => {
+          return (
+            <p
+              key={index}
+              className={`flex ${dialogue.author === "T" && "justify-end"}`}
+            >
+              <span
+                className={`p-2 border-2 ${dialogue.author === "T" ? "bg-tingker-bell-green border-tingker-bell-green rounded-bl-lg" : "bg-emperor-king-yusuf-purple border-emperor-king-yusuf-purple text-white rounded-br-lg"}`}
+              >
+                {dialogue.author && (
+                  <>
+                    <strong>{dialogue.author}</strong>:{" "}
+                  </>
+                )}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: convertMarkdownToHtml(
+                      replaceEmojiText(dialogue.text),
+                    ),
+                  }}
+                />
+              </span>
+            </p>
+          );
+        })}
+      </div>
     </div>
   );
 };
