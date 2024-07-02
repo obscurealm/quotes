@@ -37,7 +37,7 @@
   "dependencies": {
     "@notionhq/client": "^2.2.2",
     "gray-matter": "^4.0.2",
-    "marked": "^12.0.1",
+    "marked": "^13.0.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "next": "^14.0.1",
