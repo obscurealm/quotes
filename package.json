@@ -40,7 +40,7 @@
     "marked": "^14.0.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
-    "next": "^14.0.1",
+    "next": "^15.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanitize-html": "^2.3.2",
